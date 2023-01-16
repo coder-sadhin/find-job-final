@@ -77,7 +77,7 @@ const NavBer = () => {
                                 className="menu menu-compact dropdown-content 
                                  mt-3 p-2 shadow bg-slate-900 text-white rounded-box w-52">
                                 <li>
-                                    <Link to="/candidateProfile" className="justify-between">
+                                    <Link className="justify-between">
                                         Profile
                                         <span className="badge">New</span>
                                     </Link>
