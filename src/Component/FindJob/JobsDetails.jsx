@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaCheck, FaLightbulb, FaLock, FaRecordVinyl } from "react-icons/fa";
-import { BiTimeFive } from "react-icons/bi";
+import { FaCheck, FaLightbulb, FaRecordVinyl } from "react-icons/fa";
 import { CiCircleMore } from "react-icons/ci";
 import { MdWork } from 'react-icons/md';
 import { BsFillCalculatorFill, BsFillSaveFill, BsLinkedin } from 'react-icons/bs';
@@ -10,7 +9,7 @@ const JobsDetails = () => {
     const data = useLoaderData();
     console.log(data)
 
-    const {job_description,job_details,job_post_time,job_visible,pay}=data;
+    const {job_description,job_details,job_post_time}=data;
 
     return (
         <div className=' p-6 text-white'>
@@ -29,7 +28,7 @@ const JobsDetails = () => {
            
             <div className="avatar flex mt-2">
              <div className="w-8 rounded">
-                <img src="https://placeimg.com/192/192/people" />
+                <img src="https://placeimg.com/192/192/people"alt='' />
              </div>
               <p className='ml-2 mt-1'>Shalini Malviya is hiring for this job</p>
             </div>
@@ -56,7 +55,7 @@ const JobsDetails = () => {
             <div className='flex '>
                 <div className="avatar flex mt-2">
                   <div className="w-14 rounded">
-                  <img src="https://placeimg.com/192/192/people" />
+                  <img src="https://placeimg.com/192/192/people" alt='' />
                 </div>
               </div>
              <div className='ml-4'>
@@ -80,7 +79,7 @@ const JobsDetails = () => {
             <div className='flex '>
                 <div className="avatar flex mt-2">
                   <div className="w-16 rounded">
-                  <img src="https://img.freepik.com/premium-photo/composite-image-businessman-pointing-these-fingers-camera_1134-37846.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=ais" />
+                  <img src="https://img.freepik.com/premium-photo/composite-image-businessman-pointing-these-fingers-camera_1134-37846.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=ais" alt='' />
                 </div>
               </div>
              <div className='ml-4'>
