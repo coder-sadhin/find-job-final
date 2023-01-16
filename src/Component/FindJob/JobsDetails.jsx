@@ -7,12 +7,20 @@ import { BsFillCalculatorFill, BsFillSaveFill, BsLinkedin } from 'react-icons/bs
 
 const JobsDetails = () => {
     const data = useLoaderData();
-    console.log(data)
+    // static data for checking modal
+    const modalData = {
+      name: "Full Stack Developer",
+      que1: "How many years of experience do you have on full stack?",
+      que2: "Do you have any project on Full Stack?",
+      que3: "Do you have experience on TypeScrpt and Nextjs?"
+    }
 
     const {job_description,job_details,job_post_time}=data;
 
+
     return (
-        <div className=' p-6 text-white'>
+      <>
+        <div className=' p-6'>
          <div>
          <div className="flex flex-col justify-center p-6 shadow-md w-full rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
 	      {/* <img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=sph" alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" /> */}
@@ -45,9 +53,11 @@ const JobsDetails = () => {
            </div>
          </div>
          <div className='flex gap-2 pt-2'>
-            <button className='btn btn-outline rounded-2xl text-white'><BsLinkedin className='mr-2'/>Apply</button>
-            <button className='btn btn-outline rounded-2xl text-white'><BsFillSaveFill className='mr-2 text-xl'/>Save</button>
-            <button className='btn btn-outline rounded-2xl text-white'><CiCircleMore className='mr-2 text-xl'/>More</button>
+            <button className='btn btn-outline bg-blue-800 rounded-2xl text-white'><BsLinkedin className='mr-2'/>Apply</button>
+            
+            <label htmlFor="my-modal-6" className="btn btn-outline bg-blue-800 rounded-2xl text-white">Easy Apply</label>
+            <button className='btn btn-outline bg-blue-800 rounded-2xl text-white'><BsFillSaveFill className='mr-2 text-xl'/>Save</button>
+            <button className='btn btn-outline bg-blue-800 rounded-2xl text-white'><CiCircleMore className='mr-2 text-xl'/>More</button>
          </div>
          <div className='text-start pt-4 bg-slate-600 rounded-xl p-6 text-white'>
           <h1 className='text-2xl mb-2'>Meet the hiring team</h1>
@@ -98,6 +108,31 @@ const JobsDetails = () => {
          </div>
          </div>
         </div>
+
+    {/* Put this part before </body> tag */}
+    <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+    <div className="modal modal-bottom sm:modal-middle">
+      <form className="modal-box">
+        <h3 className="font-bold text-lg">{modalData.name}</h3>
+        <div>
+          <label htmlFor="que1">{modalData.que1}</label>
+          <input type="text" className='block w-full border px-2'/>
+        </div>
+        <div className='mt-2'>
+          <label htmlFor="que1">{modalData.que2}</label>
+          <input type="text" className='block w-full border px-2'/>
+        </div>
+        <div className='mt-2'>
+          <label htmlFor="que1" className='block'>{modalData.que3}</label>
+          <input type="text" className='block w-full border px-2'/>
+        </div>
+        <div className="modal-action flex justify-between">
+          <label htmlFor="my-modal-6" className="btn">Cancel</label>
+          <label htmlFor="my-modal-6" className="btn btn-primary">Submit Application</label>
+        </div>
+      </form>
+    </div>
+      </>
     );
 };
 
