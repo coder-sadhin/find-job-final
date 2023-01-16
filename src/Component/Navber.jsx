@@ -40,6 +40,7 @@ const NavBer = () => {
                             <li><Link to={'/findJob'}>Find Jobs</Link></li>
                         }
                         <li><Link to={'/contact'}>Contact US</Link></li>
+                        <li><Link to={'/buildcv'}>Build CV</Link></li>
                         {
                             user ?
                                 <></>

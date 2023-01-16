@@ -24,6 +24,7 @@ import CheckOut from '../Component/Payment/CheckOut';
 import Verification from '../Component/Login/Verification';
 import AddAJobs from '../DashBoard/RecruiterPage/AddAJobs/AddAJobs';
 import JobsDetails from '../Component/FindJob/JobsDetails';
+import BuildCV from '../Component/BuildCV/BuildCV';
 
 
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login />
+            },
+            {
+                path: '/buildcv',
+                element: <BuildCV />
             },
             {
                 path: '/register',
