@@ -1,9 +1,14 @@
-import React from 'react';
+import { BiCrop, BiPencil } from 'react-icons/bi';
 import { BsArrowRepeat } from 'react-icons/bs';
-import { FaPen } from 'react-icons/fa';
 import { HiPlus } from 'react-icons/hi';
 import { TbMinus } from "react-icons/tb";
+import { CgFilters } from "react-icons/cg";
+import { HiAdjustments } from "react-icons/hi";
 
+
+import React, { Component } from "react";
+
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const Profile = () => {
     return (
@@ -11,7 +16,7 @@ const Profile = () => {
             <div className="flex w-full flex-col justify-center  p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
                 <div className='flex mb-3 justify-end'>
 
-                    <label htmlFor="my-modal-5" className='text-2xl ml-4 mt-2'><FaPen /></label>
+                    <label htmlFor="my-modal-5" className='text-4xl ml-4 mt-2'><BiPencil /></label>
 
                     <input type="checkbox" id="my-modal-5" className="modal-toggle" />
                     <div className="modal ">
@@ -19,7 +24,24 @@ const Profile = () => {
                             <h3 className="font-bold text-lg">Background Color</h3>
                             <div className="divider"></div>
                             <div>
-                                <img className=' h-[350px] rounded-xl' src="https://media.licdn.com/dms/image/D5616AQFjgp01aXzyqg/profile-displaybackgroundimage-shrink_350_1400/0/1673033329766?e=1679529600&v=beta&t=KG2YJAV1QYBS-8jBjaFkWRo3S6jn2YT7HRRnZIYPevM" alt="" />
+                                <TransformWrapper
+                                    initialScale={1}
+                                    initialPositionX={200}
+                                    initialPositionY={100}
+                                >
+                                    {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+                                        <React.Fragment>
+                                            <TransformComponent>
+                                                <img className=' h-[350px] rounded-xl' src="https://media.licdn.com/dms/image/D5616AQFjgp01aXzyqg/profile-displaybackgroundimage-shrink_350_1400/0/1673033329766?e=1679529600&v=beta&t=KG2YJAV1QYBS-8jBjaFkWRo3S6jn2YT7HRRnZIYPevM" alt="" />
+                                            </TransformComponent>
+                                            <div className="tools flex justify-around">
+                                                {/* <button onClick={() => zoomOut()}>-</button> */}
+                                                <button onClick={() => resetTransform()}><TbMinus className='text-3xl' /></button>
+                                                <button onClick={() => zoomIn()}><HiPlus className='text-3xl' /></button>
+                                            </div>
+                                        </React.Fragment>
+                                    )}
+                                </TransformWrapper>
                             </div>
 
                             <div className='flex justify-end my-6'>
@@ -33,9 +55,23 @@ const Profile = () => {
                                     <div className='flex'>
                                         <p className='text-3xl'><TbMinus /></p>
                                         <fieldset className="space-y-1 ml-2 mt-1 sm:w-60 dark:text-gray-100">
-                                            <input type="range" className="w-full accent-violet-400" min="1" max="5" />
+                                            <input type="range" className="w-full accent-violet-400" min="0" max="100" />
                                         </fieldset>
                                         <p className='text-3xl'><HiPlus /></p>
+                                    </div>
+                                    <div className='flex'>
+                                        <div className='mr-6'>
+                                            <p>Crop</p>
+                                            <p className='text-xl'><BiCrop /></p>
+                                        </div>
+                                        <div className='mr-6'>
+                                            <p>Filter</p>
+                                            <p className='text-xl'><CgFilters /></p>
+                                        </div>
+                                        <div className='mr-6'>
+                                            <p>Adjust</p>
+                                            <p className='text-xl'><HiAdjustments /></p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
