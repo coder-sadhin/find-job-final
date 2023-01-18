@@ -4,13 +4,13 @@ import { BsPencilSquare } from 'react-icons/bs';
 import { HiPlus } from 'react-icons/hi';
 import { ImNewspaper } from 'react-icons/im';
 import { MdOutlineArticle, MdOutlinePermMedia } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const Featured = () => {
     return (
         <div className=''>
             <div className='flex justify-between mr-6'>
                 <h1 className='text-3xl font-semibold my-4 ml-10'>Featured</h1>
-
                 <div className='flex'>
                     <div className="dropdown dropdown-bottom dropdown-end ">
                         <label tabIndex={0} className="  text-4xl "><HiPlus /></label>
@@ -41,12 +41,13 @@ const Featured = () => {
                             </div>
                         </ul>
                     </div>
+                    <Link to='/feature'>
+                        <p className='text-4xl ml-6'><BiPencil /></p>
+                    </Link>
 
-                    <p className='text-4xl ml-6'><BiPencil /></p>
                 </div>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
-
                 <div className="card w-full bg-base-content shadow-xl">
                     <figure className="px-10 pt-10">
                         <img src="https://media.licdn.com/dms/image/sync/C5627AQFCXdZpVV28aw/articleshare-shrink_480/0/1673340940751?e=1674460800&v=beta&t=sDDmUrHOhfdHULAyyVkIdadFdaGmEfwSR1075FiOgPw" alt="Shoes" className="rounded-xl h-[250px]" />
@@ -77,7 +78,7 @@ const Featured = () => {
 
 
             </div>
-        </div>
+        </div >
     );
 };
 

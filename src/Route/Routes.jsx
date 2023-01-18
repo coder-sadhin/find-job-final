@@ -26,6 +26,7 @@ import AddAJobs from '../DashBoard/RecruiterPage/AddAJobs/AddAJobs';
 import JobsDetails from '../Component/FindJob/JobsDetails';
 import AllProfile from '../Component/FindJob/RecruiterProfile/AllProfile';
 import { ServerApi } from '../AllApi/MainApi';
+import FeatureIn from '../Component/FindJob/RecruiterProfile/FeatureIn/FeatureIn';
 
 
 const router = createBrowserRouter([
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
             {
                 path: '/allfrofile',
                 element: <AllProfile></AllProfile>
+            },
+            {
+                path: '/feature',
+                element: <FeatureIn/>
             },
             {
                 path: '/details/:id',
