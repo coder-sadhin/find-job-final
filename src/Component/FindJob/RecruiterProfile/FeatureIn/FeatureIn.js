@@ -35,7 +35,7 @@ const FeatureIn = () => {
                         </div>
                     </div>
                     <div className='ml-4'>
-                        <h3 className='text-2xl '> Rifat-front-end-resume.pdf</h3>
+                        <h3 className='text-2xl '>Rifat-front-end-resume.pdf</h3>
                         <p >Google Docs</p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ const FeatureIn = () => {
                     <div className='ml-4'>
                         <h3 className='text-2xl'> tom1-Overviewtanvirrifat1-Overview
                         </h3>
-                        <p > GitHub</p>
+                        <p> GitHub</p>
                     </div>
                 </div>
             </div>
