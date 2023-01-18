@@ -1,6 +1,7 @@
 import React from 'react';
-import { FaPen } from 'react-icons/fa';
+import { BiPencil } from 'react-icons/bi';
 import { IoIosAdd } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 const Skill = () => {
     return (
@@ -9,8 +10,14 @@ const Skill = () => {
                 <h1 className='text-3xl '>Skills</h1>
                 <div className='flex'>
                     {/* <button className='btn ml-2 mt-2 border-blue-400 rounded-2xl text-white btn-outline'>demonstrate skill</button> */}
-                    <label htmlFor="skillModal" className='text-4xl ml-4 mt-2'><IoIosAdd /></label>
-                    <label className='text-2xl ml-4 mt-2'><FaPen /></label>
+
+                    <label htmlFor="skillModal" className='text-4xl ml-4 mt-2'><IoIosAdd className='text-5xl ' /></label>
+
+                    <Link to='/skills'>
+                        <p className='text-2xl ml-4 mt-2'><BiPencil className='text-4xl mt-1' /></p>
+
+                    </Link>
+
 
                     {/* Put this part before </body> tag */}
                     <input type="checkbox" id="skillModal" className="modal-toggle" />

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const Featured = () => {
     return (
-        <div className=''>
+        <div >
             <div className='flex justify-between mr-6'>
                 <h1 className='text-3xl font-semibold my-4 ml-10'>Featured</h1>
                 <div className='flex'>

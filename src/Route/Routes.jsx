@@ -27,6 +27,8 @@ import JobsDetails from '../Component/FindJob/JobsDetails';
 import AllProfile from '../Component/FindJob/RecruiterProfile/AllProfile';
 import { ServerApi } from '../AllApi/MainApi';
 import FeatureIn from '../Component/FindJob/RecruiterProfile/FeatureIn/FeatureIn';
+import Skill from '../Component/FindJob/RecruiterProfile/Skill';
+import MoreSkill from '../Component/FindJob/RecruiterProfile/MoreSkill';
 
 
 const router = createBrowserRouter([
@@ -70,6 +72,10 @@ const router = createBrowserRouter([
             {
                 path: '/feature',
                 element: <FeatureIn/>
+            },
+            {
+                path: '/skills',
+                element: <MoreSkill/>
             },
             {
                 path: '/details/:id',
