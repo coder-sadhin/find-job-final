@@ -1,4 +1,7 @@
+import axios from "axios";
 import React, { useState, useReducer } from "react";
+import swal from 'sweetalert';
+
 
 const BuildCV = () => {
     const [step, setStep] = useState(1);
@@ -6,6 +9,7 @@ const BuildCV = () => {
     const initialState = {
         firstName: "",
         lastName: "",
+        careerObjective: "",
         city: "",
         postalCode: "",
         state: "",
@@ -15,16 +19,19 @@ const BuildCV = () => {
         subject: "",
         board: "",
         cgpa: "",
-        skills: [],
+        skills: "",
         position: "",
         github: "",
         linkedIn: "",
+        portfolio: "",
         phone: "",
-        live: "",
-        client: "",
-        server: "",
-        description: "",
-        technologies: [],
+        projectName: "",
+        liveSite: "",
+        clientCode: "",
+        serverCode: "",
+        projectDescrition: "",
+        technologies: "",
+        languages: ""
     }
 
     const candidateReducer = (state, action) => {
@@ -40,18 +47,26 @@ const BuildCV = () => {
     }
 
     const [ state , dispatch ] = useReducer(candidateReducer, initialState);
-    console.log(state);
 
+    const handleCreateResume = async() => {
+        await axios.post("http://localhost:5000/create-resume", state)
+        .then((res) => {
+            const data = res.data;
+            swal("Good job!", `${data.message}`, "success");
+        })
+        .catch((err) => swal("Good job!", `${err.message}`, "success"))
+    }
 
     return (
         <div className="block p-6 rounded-lg relative mx-auto shadow-lg bg-white lg:w-1/2 my-10">
             <div className={`${step === 5 ? "hidden" : "block"}`}>
-                <h3 className="text-2xl text-center font-bold mb-5">Create your Resume/CV</h3>
+                <h3 className="text-2xl text-center font-bold mb-3">Create your Resume/CV</h3>
                 <p className="text-xl text-center absolute top-0 right-6 mb-5">Page: {step}/4</p>
             </div>
 
 
-            {step === 1 ? <div div >
+            {step === 1 ? <div>
+                <h4 className="text-2xl mb-2 font-semibold">Personal information:</h4>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="form-group mb-6">
                         <input onBlur={(e) => dispatch({ type: "INPUT",payload: {name: e.target.name, value: e.target.value} })}  name="firstName"  type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
@@ -115,9 +130,9 @@ const BuildCV = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
                             aria-describedby="emailHelp124" placeholder="Postal Code" />
                     </div>
-                    
                 </div>
 
+                
 
                 <div className="grid grid-cols-2 gap-4">
                     <div className="form-group mb-6">
@@ -150,12 +165,30 @@ const BuildCV = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
                             aria-describedby="emailHelp124" placeholder="Country" />
                     </div>
-
+                </div>
+                <div className="form-group mb-6">
+                    <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="languages" type="text" className="form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
+                        aria-describedby="emailHelp124" placeholder="Languages" />
                 </div>
             </div> : ""
             }
 
-            {step === 2 ? <div div >
+            {step === 2 ? <div>
+                <h4 className="text-2xl mb-2 font-semibold">Education:</h4>
                 <div>
                     <div className="form-group mb-6">
                         <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="instituteName" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
@@ -241,8 +274,33 @@ const BuildCV = () => {
             </div> : ""
             }
 
-            {step === 3 ? <div div >
+            {step === 3 ? <div>
+                <h4 className="text-2xl mb-2 font-semibold">Developer Profile:</h4>
                 <div>
+                    <div className="form-group mb-6">
+                        <textarea onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="careerObjective" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+                            aria-describedby="emailHelp123" placeholder="Career Objective" />
+                    </div>
+                    <div className="form-group mb-6">
+                        <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="portfolio" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+                            aria-describedby="emailHelp123" placeholder="Portfolio link" />
+                    </div>
                     <div className="form-group mb-6">
                         <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="skills" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
         text-gray-700
@@ -324,10 +382,23 @@ const BuildCV = () => {
             </div> : ""
             }
 
-            {step === 4 ? <div div>
+            {step === 4 ? <div>
+                <h4 className="text-2xl mb-2 font-semibold">Your Best Project:</h4>
                 <div>
                     <div className="form-group mb-6">
-                        <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="live" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
+                        <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="projectName" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+                            aria-describedby="emailHelp123" placeholder="Project Name" />
+                    </div>
+                    <div className="form-group mb-6">
+                        <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="liveSite" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
         text-gray-700
         bg-white bg-clip-padding
         border border-solid border-gray-300
@@ -339,7 +410,7 @@ const BuildCV = () => {
                             aria-describedby="emailHelp123" placeholder="Best project live link" />
                     </div>
                     <div className="form-group mb-6">
-                        <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="client" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
+                        <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="clientCode" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
         text-gray-700
         bg-white bg-clip-padding
         border border-solid border-gray-300
@@ -351,7 +422,7 @@ const BuildCV = () => {
                             aria-describedby="emailHelp123" placeholder="Repository link client" />
                     </div>
                     <div className="form-group mb-6">
-                        <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="server" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
+                        <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="serverCode" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
         text-gray-700
         bg-white bg-clip-padding
         border border-solid border-gray-300
@@ -359,8 +430,8 @@ const BuildCV = () => {
         transition
         ease-in-out
         m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
-                            aria-describedby="emailHelp123" placeholder="Repository link server" />
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="serverCode"
+                            aria-describedby="serverCode" placeholder="Repository link server" />
                     </div>
                     <div className="form-group mb-6">
                         <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="technologies" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
@@ -371,11 +442,11 @@ const BuildCV = () => {
         transition
         ease-in-out
         m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
-                            aria-describedby="emailHelp123" placeholder="Technology you used" />
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="technologies"
+                            aria-describedby="technologies" placeholder="Technology you used" />
                     </div>
                     <div className="form-group mb-6">
-                        <textarea onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="description" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
+                        <textarea onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="projectDescrition" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
         text-gray-700
         bg-white bg-clip-padding
         border border-solid border-gray-300
@@ -395,7 +466,7 @@ const BuildCV = () => {
                     <h2 className="text-4xl font-bold text-center">Congratulation!!</h2>
                     <p className="text-xl text-center">Your resume created</p>
                     <div className="text-center mb-10">
-                        <button className="bg-green-800 px-10 py-2 mt-5 rounded text-white">Download</button>
+                        <button onClick={handleCreateResume} className="bg-green-800 px-10 py-2 mt-5 rounded text-white">Download</button>
                     </div>
                 </div> 
             }

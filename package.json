@@ -28,6 +28,7 @@
     "react-select": "^5.7.0",
     "react-tag-input-component": "^2.0.2",
     "react-use": "^17.4.0",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
