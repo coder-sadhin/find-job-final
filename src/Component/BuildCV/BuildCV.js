@@ -51,8 +51,11 @@ const BuildCV = () => {
     const handleCreateResume = async() => {
         await axios.post("http://localhost:5000/create-resume", state)
         .then((res) => {
-            const data = res.data;
-            swal("Good job!", `${data.message}`, "success");
+            if(res?.data?.length >= 1){
+                const errors = res.data
+                return swal("Opps!", `${errors.map((err) => err.error)}`, "error");
+            }
+            return swal("Good job!", "Resume created successfully", "success");
         })
         .catch((err) => swal("Good job!", `${err.message}`, "success"))
     }
