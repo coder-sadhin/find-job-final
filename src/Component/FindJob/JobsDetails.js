@@ -12,7 +12,7 @@ const JobsDetails = () => {
   const { job_description, job_details, job_post_time, job_visible, pay } = data;
 
   return (
-    <div className=' p-6 text-white'>
+    <div className=' p-6 bg-base-content text-white'>
       <div>
         <div className="flex flex-col justify-center p-6 shadow-md w-full rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
           {/* <img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=sph" alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" /> */}
