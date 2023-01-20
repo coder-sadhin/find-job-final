@@ -40,6 +40,7 @@ const NavBer = () => {
                             <li><Link to={'/findJob'}>Find Jobs</Link></li>
                         }
                         <li><Link to={'/contact'}>Contact US</Link></li>
+                        <li><Link to={'/buildcv'}>Build CV</Link></li>
                         {
                             user ?
                                 <></>
@@ -83,7 +84,7 @@ const NavBer = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className="justify-between">
+                                    <Link  className="justify-between">
                                         wallet <span className='flex items-center'>
                                             <p>100</p>
                                             <img className='w-8 ml-1' src={coin} alt="" />

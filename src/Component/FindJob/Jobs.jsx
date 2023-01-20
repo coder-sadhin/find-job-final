@@ -68,7 +68,7 @@ const Jobs = ({ allJobs, setSearch }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
     );
 };
 

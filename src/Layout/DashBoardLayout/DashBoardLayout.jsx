@@ -10,7 +10,6 @@ import useUserType from '../../Hooks/DashBoardUserType/DashBoardUserType';
 
 const DashBoardLayout = () => {
     const { user, LogOut } = useContext(AuthContext);
-    // console.log(user)
     const [isAdmin, isRecruiter, isCandidate, userLoading] = useUserType(user?.email)
     const navigate = useNavigate();
 
