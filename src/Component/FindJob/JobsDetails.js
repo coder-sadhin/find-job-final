@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaCheck, FaExclamationCircle, FaLightbulb, FaRecordVinyl } from "react-icons/fa";
+import { FaCheck, FaExclamationCircle, FaLightbulb, FaRecordVinyl, FaCheckCircle } from "react-icons/fa";
 import { CiCircleMore } from "react-icons/ci";
 import { MdWork } from 'react-icons/md';
 import { BsFillCalculatorFill, BsFillSaveFill, BsLinkedin } from 'react-icons/bs';
@@ -12,8 +12,12 @@ const JobsDetails = () => {
   const data = useLoaderData();
   const [closeMOdal, setCloseModal] = useState(true);
   const [modal, setModal] = useState(true);
-  
   const { job_description, job_details, job_post_time } = data;
+
+
+  // checking whether user applied or not
+  const isApplied =  data?.candidates?.map((candidate) => candidate?.email === user?.email)
+
 
   const handleJobApply = (event) => {
     event.preventDefault();
@@ -23,7 +27,6 @@ const JobsDetails = () => {
       candidateEmail: user.email,
       job: data
     }
-
     // save candidate application to database
     fetch("http://localhost:5001/apply-job",{
       method: "POST",
@@ -33,11 +36,33 @@ const JobsDetails = () => {
       body: JSON.stringify(application)
     })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      console.log(data);
+      handleUpdateApplyQuantity(user.displayName, user.email)
+    })
     .catch((err) => console.log(err))
 
     setModal(false)
   }
+
+  const handleUpdateApplyQuantity = (name, email) => {
+    const candidate = {
+      name: name,
+      email: email,
+      candidateId: "sg8sd8gh4h46d8fg76df8gh"
+    }
+    fetch(`http://localhost:5001/jobs/apply/${data._id}`,{
+      method: "PUT",
+      headers: {
+        "content-type" : "application/json"
+      },
+      body: JSON.stringify(candidate)
+    })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+  }
+
   return (
     <div className=' p-6 bg-base-content '>
       <div className='text-white'>
@@ -71,7 +96,9 @@ const JobsDetails = () => {
               </div>
             </div>
             <div className='flex gap-2 pt-2'>
-              <button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><BsLinkedin className='mr-2' />Apply</button>
+              {
+                isApplied ? <h2 className='text-white text-2xl flex items-center gap-5'> <FaCheckCircle className='text-green-400 rounded-full text-2xl' /> <span>Already applied and your application submitted to recruiter</span></h2> 
+                  :<><button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><BsLinkedin className='mr-2' />Apply</button>
               <label htmlFor="easy-apply" className="btn btn-outline hover:bg-blue-600 rounded-2xl text-white">Easy Apply</label>
               <button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><BsFillSaveFill className='mr-2 text-xl' />Save</button>
               <button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><CiCircleMore className='mr-2 text-xl' />More</button>
@@ -83,6 +110,8 @@ const JobsDetails = () => {
                 <FaExclamationCircle className="mr-2 text-xl" />
                 Report job
               </label>
+                </> 
+              }
             </div>
             {closeMOdal &&
               <ReportJob data={data} setCloseModal={setCloseModal}></ReportJob>

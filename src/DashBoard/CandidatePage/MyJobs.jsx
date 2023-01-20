@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 
 const MyJobs = () => {
     const {user} = useContext(AuthContext)
     const [jobs, setJobs] = useState([]);
+
     useEffect(() => {
         axios.get(`http://localhost:5001/applied-job/${user?.email}`)
         .then((data) => setJobs(data.data))
@@ -24,23 +26,23 @@ const MyJobs = () => {
     }
 
     return (
-        <div class="flex flex-col">
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="overflow-hidden">
-                    <table class="min-w-full">
-                    <thead class="bg-white border-b">
+        <div className="flex flex-col">
+            <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                <div className="overflow-hidden">
+                    <table className="min-w-full">
+                    <thead className="bg-white border-b">
                         <tr>
-                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                             #
                         </th>
-                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                             Title
                         </th>
-                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                             Type
                         </th>
-                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                             Action
                         </th>
                         </tr>
@@ -51,17 +53,19 @@ const MyJobs = () => {
                                 const title = job?.job?.job_details?.job?.job_title;
                                 const jobType = job?.job?.job_details?.job?.jobType;
                                 return (
-                                    <tr key={job._id} class="bg-gray-100 border-b">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    <tr key={job._id} className="bg-gray-100 border-b">
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+                                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                            {title}
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             {jobType}
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             <button onClick={() => handleJobDelete(job._id)} className='btn btn-sm bg-red-700 m-2'>Delete</button>
-                                            <button className='btn btn-sm bg-blue-800'>Details</button>
+                                            <Link  to={`/details/${job?.job?._id}`}>
+                                                <button className='btn btn-sm bg-blue-800'>Details</button>
+                                            </Link>
                                         </td>
                                     </tr>
                                 )

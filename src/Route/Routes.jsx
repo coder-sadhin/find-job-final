@@ -30,6 +30,7 @@ import MyJobs from '../DashBoard/CandidatePage/MyJobs';
 
 import AllProfile from '../Component/FindJob/RecruiterProfile/AllProfile';
 import { ServerApi } from '../AllApi/MainApi';
+import RecruiterJobs from '../DashBoard/RecruiterPage/Recruiterjobs/RecruiterJobs';
 
 
 
@@ -128,8 +129,14 @@ const router = createBrowserRouter([
                 element: <AddAJobs />
             },
             {
+                // this route is for candidate
                 path: '/dashboard/my-jobs',
                 element: <MyJobs />
+            },
+            {
+                // this route is for recruiter
+                path: '/dashboard/myJobs',
+                element: <RecruiterJobs />
             }
         ]
     },
