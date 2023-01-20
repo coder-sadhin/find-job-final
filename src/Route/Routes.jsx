@@ -1,3 +1,4 @@
+
 import { createBrowserRouter } from 'react-router-dom';
 import Contact from '../Component/Contact/Contact';
 import Error from '../Component/Error';
@@ -24,7 +25,12 @@ import CheckOut from '../Component/Payment/CheckOut';
 import Verification from '../Component/Login/Verification';
 import AddAJobs from '../DashBoard/RecruiterPage/AddAJobs/AddAJobs';
 import JobsDetails from '../Component/FindJob/JobsDetails';
+
 import BuildCV from '../Component/BuildCV/BuildCV';
+
+import AllProfile from '../Component/FindJob/RecruiterProfile/AllProfile';
+import { ServerApi } from '../AllApi/MainApi';
+
 
 
 const router = createBrowserRouter([
@@ -66,8 +72,12 @@ const router = createBrowserRouter([
                 element: <Verification />
             },
             {
+                path: '/allfrofile',
+                element: <AllProfile></AllProfile>
+            },
+            {
                 path: '/details/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/jobDetails/${params.id}`),
+                loader: ({ params }) => fetch(`${ServerApi}/jobDetails/${params.id}`),
                 element: <JobsDetails />
             }
         ]
@@ -138,5 +148,6 @@ const router = createBrowserRouter([
         ]
     }
 ])
+
 
 export default router;
