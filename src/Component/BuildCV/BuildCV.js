@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useReducer } from "react";
 import swal from 'sweetalert';
+import { ServerApi } from "../../AllApi/MainApi";
 
 
 const BuildCV = () => {
@@ -35,29 +36,29 @@ const BuildCV = () => {
     }
 
     const candidateReducer = (state, action) => {
-        switch(action.type){
+        switch (action.type) {
             case "INPUT":
-             return {
-                ...state,
-                 [action.payload.name]: action.payload.value
-             }
+                return {
+                    ...state,
+                    [action.payload.name]: action.payload.value
+                }
             default:
                 return state
         }
     }
 
-    const [ state , dispatch ] = useReducer(candidateReducer, initialState);
+    const [state, dispatch] = useReducer(candidateReducer, initialState);
 
-    const handleCreateResume = async() => {
-        await axios.post("http://localhost:5000/create-resume", state)
-        .then((res) => {
-            if(res?.data?.length >= 1){
-                const errors = res.data
-                return swal("Opps!", `${errors.map((err) => err.error)}`, "error");
-            }
-            return swal("Good job!", "Resume created successfully", "success");
-        })
-        .catch((err) => swal("Good job!", `${err.message}`, "success"))
+    const handleCreateResume = async () => {
+        await axios.post(`${ServerApi}/create-resume`, state)
+            .then((res) => {
+                if (res?.data?.length >= 1) {
+                    const errors = res.data
+                    return swal("Opps!", `${errors.map((err) => err.error)}`, "error");
+                }
+                return swal("Good job!", "Resume created successfully", "success");
+            })
+            .catch((err) => swal("Good job!", `${err.message}`, "success"))
     }
 
     return (
@@ -72,7 +73,7 @@ const BuildCV = () => {
                 <h4 className="text-2xl mb-2 font-semibold">Personal information:</h4>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="form-group mb-6">
-                        <input onBlur={(e) => dispatch({ type: "INPUT",payload: {name: e.target.name, value: e.target.value} })}  name="firstName"  type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
+                        <input onBlur={(e) => dispatch({ type: "INPUT", payload: { name: e.target.name, value: e.target.value } })} name="firstName" type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal
         text-gray-700
         bg-white bg-clip-padding
         border border-solid border-gray-300
@@ -135,7 +136,7 @@ const BuildCV = () => {
                     </div>
                 </div>
 
-                
+
 
                 <div className="grid grid-cols-2 gap-4">
                     <div className="form-group mb-6">
@@ -471,7 +472,7 @@ const BuildCV = () => {
                     <div className="text-center mb-10">
                         <button onClick={handleCreateResume} className="bg-green-800 px-10 py-2 mt-5 rounded text-white">Download</button>
                     </div>
-                </div> 
+                </div>
             }
 
             <div className="flex justify-between">
