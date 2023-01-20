@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaCheck, FaLightbulb, FaLock, FaRecordVinyl } from "react-icons/fa";
+import { FaCheck, FaExclamationCircle, FaLightbulb, FaLock, FaRecordVinyl } from "react-icons/fa";
 import { CiCircleMore } from "react-icons/ci";
 import { MdWork } from 'react-icons/md';
 import { BsFillCalculatorFill, BsFillSaveFill, BsLinkedin } from 'react-icons/bs';
+import ReportJob from './ReportJob/ReportJob';
 
 const JobsDetails = () => {
   const data = useLoaderData();
   console.log(data)
 
   const { job_description, job_details, job_post_time, job_visible, pay } = data;
+  const [closeMOdal ,setCloseModal] = useState(true);
 
   return (
     <div className=' p-6 bg-base-content text-white'>
@@ -48,7 +50,19 @@ const JobsDetails = () => {
               <button className='btn btn-outline rounded-2xl text-white'><BsLinkedin className='mr-2' />Apply</button>
               <button className='btn btn-outline rounded-2xl text-white'><BsFillSaveFill className='mr-2 text-xl' />Save</button>
               <button className='btn btn-outline rounded-2xl text-white'><CiCircleMore className='mr-2 text-xl' />More</button>
+               {/* Report the job */}
+               <label
+                htmlFor={data?._id}
+                className="btn btn-outline rounded-2xl  text-error"
+              >
+                <FaExclamationCircle className="mr-2 text-xl" />
+                Report job
+              </label>
             </div>
+            {closeMOdal &&
+            <ReportJob data={data} setCloseModal={setCloseModal}></ReportJob>
+           }
+            {/* modal  */}
             <div className='text-start pt-4 bg-slate-600 rounded-xl p-6 text-white'>
               <h1 className='text-2xl mb-2'>Meet the hiring team</h1>
               <div className='flex justify-between'>
