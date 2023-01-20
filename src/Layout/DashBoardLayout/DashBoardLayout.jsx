@@ -1,25 +1,24 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 
 
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import NavBer from '../../Component/Navber';
-import Spinner from '../../Component/Spinner/Spinner';
-import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
-import useUserType from '../../Hooks/DashBoardUserType/DashBoardUserType';
+// import Spinner from '../../Component/Spinner/Spinner';
+// import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
+// import useUserType from '../../Hooks/DashBoardUserType/DashBoardUserType';
 
 const DashBoardLayout = () => {
-    const { user, LogOut } = useContext(AuthContext);
-    const [isAdmin, isRecruiter, isCandidate, userLoading] = useUserType(user?.email)
-    const navigate = useNavigate();
+    // const { user, LogOut } = useContext(AuthContext);
+    // const [isAdmin, isRecruiter, isCandidate, userLoading] = useUserType(user?.email)
+    // const navigate = useNavigate();
 
-    if (userLoading) {
-        return <Spinner />
+    const role = {
+        admin: false,
+        recruiter: false,
+        candidate: true
     }
-    const handleToSignOut = () => {
-        LogOut();
-        navigate('/')
-    }
+
     return (
         <div>
             <NavBer />
@@ -33,15 +32,15 @@ const DashBoardLayout = () => {
                     <ul className="menu p-4 w-80 text-bold bg-blue-200">
 
                         {
-                            isCandidate && <>
+                            role.candidate === true && <>
                                 <li><Link to={'/dashboard/myProfile'}>My Profile</Link></li>
                                 <li><Link to={'/dashboard/skills'}>My Skills</Link></li>
-                                <li><Link to={'/dashboard/Jobs'}>Jobs</Link></li>
+                                <li><Link to={'/dashboard/my-jobs'}>My Jobs</Link></li>
                                 <li><Link to={'/dashboard/editProfile'}>Edit Profile</Link></li>
                             </>
                         }
                         {
-                            isRecruiter && <>
+                            role.recruiter === true && <>
                                 <li><Link to={'/dashboard/myProfile'}>My Profile</Link></li>
                                 <li><Link to={'/dashboard/myJobs'}>My Jobs</Link></li>
                                 <li><Link to={'/dashboard/addAJobs'}>Post A Jobs</Link></li>
@@ -49,7 +48,7 @@ const DashBoardLayout = () => {
                             </>
                         }
                         {
-                            isAdmin && <>
+                            role.admin === true && <>
                                 <li><Link to={'/dashboard/newsLetter'}>News Letter</Link></li>
                                 <li><Link to={'/dashboard/recruiters'}>All Recruiters</Link></li>
                                 <li><Link to={'/dashboard/candidates'}>All Candidates</Link></li>
@@ -70,7 +69,7 @@ const DashBoardLayout = () => {
                             </>
                         }
                         <li><Link to={'/dashboard/changePass'}>Change Password</Link></li>
-                        <li><button onClick={handleToSignOut}>Sign Out</button></li>
+                        <li><button>Sign Out</button></li>
                     </ul>
                 </div>
             </div>

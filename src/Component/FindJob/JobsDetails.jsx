@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { FaCheck, FaLightbulb, FaRecordVinyl } from "react-icons/fa";
 import { CiCircleMore } from "react-icons/ci";
 import { MdWork } from 'react-icons/md';
 import { BsFillCalculatorFill, BsFillSaveFill, BsLinkedin } from 'react-icons/bs';
+import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
+import { ServerApi } from '../../AllApi/MainApi';
 
 const JobsDetails = () => {
+  const {user} = useContext(AuthContext);
     const data = useLoaderData();
     // static data for checking modal
     const modalData = {
@@ -16,6 +19,7 @@ const JobsDetails = () => {
     }
 
     const {job_description,job_details,job_post_time}=data;
+
 
 
     return (
@@ -111,9 +115,10 @@ const JobsDetails = () => {
 
     {/* Put this part before </body> tag */}
     <input type="checkbox" id="my-modal-6" className="modal-toggle" />
-    <div className="modal modal-bottom sm:modal-middle">
+    {
+      <div className="modal modal-bottom sm:modal-middle">
       <form className="modal-box">
-        <h3 className="font-bold text-lg">{modalData.name}</h3>
+        <h3 className="font-bold text-lg">{job_details?.job?.job_title}</h3>
         <div>
           <label htmlFor="que1">{modalData.que1}</label>
           <input type="text" className='block w-full border px-2'/>
@@ -128,10 +133,11 @@ const JobsDetails = () => {
         </div>
         <div className="modal-action flex justify-between">
           <label htmlFor="my-modal-6" className="btn">Cancel</label>
-          <label htmlFor="my-modal-6" className="btn btn-primary">Submit Application</label>
+          <button className="btn btn-primary">Submit Application</button>
         </div>
       </form>
     </div>
+    }
       </>
     );
 };

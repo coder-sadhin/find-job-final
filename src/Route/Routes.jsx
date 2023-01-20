@@ -11,7 +11,6 @@ import AllJobs from '../DashBoard/AdminPage/AllJobs';
 import DashBoard from '../DashBoard/DashBoard';
 import DashBoardLayout from '../Layout/DashBoardLayout/DashBoardLayout';
 import Main from '../Layout/Main';
-import PrivateRoute from './PrivetRoutes/PrivetRoute';
 import Recruiters from '../DashBoard/AdminPage/AllRecruiters';
 import ReportedCandidate from '../DashBoard/AdminPage/Reported/ReportedCandidate';
 import ReportedRecruiters from '../DashBoard/AdminPage/Reported/ReportedRecruiters';
@@ -25,6 +24,7 @@ import Verification from '../Component/Login/Verification';
 import AddAJobs from '../DashBoard/RecruiterPage/AddAJobs/AddAJobs';
 import JobsDetails from '../Component/FindJob/JobsDetails';
 import BuildCV from '../Component/BuildCV/BuildCV';
+import MyJobs from '../DashBoard/CandidatePage/MyJobs';
 
 
 const router = createBrowserRouter([
@@ -67,19 +67,19 @@ const router = createBrowserRouter([
             },
             {
                 path: '/details/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/jobDetails/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:5000/test-alljobs/${params.id}`),
                 element: <JobsDetails />
             }
         ]
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute><DashBoardLayout /></PrivateRoute>,
+        element:<DashBoardLayout />,
         errorElement: <Error />,
         children: [
             {
                 path: '/dashboard',
-                element: <PrivateRoute><DashBoard /></PrivateRoute>
+                element: <DashBoard />
             },
             {
                 path: '/dashboard/newsLetter',
@@ -116,6 +116,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addAJobs',
                 element: <AddAJobs />
+            },
+            {
+                path: '/dashboard/my-jobs',
+                element: <MyJobs />
             }
         ]
     },
