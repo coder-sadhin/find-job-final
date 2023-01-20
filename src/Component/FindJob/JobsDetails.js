@@ -17,12 +17,11 @@ const JobsDetails = () => {
 
   const handleJobApply = (event) => {
     event.preventDefault();
-    
+
     const application = {
       candidate: user.displayName,
       candidateEmail: user.email,
-      jobId: data._id,
-      recruiter: job_details?.recruiter_email
+      job: data
     }
 
     // save candidate application to database
