@@ -12,6 +12,16 @@ const MyJobs = () => {
         .catch((err) => console.log(err))
     }, [user?.email])
 
+    const handleJobDelete = (id) => {
+        axios.delete(`http://localhost:5001/applied-job/${id}`)
+        .then((res) => {
+            if(res.data.deletedCount > 0){
+                const remaining = jobs.filter((job) => job._id !== id);
+                setJobs(remaining)
+            }
+        })
+        .catch((err) => console.log(err))
+    }
 
     return (
         <div class="flex flex-col">
@@ -50,7 +60,7 @@ const MyJobs = () => {
                                             {jobType}
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            <button className='btn btn-sm bg-red-700 m-2'>Delete</button>
+                                            <button onClick={() => handleJobDelete(job._id)} className='btn btn-sm bg-red-700 m-2'>Delete</button>
                                             <button className='btn btn-sm bg-blue-800'>Details</button>
                                         </td>
                                     </tr>
