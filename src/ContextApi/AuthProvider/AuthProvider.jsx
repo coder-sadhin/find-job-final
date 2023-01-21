@@ -11,7 +11,7 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-
+    const [refreshToken, setRefreshToken] = useState("refresh")
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -67,7 +67,9 @@ const AuthProvider = ({ children }) => {
         signInWithGoogle,
         updatePass,
         setLoading,
-        userVerification
+        userVerification,
+        refreshToken,
+        setRefreshToken
     }
 
     return (

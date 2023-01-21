@@ -6,7 +6,8 @@ import { CgFilters } from "react-icons/cg";
 import { HiAdjustments } from "react-icons/hi";
 
 
-import React, { Component } from "react";
+import React from "react";
+import { Link } from 'react-router-dom';
 
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
@@ -123,6 +124,8 @@ const ProfileM = () => {
                         <button className="btn  bg-blue-400 rounded-2xl hover:text-white text-black">open to</button>
                         <button className="btn ml-2 border-blue-400 rounded-2xl text-white btn-outline">add profile section</button>
                         <button className="btn ml-2 text-white dark:bg-gray-900">more</button>
+                        <Link to={'/buildcv'}> <button className="btn ml-2 text-white dark:bg-gray-900">Build CV</button></Link>
+
 
                     </div>
                 </div>

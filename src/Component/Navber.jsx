@@ -9,7 +9,7 @@ import { ServerApi } from '../AllApi/MainApi';
 
 const NavBer = () => {
 
-    const { user, LogOut } = useContext(AuthContext)
+    const { user, LogOut, refreshToken } = useContext(AuthContext)
     const [userToken, setUserToken] = useState(0);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const NavBer = () => {
                 setUserToken(token)
             })
             .catch(err => console.error(err))
-    }, [user, user?.email])
+    }, [user, user?.email, refreshToken])
 
     return (
         <div
@@ -52,7 +52,6 @@ const NavBer = () => {
                             <li><Link to={'/findJob'}>Find Jobs</Link></li>
                         }
                         <li><Link to={'/contact'}>Contact US</Link></li>
-                        <li><Link to={'/buildcv'}>Build CV</Link></li>
                         {
                             user ?
                                 <></>
