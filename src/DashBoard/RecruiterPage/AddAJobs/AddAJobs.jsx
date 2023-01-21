@@ -166,7 +166,6 @@ const AddAJobs = () => {
                                             value={currency.sort}
                                         >{currency.sort} - {currency.name}</option>)
                                     }
-
                                 </select>
                             </div>
                         </div>

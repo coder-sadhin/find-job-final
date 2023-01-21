@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { toast } from 'react-hot-toast';
-import { ServerApi } from '../../../AllApi/MainApi';
-import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
+import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
+import { ServerApi } from "../../../AllApi/MainApi";
+import { AuthContext } from "../../../ContextApi/AuthProvider/AuthProvider";
 
 const ReportJob = ({ data, setCloseModal }) => {
   const { job_description, job_details, job_post_time, job_visible, pay, _id } =
@@ -39,7 +39,12 @@ const ReportJob = ({ data, setCloseModal }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.error(`Report ${jobName}`);
+        if(data.type==='reported'){
+          toast(`${data?.type} the ${jobName}`);
+        }
+        else{
+          toast.error(`${data?.type} ${jobName}`)
+        }
       });
   };
 
@@ -50,7 +55,11 @@ const ReportJob = ({ data, setCloseModal }) => {
     { id: 1, name: "Look like an span" },
   ];
   return (
+<<<<<<< HEAD
+    <div className="dark:bg-gray-900 dark:text-gray-200 ">
+=======
     <div className="bg-gray-900 text-gray-200 ">
+>>>>>>> 7a38d36f2925c2ca438e1bf8bb3de0f00947afa8
       <input
         type="checkbox"
         id={_id}
@@ -71,26 +80,16 @@ const ReportJob = ({ data, setCloseModal }) => {
               {" "}
               About the Reports
             </h3>
-            {reportItem?.map((report) => {
-              return (
-                <div className="flex gap-3 items-center text-xl">
-                  <label
-                    htmlFor="report"
-                    name="report"
-                    value={report?.name}
-                    className="flex gap-3 items-center text-xl"
-                  >
-                    <input
-                      type="checkbox"
-                      name="report"
-                      value={report?.name}
-                      id="report"
-                    />
-                    {report?.name}
-                  </label>
-                </div>
-              );
-            })}
+            <select name="report" id="" className="w-full outline-none text-gray-800 p-2" size="3" >
+              {reportItem?.map((report) => {
+                return (
+                  <option className=" text-xl " value={report?.name} >
+                   <span className="text-sm ml-3 mb-[4px]">o</span> {report.name}
+                  </option>
+                );
+              })}
+            </select>
+
             <label htmlFor="" className="text-3xl font-semibold w-full mt-3">
               Additional Information
             </label>
@@ -111,7 +110,10 @@ const ReportJob = ({ data, setCloseModal }) => {
             />
           </form>
           <div className="modal-action">
-            <label htmlFor={data?._id} className="btn btn-outline rounded-2xl text-white">
+            <label
+              htmlFor={data?._id}
+              className="btn btn-outline rounded-2xl text-white"
+            >
               Close
             </label>
           </div>
