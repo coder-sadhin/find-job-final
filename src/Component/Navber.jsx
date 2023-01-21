@@ -54,7 +54,7 @@ const NavBer = () => {
                 </div>
             </div>
             <div className="navbar-center">
-                <Link to={'/'} className="btn btn-ghost flex items-center normal-case bg-black font-bold text-2xl">
+                <Link to={'/'} className="btn btn-ghost flex items-center normal-case bg-base-200 font-bold text-2xl">
 
                     <img className='w-44' src={logo} alt="" />
                 </Link>

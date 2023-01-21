@@ -73,7 +73,7 @@ const ReportJob = ({ data, setCloseModal }) => {
             </h3>
             {reportItem?.map((report) => {
               return (
-                <div className="flex gap-3 items-center text-xl">
+                <div key={report._id} className="flex gap-3 items-center text-xl">
                   <label
                     htmlFor="report"
                     name="report"
