@@ -15,8 +15,8 @@ const DashBoardLayout = () => {
 
     const role = {
         admin: false,
-        recruiter: true,
-        candidate: false
+        recruiter: false,
+        candidate: true
     }
 
     return (
