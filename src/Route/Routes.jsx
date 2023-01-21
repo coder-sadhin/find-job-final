@@ -29,6 +29,7 @@ import { ServerApi } from "../AllApi/MainApi";
 import FeatureIn from "../Component/FindJob/RecruiterProfile/FeatureIn/FeatureIn";
 import Skill from "../Component/FindJob/RecruiterProfile/Skill";
 import MoreSkill from "../Component/FindJob/RecruiterProfile/MoreSkill";
+import ReportedJobDetail from "../DashBoard/AdminPage/Reported/ReportedJobDetail";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,19 @@ const router = createBrowserRouter([
         loader: ({ params }) => fetch(`${ServerApi}/jobDetails/${params.id}`),
         element: <JobsDetails />,
       },
+      ///for check report @sarwar ////
+      // {
+      //   path: "/reportedJobs",
+      //   element: <ReportedJobs />,
+      // },{
+      //   path: "/dashboard/reportedJobsDetails/:id",
+      //   element: <ReportedJobDetail />,
+      // },
+      // {
+      //   path: "/addAJobs",
+      //   element: <AddAJobs />,
+      // },
+  
     ],
   },
   {
@@ -125,9 +139,14 @@ const router = createBrowserRouter([
         element: <ReportedJobs />,
       },
       {
+        path: "/dashboard/reportedJobsDetails/:id",
+        element: <ReportedJobDetail />,
+      },
+      {
         path: "/dashboard/reportedCandidate",
         element: <ReportedCandidate />,
       },
+      
       {
         path: "/dashboard/reportedRecruiters",
         element: <ReportedRecruiters />,
