@@ -1,14 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 import { FcBusinessman } from 'react-icons/fc';
 import logo from '../asset/logo2.png';
 import coin from '../asset/Vlaunchu_coin.png';
+import { ServerApi } from '../AllApi/MainApi';
 
 
 const NavBer = () => {
 
     const { user, LogOut } = useContext(AuthContext)
+    const [userToken, setUserToken] = useState(0);
+
+    useEffect(() => {
+        fetch(`${ServerApi}/token?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                const token = Number(data)
+                setUserToken(token)
+            })
+            .catch(err => console.error(err))
+    }, [user, user?.email])
 
     return (
         <div
@@ -78,15 +90,15 @@ const NavBer = () => {
                                 className="menu menu-compact dropdown-content 
                                  mt-3 p-2 shadow bg-slate-900 text-white rounded-box w-52">
                                 <li>
-                                    <Link className="justify-between">
+                                    <Link to={'/profile'} className="justify-between">
                                         Profile
                                         <span className="badge">New</span>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link className="justify-between">
-                                        wallet <span className='flex items-center'>
-                                            <p>100</p>
+                                        Token <span className='flex items-center'>
+                                            <p>{userToken}</p>
                                             <img className='w-8 ml-1' src={coin} alt="" />
                                         </span>
                                     </Link>
