@@ -3,6 +3,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import toast from 'react-hot-toast';
 import SmallSpinner from '../Spinner/SmallSpinner';
 import GooglePayButton from '@google-pay/button-react';
+import { ServerApi } from '../../AllApi/MainApi';
 
 const Payment = ({ data }) => {
 
@@ -85,7 +86,7 @@ const Payment = ({ data }) => {
     }
 
     useEffect(() => {
-        fetch(`https://find-job-server.vercel.app/payment/intent`, {
+        fetch(`${ServerApi}/payment/intent`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

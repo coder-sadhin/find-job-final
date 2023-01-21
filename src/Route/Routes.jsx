@@ -78,14 +78,14 @@ const router = createBrowserRouter([
             },
             {
                 path: '/details/:id',
-                loader: ({ params }) => fetch(`${ServerApi}/jobDetails/${params.id}`),
+                loader: ({ params }) => fetch(`${ServerApi}/jobs/jobDetails/${params.id}`),
                 element: <JobsDetails />
             }
         ]
     },
     {
         path: '/dashboard',
-        element:<DashBoardLayout />,
+        element: <DashBoardLayout />,
         errorElement: <Error />,
         children: [
             {
