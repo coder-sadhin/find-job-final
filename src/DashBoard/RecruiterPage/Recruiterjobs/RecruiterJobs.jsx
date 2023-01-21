@@ -1,4 +1,5 @@
 import React,{ useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import 'tw-elements';
 
 const RecruiterJobs = () => {
@@ -13,39 +14,34 @@ const RecruiterJobs = () => {
 
 
     return (
-        <div className="accordion" id="accordionExample5">
-            {
-                jobs && jobs.map((job) => <div className="accordion-item bg-white border border-gray-200">
-            <h2 className="accordion-header mb-0" id="headingThree5">
-                <button className="
-                accordion-button
-                collapsed
-                relative
-                flex
-                items-center
-                w-full
-                py-4
-                px-5
-                text-base text-gray-800 text-left
-                bg-white
-                border-0
-                rounded-none
-                transition
-                focus:outline-none
-                " type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree5" aria-expanded="false"
-                aria-controls="collapseThree5">
-                {job?.job_details?.job?.job_title} === Total Candidates {job?.candidates?.length}
-                </button>
-            </h2>
-            <div id="collapseThree5" className="accordion-collapse collapse" aria-labelledby="headingThree5">
-                <div className="accordion-body py-4 px-5">
+        <div className="overflow-x-auto">
+            <table className="table w-full">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Title</th>
+                    <th>Applicants</th>
+                    <th>Resumes</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
                 {
-                    job?.candidates && job.candidates.map((candidate) => <h2 classNameName='text-xl'>{candidate?.name}</h2>)
+                    jobs && jobs.map((job, index) => {
+                        console.log(job);
+                        return (
+                            <tr >
+                                <th>{index + 1}</th>
+                                <td>{job?.job_details?.job?.job_title}</td>
+                                <td >{job?.candidates?.length > 0 ? job?.candidates?.length : 0}</td>
+                                <td><Link to={`/dashboard/myJobs/details/${job._id}`} className='btn btn-sm btn-outline'>See All</Link></td>
+                                <td><button className='btn btn-sm btn-warning'>Delete</button></td>
+                            </tr>
+                        )
+                    })
                 }
-                </div>
-            </div>
-            </div>)
-            }
+                </tbody>
+            </table>
         </div>
     );
 };

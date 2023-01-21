@@ -4,7 +4,7 @@ import { ServerApi } from "../../../AllApi/MainApi";
 import { AuthContext } from "../../../ContextApi/AuthProvider/AuthProvider";
 
 const ReportJob = ({ data, setCloseModal }) => {
-  const { job_description, job_details, job_post_time, job_visible, pay, _id } =
+  const {  job_details, _id } =
     data;
   const { user } = useContext(AuthContext);
 
@@ -55,11 +55,7 @@ const ReportJob = ({ data, setCloseModal }) => {
     { id: 1, name: "Look like an span" },
   ];
   return (
-<<<<<<< HEAD
-    <div className="dark:bg-gray-900 dark:text-gray-200 ">
-=======
     <div className="bg-gray-900 text-gray-200 ">
->>>>>>> 7a38d36f2925c2ca438e1bf8bb3de0f00947afa8
       <input
         type="checkbox"
         id={_id}
