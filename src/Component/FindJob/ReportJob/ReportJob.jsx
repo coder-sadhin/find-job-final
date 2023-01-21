@@ -39,10 +39,10 @@ const ReportJob = ({ data, setCloseModal }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if(data.type==='reported'){
+        if (data.type === 'reported') {
           toast(`${data?.type} the ${jobName}`);
         }
-        else{
+        else {
           toast.error(`${data?.type} ${jobName}`)
         }
       });
@@ -80,7 +80,7 @@ const ReportJob = ({ data, setCloseModal }) => {
               {reportItem?.map((report) => {
                 return (
                   <option className=" text-xl " value={report?.name} >
-                   <span className="text-sm ml-3 mb-[4px]">o</span> {report.name}
+                    <span className="text-sm ml-3 mb-[4px]">o</span> {report.name}
                   </option>
                 );
               })}
