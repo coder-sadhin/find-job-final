@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 import { FcBusinessman } from 'react-icons/fc';
-import logo from '../asset/logo.png';
+import logo from '../asset/logo2.png';
 import coin from '../asset/Vlaunchu_coin.png';
 
 
@@ -12,10 +12,10 @@ const NavBer = () => {
 
     return (
         <div
-        style={{
-            backgroundColor: '#16a085',
-          }}
-        className="navbar bg-slate-100 text-white">
+            style={{
+                backgroundColor: '#1E1E1E',
+            }}
+            className="container mx-auto navbar bg-slate-100 text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost">
@@ -27,7 +27,7 @@ const NavBer = () => {
                                 strokeWidth="2" d="M4 6h16M4 12h16M4 18h7"
                             />
                         </svg>
-                        <p className='text-black ml-3'>Menu</p>
+                        <p className='text-white ml-3'>Menu</p>
                     </label>
                     <ul tabIndex={0}
                         className="menu menu-compact dropdown-content 
@@ -54,16 +54,16 @@ const NavBer = () => {
                 </div>
             </div>
             <div className="navbar-center">
-                <Link to={'/'} className="btn btn-ghost flex items-center normal-case bg-black font-bold text-2xl">
+                <Link to={'/'} className="flex items-center">
 
-                    <img className='w-44' src={logo} alt="" />
+                    <img className='w-40 md:w-52 lg:w-60' src={logo} alt="" />
                 </Link>
             </div>
             <div className="navbar-end">
                 {/* when user loging then show it, now testing  */}
                 {
                     user && <>
-                        <p className=' text-xl invisible lg:visible text-black font-semibold mr-5'>Welcome {user.displayName}</p>
+                        <p className=' text-xl invisible lg:visible text-white font-semibold mr-5'>Welcome {user.displayName}</p>
                         <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
@@ -84,7 +84,7 @@ const NavBer = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link  className="justify-between">
+                                    <Link className="justify-between">
                                         wallet <span className='flex items-center'>
                                             <p>100</p>
                                             <img className='w-8 ml-1' src={coin} alt="" />

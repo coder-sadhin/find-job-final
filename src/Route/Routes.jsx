@@ -25,9 +25,9 @@ import AddAJobs from "../DashBoard/RecruiterPage/AddAJobs/AddAJobs";
 import JobsDetails from "../Component/FindJob/JobsDetails";
 import AllProfile from "../Component/FindJob/RecruiterProfile/AllProfile";
 import { ServerApi } from "../AllApi/MainApi";
-import BuildCV from './../Component/BuildCV/BuildCV';
-import MyJobs from './../DashBoard/CandidatePage/MyJobs';
-import RecruiterJobs from './../DashBoard/RecruiterPage/Recruiterjobs/RecruiterJobs';
+import BuildCV from "../Component/BuildCV/BuildCV";
+import MyJobs from "../DashBoard/CandidatePage/MyJobs";
+import RecruiterJobs from "../DashBoard/RecruiterPage/Recruiterjobs/RecruiterJobs";
 import Applicants from "../DashBoard/RecruiterPage/Recruiterjobs/Applicants";
 
 const router = createBrowserRouter([
