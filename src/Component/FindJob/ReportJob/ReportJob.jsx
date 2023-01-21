@@ -55,7 +55,11 @@ const ReportJob = ({ data, setCloseModal }) => {
     { id: 1, name: "Look like an span" },
   ];
   return (
+<<<<<<< HEAD
     <div className="dark:bg-gray-900 dark:text-gray-200 ">
+=======
+    <div className="bg-gray-900 text-gray-200 ">
+>>>>>>> 7a38d36f2925c2ca438e1bf8bb3de0f00947afa8
       <input
         type="checkbox"
         id={_id}
@@ -63,7 +67,7 @@ const ReportJob = ({ data, setCloseModal }) => {
         value={"input."}
       />
       <div className="modal text-left">
-        <div className="modal-bo dark:bg-gray-900 dark:text-gray-200  p-10 lg:w-[50%] sm:w-[70%]  mx-auto rounded-2xl opacity-[0.8]">
+        <div className="modal-bo bg-gray-900 text-gray-200  p-10 lg:w-[50%] sm:w-[70%]  mx-auto rounded-2xl opacity-[0.8]">
           <h1 className="lg:text-4xl sm:text-2xl font-bold">
             {job_details?.job?.job_title}
           </h1>

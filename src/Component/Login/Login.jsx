@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
-import img2 from '../../asset/find.png';
 import PrimaryButton from '../Button/PrimaryButton';
 import SmallSpinner from '../Spinner/SmallSpinner';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
@@ -39,7 +38,7 @@ const Login = () => {
                             .then(() => {
                                 toast.success('Please Check your email');
                                 LogOut();
-                                const myTimeout = setTimeout(navigate('/verification'), 2000);
+                                setTimeout(navigate('/verification'), 2000);
                                 setLoading(false)
                             })
                     }

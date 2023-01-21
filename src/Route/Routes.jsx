@@ -94,7 +94,7 @@ const router = createBrowserRouter([
       //   path: "/addAJobs",
       //   element: <AddAJobs />,
       // },
-  
+      
     ],
   },
   {

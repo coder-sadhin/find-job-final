@@ -63,7 +63,6 @@ const FindJob = () => {
     // this is for exp 
 
     const handleToExp = () => {
-
         fetch(`${ServerApi}/jobs/exp`, {
             method: 'POST',
             headers: {
@@ -82,57 +81,57 @@ const FindJob = () => {
     return (
         <div>
             <div className='bg-white'>
-            <div className="drawer drawer-end drawer-mobile bg-white ">
-                <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
+                <div className="drawer drawer-end drawer-mobile bg-white ">
+                    <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
 
-                <div className="drawer-content">
-                    <Jobs allJobs={allJobs} setSearch={setSearch}></Jobs>
-                </div>
+                    <div className="drawer-content">
+                        <Jobs allJobs={allJobs} setSearch={setSearch}></Jobs>
+                    </div>
 
-                <div className="drawer-side">
-                    <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <div className="menu p-4 w-80 text-bold bg-blue-200">
-                        <h2 className='text-xl font-bold text-center mb-10'>Filter Your Favorite Job</h2>
+                    <div className="drawer-side">
+                        <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+                        <div className="menu p-4 w-80 text-bold bg-blue-200">
+                            <h2 className='text-xl font-bold text-center mb-10'>Filter Your Favorite Job</h2>
 
-                        <div>
-                            <h2 className='text-xl font-bold underline text-center mb-5'>Filter Experience</h2>
-                            <div className='flex items-center'>
-                                <div className='w-full'>
-                                    {expCheckList.map((item, index) => (
-                                        <div key={index}>
-                                            <input className='mx-2' value={item} type="checkbox" onChange={handleExpCheck} />
-                                            <span className={isExpChecked(item)}>{item}</span>
+                            <div>
+                                <h2 className='text-xl font-bold underline text-center mb-5'>Filter Experience</h2>
+                                <div className='flex items-center'>
+                                    <div className='w-full'>
+                                        {expCheckList.map((item, index) => (
+                                            <div key={index}>
+                                                <input className='mx-2' value={item} type="checkbox" onChange={handleExpCheck} />
+                                                <span className={isExpChecked(item)}>{item}</span>
+                                            </div>
+                                        ))}
+                                        <div className='flex mt-2 justify-center'>
+                                            <button onClick={handleToExp} className='btn w-full btn-sm bg-green-600' type="submit">Apply</button>
                                         </div>
-                                    ))}
-                                    <div className='flex mt-2 justify-center'>
-                                        <button onClick={handleToExp} className='btn w-full btn-sm bg-green-600' type="submit">Apply</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div>
-                            <h2 className='text-xl font-bold underline text-center mt-7 mb-5'>Filter With Location</h2>
-                            <div className='flex items-center'>
-                                <div className='w-full'>
-                                    {checkList.map((item, index) => (
-                                        <div key={index}>
-                                            <input className='mx-2' value={item} type="checkbox" onChange={handleCheck} />
-                                            <span className={isChecked(item)}>{item}</span>
+                            <div>
+                                <h2 className='text-xl font-bold underline text-center mt-7 mb-5'>Filter With Location</h2>
+                                <div className='flex items-center'>
+                                    <div className='w-full'>
+                                        {checkList.map((item, index) => (
+                                            <div key={index}>
+                                                <input className='mx-2' value={item} type="checkbox" onChange={handleCheck} />
+                                                <span className={isChecked(item)}>{item}</span>
+                                            </div>
+                                        ))}
+                                        <div className='flex mt-2 justify-center'>
+                                            <button className='btn w-full btn-sm bg-green-600' type="submit">Apply</button>
                                         </div>
-                                    ))}
-                                    <div className='flex mt-2 justify-center'>
-                                        <button className='btn w-full btn-sm bg-green-600' type="submit">Apply</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
-
-        </div>
         </div>
     );
 };

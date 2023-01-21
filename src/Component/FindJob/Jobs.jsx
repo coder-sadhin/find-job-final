@@ -39,7 +39,7 @@ const Jobs = ({ allJobs, setSearch }) => {
                                             <div>
                                                 <Link to={`/details/${jobs?._id}`} className="text-2xl font-bold">
                                                     <h2>
-                                                        {jobs.job_details.job.job_title} {jobs?._id}
+                                                        {jobs.job_details.job.job_title}
                                                     </h2>
                                                 </Link>
                                                 <h5 className="">{jobs.job_details.job.jobType} - {jobs.job_details.experience}</h5>
@@ -68,7 +68,7 @@ const Jobs = ({ allJobs, setSearch }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
     );
 };
 

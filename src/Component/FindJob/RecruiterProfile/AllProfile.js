@@ -8,7 +8,7 @@ import Skill from './Skill';
 
 const AllProfile = () => {
     return (
-        <div className='dark:bg-gray-900 dark:text-gray-100'>
+        <div className='dark:bg-gray-900 dark:text-gray-100 bg-base-content text-white'>
             <Profile></Profile>
             <Featured></Featured>
             <About></About>
