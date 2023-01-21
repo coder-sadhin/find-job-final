@@ -24,10 +24,8 @@ import CheckOut from '../Component/Payment/CheckOut';
 import Verification from '../Component/Login/Verification';
 import AddAJobs from '../DashBoard/RecruiterPage/AddAJobs/AddAJobs';
 import JobsDetails from '../Component/FindJob/JobsDetails';
-
 import BuildCV from '../Component/BuildCV/BuildCV';
 import MyJobs from '../DashBoard/CandidatePage/MyJobs';
-
 import AllProfile from '../Component/FindJob/RecruiterProfile/AllProfile';
 import { ServerApi } from '../AllApi/MainApi';
 import RecruiterJobs from '../DashBoard/RecruiterPage/Recruiterjobs/RecruiterJobs';

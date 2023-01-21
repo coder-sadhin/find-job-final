@@ -13,11 +13,11 @@ const RecruiterJobs = () => {
 
 
     return (
-        <div class="accordion" id="accordionExample5">
+        <div className="accordion" id="accordionExample5">
             {
-                jobs && jobs.map((job) => <div class="accordion-item bg-white border border-gray-200">
-            <h2 class="accordion-header mb-0" id="headingThree5">
-                <button class="
+                jobs && jobs.map((job) => <div className="accordion-item bg-white border border-gray-200">
+            <h2 className="accordion-header mb-0" id="headingThree5">
+                <button className="
                 accordion-button
                 collapsed
                 relative
@@ -37,10 +37,10 @@ const RecruiterJobs = () => {
                 {job?.job_details?.job?.job_title} === Total Candidates {job?.candidates?.length}
                 </button>
             </h2>
-            <div id="collapseThree5" class="accordion-collapse collapse" aria-labelledby="headingThree5">
-                <div class="accordion-body py-4 px-5">
+            <div id="collapseThree5" className="accordion-collapse collapse" aria-labelledby="headingThree5">
+                <div className="accordion-body py-4 px-5">
                 {
-                    job?.candidates && job.candidates.map((candidate) => <h2 className='text-xl'>{candidate?.name}</h2>)
+                    job?.candidates && job.candidates.map((candidate) => <h2 classNameName='text-xl'>{candidate?.name}</h2>)
                 }
                 </div>
             </div>
