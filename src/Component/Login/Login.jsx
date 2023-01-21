@@ -88,11 +88,11 @@ const Login = () => {
             })
     }
     return (
-        <div>
+        <div className='w-full'>
             <h1 className="text-4xl text-center font-bold">Login now!</h1>
             <div className="hero">
                 <div className="hero-content flex-col lg:flex-row">
-                    <img src={image} alt='' className="max-w-sm rounded-lg shadow-2xl" />
+                    {/* <img src={image} alt='' className="max-w-sm rounded-lg shadow-2xl" /> */}
                     <div>
                         <div className="hero mt-3 text-black">
                             <div className="">

@@ -30,6 +30,9 @@ import FeatureIn from "../Component/FindJob/RecruiterProfile/FeatureIn/FeatureIn
 import Skill from "../Component/FindJob/RecruiterProfile/Skill";
 import MoreSkill from "../Component/FindJob/RecruiterProfile/MoreSkill";
 import ReportedJobDetail from "../DashBoard/AdminPage/Reported/ReportedJobDetail";
+import BuildCV from "../Component/BuildCV/BuildCV";
+import MyJobs from "../DashBoard/CandidatePage/MyJobs";
+import RecruiterJobs from "../DashBoard/RecruiterPage/Recruiterjobs/RecruiterJobs";
 
 const router = createBrowserRouter([
     {
