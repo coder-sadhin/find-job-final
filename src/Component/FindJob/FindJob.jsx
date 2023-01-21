@@ -60,24 +60,6 @@ const FindJob = () => {
             })
     }, [search])
 
-    // this is for exp 
-
-    const handleToExp = () => {
-        fetch(`${ServerApi}/jobs/exp`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify([...expChecked])
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setAllJobs(data)
-            })
-            .catch(error => console.error(error))
-    }
-
     return (
         <div>
             <div className='bg-white'>
@@ -104,7 +86,7 @@ const FindJob = () => {
                                             </div>
                                         ))}
                                         <div className='flex mt-2 justify-center'>
-                                            <button onClick={handleToExp} className='btn w-full btn-sm bg-green-600' type="submit">Apply</button>
+                                            <button className='btn w-full btn-sm bg-green-600' type="submit">Apply</button>
                                         </div>
                                     </div>
                                 </div>

@@ -32,149 +32,130 @@ import MoreSkill from "../Component/FindJob/RecruiterProfile/MoreSkill";
 import ReportedJobDetail from "../DashBoard/AdminPage/Reported/ReportedJobDetail";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/findJob",
-        element: <FindJob />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
-      {
-        path: "/payment",
-        element: <CheckOut />,
-      },
-      {
-        path: "/verification",
-        element: <Verification />,
-      },
-      {
-        path: "/allfrofile",
-        element: <AllProfile></AllProfile>,
-      },
-      {
-        path: "/feature",
-        element: <FeatureIn />,
-      },
-      {
-        path: "/skills",
-        element: <MoreSkill />,
-      },
-      {
-        path: "/details/:id",
-        loader: ({ params }) => fetch(`${ServerApi}/jobDetails/${params.id}`),
-        element: <JobsDetails />,
-      },
-      ///for check report @sarwar ////
-      // {
-      //   path: "/reportedJobs",
-      //   element: <ReportedJobs />,
-      // },{
-      //   path: "/dashboard/reportedJobsDetails/:id",
-      //   element: <ReportedJobDetail />,
-      // },
-      // {
-      //   path: "/addAJobs",
-      //   element: <AddAJobs />,
-      // },
-      
-    ],
-  },
-  {
-    path: "/dashboard",
-    element: (
-      <PrivateRoute>
-        <DashBoardLayout />
-      </PrivateRoute>
-    ),
-    errorElement: <Error />,
-    children: [
-      {
-        path: "/dashboard",
-        element: (
-          <PrivateRoute>
-            <DashBoard />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/dashboard/newsLetter",
-        element: <NewsLetter />,
-      },
-      {
-        path: "/dashboard/changePass",
-        element: <ChangePassword />,
-      },
-      {
-        path: "/dashboard/recruiters",
-        element: <Recruiters />,
-      },
-      {
-        path: "/dashboard/candidates",
-        element: <AllCandidates />,
-      },
-      {
-        path: "/dashboard/allJobs",
-        element: <AllJobs />,
-      },
-      {
-        path: "/dashboard/reportedJobs",
-        element: <ReportedJobs />,
-      },
-      {
-        path: "/dashboard/reportedJobsDetails/:id",
-        element: <ReportedJobDetail />,
-      },
-      {
-        path: "/dashboard/reportedCandidate",
-        element: <ReportedCandidate />,
-      },
-      
-      {
-        path: "/dashboard/reportedRecruiters",
-        element: <ReportedRecruiters />,
-      },
-      {
-        path: "/dashboard/addAJobs",
-        element: <AddAJobs />,
-      },
-    ],
-  },
-  {
-    path: "/message",
-    element: <MailingLayout />,
-    children: [
-      {
-        path: "/message",
-        element: <InboxContainer />,
-      },
-      {
-        path: "/message/inbox",
-        element: <InboxContainer />,
-      },
-      {
-        path: "/message/sendbox",
-        element: <SendBoxContainer />,
-      },
-    ],
-  },
-]);
+    {
+        path: '/',
+        element: <Main />,
+        errorElement: <Error />,
+        children: [
+            {
+                path: '/',
+                element: <Home />
+            },
+            {
+                path: '/contact',
+                element: <Contact />
+            },
+            {
+                path: '/findJob',
+                element: <FindJob />
+            },
+            {
+                path: '/login',
+                element: <Login />
+            },
+            {
+                path: '/buildcv',
+                element: <BuildCV />
+            },
+            {
+                path: '/register',
+                element: <Register />
+            },
+            {
+                path: '/payment',
+                element: <CheckOut />
+            },
+            {
+                path: '/verification',
+                element: <Verification />
+            },
+            {
+                path: '/allfrofile',
+                element: <AllProfile></AllProfile>
+            },
+            {
+                path: '/details/:id',
+                loader: ({ params }) => fetch(`${ServerApi}/jobs/jobDetails/${params.id}`),
+                element: <JobsDetails />
+            }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <DashBoardLayout />,
+        errorElement: <Error />,
+        children: [
+            {
+                path: '/dashboard',
+                element: <DashBoard />
+            },
+            {
+                path: '/dashboard/newsLetter',
+                element: <NewsLetter />
+            },
+            {
+                path: '/dashboard/changePass',
+                element: <ChangePassword />
+            },
+            {
+                path: '/dashboard/recruiters',
+                element: <Recruiters />
+            },
+            {
+                path: '/dashboard/candidates',
+                element: <AllCandidates />
+            },
+            {
+                path: '/dashboard/allJobs',
+                element: <AllJobs />
+            },
+            {
+                path: '/dashboard/reportedJobs',
+                element: <ReportedJobs />
+            },
+            {
+                path: '/dashboard/reportedCandidate',
+                element: <ReportedCandidate />
+            },
+            {
+                path: '/dashboard/reportedRecruiters',
+                element: <ReportedRecruiters />
+            },
+            {
+                path: '/dashboard/addAJobs',
+                element: <AddAJobs />
+            },
+            {
+                // this route is for candidate
+                path: '/dashboard/my-jobs',
+                element: <MyJobs />
+            },
+            {
+                // this route is for recruiter
+                path: '/dashboard/myJobs',
+                element: <RecruiterJobs />
+            }
+        ]
+    },
+    {
+        path: '/message',
+        element: <MailingLayout />,
+        children: [
+            {
+                path: '/message',
+                element: <InboxContainer />
+            },
+            {
+                path: '/message/inbox',
+                element: <InboxContainer />
+            },
+            {
+                path: '/message/sendbox',
+                element: <SendBoxContainer />
+            }
+        ]
+    }
+])
+
 
 export default router;
