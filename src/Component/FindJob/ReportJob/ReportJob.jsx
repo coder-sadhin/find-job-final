@@ -39,11 +39,10 @@ const ReportJob = ({ data, setCloseModal }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if(data.type==='reported'){
+        if (data.type === "reported") {
           toast(`${data?.type} the ${jobName}`);
-        }
-        else{
-          toast.error(`${data?.type} ${jobName}`)
+        } else {
+          toast.error(`${data?.type} ${jobName}`);
         }
       });
   };
@@ -55,11 +54,7 @@ const ReportJob = ({ data, setCloseModal }) => {
     { id: 1, name: "Look like an span" },
   ];
   return (
-<<<<<<< HEAD
-    <div className="dark:bg-gray-900 dark:text-gray-200 ">
-=======
     <div className="bg-gray-900 text-gray-200 ">
->>>>>>> 7a38d36f2925c2ca438e1bf8bb3de0f00947afa8
       <input
         type="checkbox"
         id={_id}
@@ -80,11 +75,17 @@ const ReportJob = ({ data, setCloseModal }) => {
               {" "}
               About the Reports
             </h3>
-            <select name="report" id="" className="w-full outline-none text-gray-800 p-2" size="3" >
+            <select
+              name="report"
+              id=""
+              className="w-full outline-none text-gray-800 p-2"
+              size="3"
+            >
               {reportItem?.map((report) => {
                 return (
-                  <option className=" text-xl " value={report?.name} >
-                   <span className="text-sm ml-3 mb-[4px]">o</span> {report.name}
+                  <option className=" text-xl " value={report?.name}>
+                    <span className="text-sm ml-3 mb-[4px]">o</span>{" "}
+                    {report.name}
                   </option>
                 );
               })}
