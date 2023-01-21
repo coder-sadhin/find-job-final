@@ -71,6 +71,10 @@ const Register = () => {
             user.Status = 'nonVerify';
             user.paymentStatus = "Unpaid"
         }
+        else if (userType === 'candidate') {
+            user.token = '100';
+            user.paymentStatus = "Unpaid"
+        }
         const userData = {
             email, userType
         }

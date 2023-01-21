@@ -28,6 +28,7 @@ import { ServerApi } from "../AllApi/MainApi";
 import BuildCV from "../Component/BuildCV/BuildCV";
 import MyJobs from "../DashBoard/CandidatePage/MyJobs";
 import RecruiterJobs from "../DashBoard/RecruiterPage/Recruiterjobs/RecruiterJobs";
+import Profile from "../Pages/ProfilePage/Profile";
 import Applicants from "../DashBoard/RecruiterPage/Recruiterjobs/Applicants";
 
 const router = createBrowserRouter([
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
                 path: '/details/:id',
                 loader: ({ params }) => fetch(`${ServerApi}/jobs/jobDetails/${params.id}`),
                 element: <JobsDetails />
+            },
+            {
+                path: '/profile',
+                element: <Profile />
             }
         ]
     },

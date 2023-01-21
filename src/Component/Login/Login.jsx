@@ -7,7 +7,6 @@ import SmallSpinner from '../Spinner/SmallSpinner';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import { checkUserType } from '../../AllApi/CheckUserType/CheckUserType';
 import { setAuthToken } from '../../AllApi/GetTokenApi/GetTokenApi';
-import image from '../../asset/login/login.webp'
 
 const Login = () => {
     const [userEmail, setUserEmail] = useState('')

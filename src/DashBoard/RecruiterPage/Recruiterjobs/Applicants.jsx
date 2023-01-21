@@ -3,7 +3,6 @@ import { useLoaderData } from 'react-router-dom';
 
 const Applicants = () => {
     const job = useLoaderData();
-    console.log(job);
     return (
         <div>
             <h2 className="text-3xl text-center font-bold my-5">{job?.job_details?.job?.job_title}</h2>
