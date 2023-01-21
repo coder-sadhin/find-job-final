@@ -63,7 +63,6 @@ const FindJob = () => {
     // this is for exp 
 
     const handleToExp = () => {
-
         fetch(`${ServerApi}/jobs/exp`, {
             method: 'POST',
             headers: {

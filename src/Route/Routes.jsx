@@ -12,7 +12,6 @@ import AllJobs from '../DashBoard/AdminPage/AllJobs';
 import DashBoard from '../DashBoard/DashBoard';
 import DashBoardLayout from '../Layout/DashBoardLayout/DashBoardLayout';
 import Main from '../Layout/Main';
-import PrivateRoute from './PrivetRoutes/PrivetRoute';
 import Recruiters from '../DashBoard/AdminPage/AllRecruiters';
 import ReportedCandidate from '../DashBoard/AdminPage/Reported/ReportedCandidate';
 import ReportedRecruiters from '../DashBoard/AdminPage/Reported/ReportedRecruiters';
@@ -27,9 +26,11 @@ import AddAJobs from '../DashBoard/RecruiterPage/AddAJobs/AddAJobs';
 import JobsDetails from '../Component/FindJob/JobsDetails';
 
 import BuildCV from '../Component/BuildCV/BuildCV';
+import MyJobs from '../DashBoard/CandidatePage/MyJobs';
 
 import AllProfile from '../Component/FindJob/RecruiterProfile/AllProfile';
 import { ServerApi } from '../AllApi/MainApi';
+import RecruiterJobs from '../DashBoard/RecruiterPage/Recruiterjobs/RecruiterJobs';
 
 
 
@@ -84,12 +85,12 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute><DashBoardLayout /></PrivateRoute>,
+        element:<DashBoardLayout />,
         errorElement: <Error />,
         children: [
             {
                 path: '/dashboard',
-                element: <PrivateRoute><DashBoard /></PrivateRoute>
+                element: <DashBoard />
             },
             {
                 path: '/dashboard/newsLetter',
@@ -126,6 +127,16 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addAJobs',
                 element: <AddAJobs />
+            },
+            {
+                // this route is for candidate
+                path: '/dashboard/my-jobs',
+                element: <MyJobs />
+            },
+            {
+                // this route is for recruiter
+                path: '/dashboard/myJobs',
+                element: <RecruiterJobs />
             }
         ]
     },

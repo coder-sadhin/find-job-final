@@ -1,23 +1,72 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaCheck, FaExclamationCircle, FaLightbulb, FaLock, FaRecordVinyl } from "react-icons/fa";
+import { FaCheck, FaExclamationCircle, FaLightbulb, FaRecordVinyl, FaCheckCircle } from "react-icons/fa";
 import { CiCircleMore } from "react-icons/ci";
 import { MdWork } from 'react-icons/md';
 import { BsFillCalculatorFill, BsFillSaveFill, BsLinkedin } from 'react-icons/bs';
 import ReportJob from './ReportJob/ReportJob';
+import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 
 const JobsDetails = () => {
+  const {user} = useContext(AuthContext);
   const data = useLoaderData();
-  console.log(data)
-
-  const { job_description, job_details, job_post_time, job_visible, pay } = data;
   const [closeMOdal, setCloseModal] = useState(true);
+  const [modal, setModal] = useState(true);
+  const { job_description, job_details, job_post_time } = data;
+
+
+  // checking whether user applied or not
+  const isApplied =  data?.candidates?.map((candidate) => candidate?.email === user?.email)
+
+
+  const handleJobApply = (event) => {
+    event.preventDefault();
+
+    const application = {
+      candidate: user.displayName,
+      candidateEmail: user.email,
+      job: data
+    }
+    // save candidate application to database
+    fetch("http://localhost:5001/apply-job",{
+      method: "POST",
+      headers: {
+        "content-type" : "application/json"
+      },
+      body: JSON.stringify(application)
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      handleUpdateApplyQuantity(user.displayName, user.email)
+    })
+    .catch((err) => console.log(err))
+
+    setModal(false)
+  }
+
+  const handleUpdateApplyQuantity = (name, email) => {
+    const candidate = {
+      name: name,
+      email: email,
+      candidateId: "sg8sd8gh4h46d8fg76df8gh"
+    }
+    fetch(`http://localhost:5001/jobs/apply/${data._id}`,{
+      method: "PUT",
+      headers: {
+        "content-type" : "application/json"
+      },
+      body: JSON.stringify(candidate)
+    })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+  }
 
   return (
-    <div className=' p-6 bg-base-content text-white'>
-      <div>
+    <div className=' p-6 bg-base-content '>
+      <div className='text-white'>
         <div className="flex flex-col justify-center p-6 shadow-md w-full rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
-          {/* <img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=sph" alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" /> */}
           <div className="space-y-4 text-center divide-y divide-gray-700">
             <div className='text-start mt-3'>
               <h1 className='text-3xl'>{job_details?.job?.job_title}</h1>
@@ -30,7 +79,7 @@ const JobsDetails = () => {
 
                 <div className="avatar flex mt-2">
                   <div className="w-8 rounded">
-                    <img src="https://placeimg.com/192/192/people" />
+                    <img src="https://placeimg.com/192/192/people" alt='' />
                   </div>
                   <p className='ml-2 mt-1'>Shalini Malviya is hiring for this job</p>
                 </div>
@@ -47,17 +96,22 @@ const JobsDetails = () => {
               </div>
             </div>
             <div className='flex gap-2 pt-2'>
-              <button className='btn btn-outline rounded-2xl text-white'><BsLinkedin className='mr-2' />Apply</button>
-              <button className='btn btn-outline rounded-2xl text-white'><BsFillSaveFill className='mr-2 text-xl' />Save</button>
-              <button className='btn btn-outline rounded-2xl text-white'><CiCircleMore className='mr-2 text-xl' />More</button>
+              {
+                isApplied ? <h2 className='text-white text-2xl flex items-center gap-5'> <FaCheckCircle className='text-green-400 rounded-full text-2xl' /> <span>Already applied and your application submitted to recruiter</span></h2> 
+                  :<><button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><BsLinkedin className='mr-2' />Apply</button>
+              <label htmlFor="easy-apply" className="btn btn-outline hover:bg-blue-600 rounded-2xl text-white">Easy Apply</label>
+              <button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><BsFillSaveFill className='mr-2 text-xl' />Save</button>
+              <button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><CiCircleMore className='mr-2 text-xl' />More</button>
               {/* Report the job */}
               <label
                 htmlFor={data?._id}
-                className="btn btn-outline rounded-2xl  text-error"
+                className="btn btn-outline hover:bg-blue-600 rounded-2xl  text-error"
               >
                 <FaExclamationCircle className="mr-2 text-xl" />
                 Report job
               </label>
+                </> 
+              }
             </div>
             {closeMOdal &&
               <ReportJob data={data} setCloseModal={setCloseModal}></ReportJob>
@@ -71,7 +125,7 @@ const JobsDetails = () => {
                 <div className='flex '>
                   <div className="avatar flex mt-2">
                     <div className="w-14 rounded">
-                      <img src="https://placeimg.com/192/192/people" />
+                      <img src="https://placeimg.com/192/192/people" alt='' />
                     </div>
                   </div>
                   <div className='ml-4'>
@@ -100,7 +154,7 @@ const JobsDetails = () => {
                   <div className="avatar flex mt-2">
 
                     <div className="w-16 rounded">
-                      <img src="https://img.freepik.com/premium-photo/composite-image-businessman-pointing-these-fingers-camera_1134-37846.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=ais" />
+                      <img src="https://img.freepik.com/premium-photo/composite-image-businessman-pointing-these-fingers-camera_1134-37846.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=ais" alt='' />
                     </div>
 
                   </div>
@@ -119,6 +173,39 @@ const JobsDetails = () => {
           </div>
         </div>
       </div>
+
+      {/* apply modal  */}
+      <input type="checkbox" id="easy-apply" className="modal-toggle" />
+      {
+        modal && <div className="modal modal-bottom sm:modal-middle">
+          <form onSubmit={handleJobApply} className="modal-box">
+            <h3 className="font-bold text-lg">{job_details.job.job_title}</h3>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">How many years of experience do you have on Full Stack Development?</span>
+              </label>
+              <input type="text" className="border" />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Are you experience on Backend?</span>
+              </label>
+              <input type="text" className="border" />
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Upload Resume</span>
+              </label>
+              <input type="file" className="border" />
+            </div>
+            <div className="modal-action flex justify-between">
+              <label htmlFor="easy-apply" className="btn">Cancel</label>
+              <button type='submit' className='btn btn-primary'>Submit Application</button>
+            </div>
+          </form>
+        </div>
+      }
     </div>
   );
 };
