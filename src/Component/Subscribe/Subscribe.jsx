@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { ServerApi } from '../../AllApi/MainApi';
 
 const Subscribe = () => {
     const [getEmail, setGetEmail] = useState("");
 
     const handleSubscribe = () => {
-        fetch(`https://find-job-server.vercel.app/users/subscribe/${getEmail}`, {
+        fetch(`${ServerApi}/users/subscribe/${getEmail}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
