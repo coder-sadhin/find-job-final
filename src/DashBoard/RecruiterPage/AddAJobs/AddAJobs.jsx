@@ -10,6 +10,7 @@ import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../../Component/Spinner/Spinner';
 import PrimaryButton from '../../../Component/Button/PrimaryButton';
 import SmallSpinner from '../../../Component/Spinner/SmallSpinner';
+import { ServerApi } from '../../../AllApi/MainApi';
 
 const AddAJobs = () => {
 
@@ -31,7 +32,7 @@ const AddAJobs = () => {
 
     useEffect(() => {
         setAddLoading(true)
-        fetch('https://find-job-server.vercel.app/currency')
+        fetch(`${ServerApi}/currency`)
             .then(res => res.json())
             .then(data => {
                 setCurrencys(data)
@@ -80,7 +81,7 @@ const AddAJobs = () => {
 
     const setDoctorToDB = (jobInfo) => {
 
-        fetch('https://find-job-server.vercel.app/jobs', {
+        fetch(`${ServerApi}/jobs`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
