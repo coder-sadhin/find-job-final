@@ -32,11 +32,20 @@ const JobsDetails = () => {
 
   const handleJobApply = (event) => {
     event.preventDefault();
+
+    const form = event.target;
+    const question1 = form.question1.value
+    const question2 = form.question2.value
+    const resume = form.resume.value
+
     const application = {
       candidate: user.displayName,
       candidateEmail: user.email,
       job: data,
     };
+      resume: resume,
+      answers: [question1, question2]
+    }
     // save candidate application to database
     fetch(`${ServerApi}/apply-job`, {
       method: "POST",
@@ -59,8 +68,8 @@ const JobsDetails = () => {
     const candidate = {
       name: name,
       email: email,
-      candidateId: "sg8sd8gh4h46d8fg76df8gh",
     };
+    }
     fetch(`${ServerApi}/jobs/apply/${data._id}`, {
       method: "PUT",
       headers: {
@@ -271,7 +280,7 @@ const JobsDetails = () => {
                   Development?
                 </span>
               </label>
-              <input type="text" className="border" />
+              <input type="text" name='question1' className="border" />
             </div>
             <div className="form-control">
               <label className="label">
@@ -279,14 +288,14 @@ const JobsDetails = () => {
                   Are you experience on Backend?
                 </span>
               </label>
-              <input type="text" className="border" />
+              <input type="text" name='question2' className="border" />
             </div>
 
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Upload Resume</span>
               </label>
-              <input type="file" className="border" />
+              <input type="file" name='resume' className="border" />
             </div>
             <div className="modal-action flex justify-between">
               <label htmlFor="easy-apply" className="btn">

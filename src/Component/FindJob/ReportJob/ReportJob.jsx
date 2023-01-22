@@ -4,7 +4,7 @@ import { ServerApi } from "../../../AllApi/MainApi";
 import { AuthContext } from "../../../ContextApi/AuthProvider/AuthProvider";
 
 const ReportJob = ({ data, setCloseModal }) => {
-  const { job_description, job_details, job_post_time, job_visible, pay, _id } =
+  const {  job_details, _id } =
     data;
 
   const { user } = useContext(AuthContext);

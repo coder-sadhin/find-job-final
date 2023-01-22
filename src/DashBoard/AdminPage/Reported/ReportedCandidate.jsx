@@ -1,5 +1,4 @@
 import React from 'react';
-import PrimaryButton from '../../../Component/Button/PrimaryButton';
 import NoData from '../../NoData';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../../../Component/Spinner/Spinner';
@@ -10,7 +9,7 @@ import { ServerApi } from '../../../AllApi/MainApi';
 const ReportedCandidate = () => {
 
     useTitle('Admin Dashboard - Reported Candidate')
-    const { data: users = [], refetch, isLoading } = useQuery({
+    const { data: users = [], isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             try {
