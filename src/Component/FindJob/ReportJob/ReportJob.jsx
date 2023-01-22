@@ -6,6 +6,7 @@ import { AuthContext } from "../../../ContextApi/AuthProvider/AuthProvider";
 const ReportJob = ({ data, setCloseModal }) => {
   const {  job_details, _id } =
     data;
+
   const { user } = useContext(AuthContext);
 
   const submitReport = (event) => {
@@ -29,7 +30,7 @@ const ReportJob = ({ data, setCloseModal }) => {
       textReport,
     };
     console.log(reports);
-    fetch(`${ServerApi}/addReport`, {
+    fetch(`${ServerApi}/report/addReport`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -39,11 +40,10 @@ const ReportJob = ({ data, setCloseModal }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.type === 'reported') {
+        if (data.type === "reported") {
           toast(`${data?.type} the ${jobName}`);
-        }
-        else {
-          toast.error(`${data?.type} ${jobName}`)
+        } else {
+          toast.error(`${data?.type} ${jobName}`);
         }
       });
   };
@@ -58,7 +58,7 @@ const ReportJob = ({ data, setCloseModal }) => {
     <div className="bg-gray-900 text-gray-200 ">
       <input
         type="checkbox"
-        id={_id}
+        id="report-modal"
         className="modal-toggle"
         value={"input."}
       />
@@ -76,11 +76,18 @@ const ReportJob = ({ data, setCloseModal }) => {
               {" "}
               About the Reports
             </h3>
-            <select name="report" id="" className="w-full outline-none text-gray-800 p-2" size="3" >
+            <select
+              name="report"
+              id=""
+              className="w-full outline-none text-gray-800 p-2"
+              size="3"
+              required
+            >
               {reportItem?.map((report) => {
                 return (
-                  <option className=" text-xl " value={report?.name} >
-                    <span className="text-sm ml-3 mb-[4px]">o</span> {report.name}
+                  <option className=" text-xl " value={report?.name}>
+                    <span className="text-sm ml-3 mb-[4px]">o</span>{" "}
+                    {report.name}
                   </option>
                 );
               })}
@@ -99,7 +106,7 @@ const ReportJob = ({ data, setCloseModal }) => {
               required
             />
             <input
-              htmlFor={data?.id}
+              htmlFor="report-modal"
               type="submit"
               className="btn block btn-outline rounded-xl  text-error mt-3"
               value={"Report"}
@@ -107,7 +114,7 @@ const ReportJob = ({ data, setCloseModal }) => {
           </form>
           <div className="modal-action">
             <label
-              htmlFor={data?._id}
+              htmlFor="report-modal"
               className="btn btn-outline rounded-2xl text-white"
             >
               Close
