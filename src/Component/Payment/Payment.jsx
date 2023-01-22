@@ -4,11 +4,12 @@ import toast from 'react-hot-toast';
 import SmallSpinner from '../Spinner/SmallSpinner';
 import GooglePayButton from '@google-pay/button-react';
 import { ServerApi } from '../../AllApi/MainApi';
+import { useNavigate } from 'react-router-dom';
 
 const Payment = ({ data }) => {
 
-    const { name, email, amount, city, state, zip } = data;
-
+    const { name, email, amount, pakage, token, setRefreshToken } = data;
+    const navigate = useNavigate();
     const stripe = useStripe();
     const element = useElements();
     const [cardError, setCardError] = useState();
@@ -65,24 +66,42 @@ const Payment = ({ data }) => {
             setCardError(confirmError.message)
             return
         }
-
         if (paymentIntent.id) {
-            setSuccess("Congratulation! Your Payment Successful")
-            toast.success("Congratulation! Your Payment Successful")
-            setTransitionId(paymentIntent.id)
-            setLoading(false)
-            setTimeout(function () {
-                toast('Good Job! Wait for Rediract', {
-                    icon: '👏',
-                });
-            }, 1000);
-            setTimeout(function () {
-
-            }, 5000);
-
+            handleToBuyToken(paymentIntent.id)
         };
-        console.log(paymentIntent.id)
-        setProsessing(false)
+        console.log(paymentIntent?.id)
+
+    }
+
+    const handleToBuyToken = (paymentId) => {
+        const data = {
+            name, email, amount, pakage, token, paymentId
+        }
+        fetch(`${ServerApi}/payment`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setSuccess("Congratulation! Your Payment Successful")
+                toast.success("Congratulation! Your Payment Successful")
+                setTransitionId(paymentId.id)
+                setLoading(false)
+                setTimeout(function () {
+                    toast('Good Job! Wait for Rediract', {
+                        icon: '👏',
+                    });
+                }, 1000);
+                setProsessing(false)
+                setTimeout(function () {
+                    setRefreshToken("refresh done")
+                    navigate('/')
+                }, 5000);
+            })
     }
 
     useEffect(() => {
