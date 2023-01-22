@@ -58,7 +58,7 @@ const ReportJob = ({ data, setCloseModal }) => {
     <div className="bg-gray-900 text-gray-200 ">
       <input
         type="checkbox"
-        id={_id}
+        id="report-modal"
         className="modal-toggle"
         value={"input."}
       />
@@ -81,6 +81,7 @@ const ReportJob = ({ data, setCloseModal }) => {
               id=""
               className="w-full outline-none text-gray-800 p-2"
               size="3"
+              required
             >
               {reportItem?.map((report) => {
                 return (
@@ -105,7 +106,7 @@ const ReportJob = ({ data, setCloseModal }) => {
               required
             />
             <input
-              htmlFor={data?.id}
+              htmlFor="report-modal"
               type="submit"
               className="btn block btn-outline rounded-xl  text-error mt-3"
               value={"Report"}
@@ -113,7 +114,7 @@ const ReportJob = ({ data, setCloseModal }) => {
           </form>
           <div className="modal-action">
             <label
-              htmlFor={data?._id}
+              htmlFor="report-modal"
               className="btn btn-outline rounded-2xl text-white"
             >
               Close

@@ -82,18 +82,19 @@ const router = createBrowserRouter([
         loader: ({ params }) => fetch(`${ServerApi}/jobDetails/${params.id}`),
         element: <JobsDetails />,
       },
-      ///for check report @sarwar ////
-      // {
-      //   path: "/reportedJobs",
-      //   element: <ReportedJobs />,
-      // },{
-      //   path: "/dashboard/reportedJobsDetails/:id",
-      //   element: <ReportedJobDetail />,
-      // },
-      // {
-      //   path: "/addAJobs",
-      //   element: <AddAJobs />,
-      // },
+      // /for check report @sarwar ////
+      {
+        path: "/reportedJobs",
+        element: <ReportedJobs />,
+      },
+      {
+        path: "/dashboard/reportedJobsDetails/:id",
+        element: <ReportedJobDetail />,
+      },
+      {
+        path: "/addAJobs",
+        element: <AddAJobs />,
+      },
     ],
   },
   {
