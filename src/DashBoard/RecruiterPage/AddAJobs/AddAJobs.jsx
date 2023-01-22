@@ -24,7 +24,6 @@ const AddAJobs = () => {
 
     const [selected, setSelected] = useState([]);
 
-    console.log(selected);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     console.error(errors)
@@ -75,7 +74,6 @@ const AddAJobs = () => {
             job_visible: [startDate.toLocaleString(), endDate.toLocaleString()],
             job_post_time: time
         }
-        console.log(currency)
         setDoctorToDB(jobInfo)
     }
     //     // save information to the database 
