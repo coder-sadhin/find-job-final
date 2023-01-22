@@ -1,7 +1,7 @@
 import { ServerApi } from '../MainApi';
 
 const addUser = (user) => {
-    fetch(`${ServerApi}/addUsers`, {
+    fetch(`${ServerApi}/user/addUsers`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

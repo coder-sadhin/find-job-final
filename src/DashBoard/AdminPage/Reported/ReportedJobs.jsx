@@ -20,11 +20,11 @@ const ReportedJobs = () => {
     queryKey: ["reportedJobs"],
     queryFn: async () => {
       try {
-        const res = await fetch(`${ServerApi}/reportedJob`);
+        const res = await fetch(`${ServerApi}/report/reportedJob`);
         const data = await res.json();
 
         return data;
-      } catch (err) {}
+      } catch (err) { }
     },
   });
 

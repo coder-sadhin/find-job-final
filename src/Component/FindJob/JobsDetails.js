@@ -6,9 +6,10 @@ import { MdWork } from 'react-icons/md';
 import { BsFillCalculatorFill, BsFillSaveFill, BsLinkedin } from 'react-icons/bs';
 import ReportJob from './ReportJob/ReportJob';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
+import { ServerApi } from '../../AllApi/MainApi';
 
 const JobsDetails = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const data = useLoaderData();
   const [closeMOdal, setCloseModal] = useState(true);
   const [modal, setModal] = useState(true);
@@ -16,7 +17,7 @@ const JobsDetails = () => {
 
 
   // checking whether user applied or not
-  const isApplied =  data?.candidates?.map((candidate) => candidate?.email === user?.email)
+  const isApplied = data?.candidates?.map((candidate) => candidate?.email === user?.email)
 
 
   const handleJobApply = (event) => {
@@ -28,19 +29,19 @@ const JobsDetails = () => {
       job: data
     }
     // save candidate application to database
-    fetch("http://localhost:5001/apply-job",{
+    fetch(`${ServerApi}/apply-job`, {
       method: "POST",
       headers: {
-        "content-type" : "application/json"
+        "content-type": "application/json"
       },
       body: JSON.stringify(application)
     })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      handleUpdateApplyQuantity(user.displayName, user.email)
-    })
-    .catch((err) => console.log(err))
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        handleUpdateApplyQuantity(user.displayName, user.email)
+      })
+      .catch((err) => console.log(err))
 
     setModal(false)
   }
@@ -51,16 +52,16 @@ const JobsDetails = () => {
       email: email,
       candidateId: "sg8sd8gh4h46d8fg76df8gh"
     }
-    fetch(`http://localhost:5001/jobs/apply/${data._id}`,{
+    fetch(`${ServerApi}/jobs/apply/${data._id}`, {
       method: "PUT",
       headers: {
-        "content-type" : "application/json"
+        "content-type": "application/json"
       },
       body: JSON.stringify(candidate)
     })
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err))
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err))
   }
 
   return (
@@ -97,24 +98,26 @@ const JobsDetails = () => {
             </div>
             <div className='flex gap-2 pt-2'>
               {
-                isApplied ? <h2 className='text-white text-2xl flex items-center gap-5'> <FaCheckCircle className='text-green-400 rounded-full text-2xl' /> <span>Already applied and your application submitted to recruiter</span></h2> 
-                  :<><button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><BsLinkedin className='mr-2' />Apply</button>
-              <label htmlFor="easy-apply" className="btn btn-outline hover:bg-blue-600 rounded-2xl text-white">Easy Apply</label>
-              <button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><BsFillSaveFill className='mr-2 text-xl' />Save</button>
-              <button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><CiCircleMore className='mr-2 text-xl' />More</button>
-              {/* Report the job */}
-              <label
-                htmlFor={data?._id}
-                className="btn btn-outline hover:bg-blue-600 rounded-2xl  text-error"
-              >
-                <FaExclamationCircle className="mr-2 text-xl" />
-                Report job
-              </label>
-                </> 
+                isApplied ? <h2 className='text-white text-2xl flex items-center gap-5'> <FaCheckCircle className='text-green-400 rounded-full text-2xl' /> <span>Already applied and your application submitted to recruiter</span></h2>
+                  : <><button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><BsLinkedin className='mr-2' />Apply</button>
+                    <label htmlFor="easy-apply" className="btn btn-outline hover:bg-blue-600 rounded-2xl text-white">Easy Apply</label>
+                    <button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><BsFillSaveFill className='mr-2 text-xl' />Save</button>
+                    <button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><CiCircleMore className='mr-2 text-xl' />More</button>
+
+                    {/*   Report the job   */}
+
+                    <label
+                      htmlFor={data?._id}
+                      className="btn btn-outline hover:bg-blue-600 rounded-2xl  text-error"
+                    >
+                      <FaExclamationCircle className="mr-2 text-xl" />
+                      Report job
+                    </label>
+                  </>
               }
             </div>
-            {closeMOdal &&
-              <ReportJob data={data} setCloseModal={setCloseModal}></ReportJob>
+            {closeMOdal &&  
+               <ReportJob data={data} setCloseModal={setCloseModal}></ReportJob>
             }
             {/* modal  */}
             <div className='text-start pt-4 bg-slate-600 rounded-xl p-6 text-white'>
@@ -179,7 +182,7 @@ const JobsDetails = () => {
       {
         modal && <div className="modal modal-bottom sm:modal-middle">
           <form onSubmit={handleJobApply} className="modal-box">
-            <h3 className="font-bold text-lg">{job_details.job.job_title}</h3>
+            <h3 className="font-bold text-lg">{job_details?.job?.job_title}</h3>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">How many years of experience do you have on Full Stack Development?</span>

@@ -6,6 +6,7 @@ import { AuthContext } from "../../../ContextApi/AuthProvider/AuthProvider";
 const ReportJob = ({ data, setCloseModal }) => {
   const { job_description, job_details, job_post_time, job_visible, pay, _id } =
     data;
+
   const { user } = useContext(AuthContext);
 
   const submitReport = (event) => {
@@ -29,7 +30,7 @@ const ReportJob = ({ data, setCloseModal }) => {
       textReport,
     };
     console.log(reports);
-    fetch(`${ServerApi}/addReport`, {
+    fetch(`${ServerApi}/report/addReport`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
