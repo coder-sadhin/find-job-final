@@ -42,10 +42,9 @@ const JobsDetails = () => {
       candidate: user.displayName,
       candidateEmail: user.email,
       job: data,
-    };
       resume: resume,
       answers: [question1, question2]
-    }
+    };
     // save candidate application to database
     fetch(`${ServerApi}/apply-job`, {
       method: "POST",
@@ -69,7 +68,6 @@ const JobsDetails = () => {
       name: name,
       email: email,
     };
-    }
     fetch(`${ServerApi}/jobs/apply/${data._id}`, {
       method: "PUT",
       headers: {
@@ -80,7 +78,7 @@ const JobsDetails = () => {
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
-  };
+  }
 
   return (
     <div className=" p-6 bg-base-content ">
