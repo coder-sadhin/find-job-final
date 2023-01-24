@@ -7,17 +7,17 @@ import { useTitle } from 'react-use';
 import { ServerApi } from '../../AllApi/MainApi';
 
 const Recruiters = () => {
-    useTitle('Admin Dashboard - AllSeller')
-    const { data: users = [], refetch, isLoading } = useQuery({
-        queryKey: ['users'],
+    useTitle('Admin Dashboard- All Recruiters')
+
+    const { data: recruiters = [], refetch, isLoading } = useQuery({
+        queryKey: ['recruiters'],
         queryFn: async () => {
             try {
-                const res = await fetch(`${ServerApi}/allSeller`);
+                const res = await fetch(`${ServerApi}/admin/allRecruiter`);
                 const data = await res.json();
-
                 return data
             }
-            catch (err) { }
+            catch (err) { console.log(err) }
         }
     })
 
@@ -27,7 +27,7 @@ const Recruiters = () => {
 
     return (
         <div className='w-11/12 mx-auto'>
-            {users?.length > 0 ?
+            {recruiters?.length > 0 ?
                 <>
                     <div className='my-5'>
                         <h3 className="text-4xl font-bold text-center">ALL Recruiters</h3>
@@ -50,7 +50,7 @@ const Recruiters = () => {
                             <tbody>
 
                                 {
-                                    users.map((user, i) =>
+                                    recruiters.map((user, i) =>
                                         <tr key={i}>
                                             <th>
                                                 <label>
@@ -70,28 +70,26 @@ const Recruiters = () => {
                                             <td>
                                                 <div>
                                                     <div className="font-bold">{user.name}</div>
-                                                    {/* <div className="text-sm opacity-50">United States</div> */}
                                                 </div>
                                             </td>
                                             <td>{user.email}</td>
-                                            <td className={(user.userType === 'seller' && 'text-red-400') || (user.userType === 'admin' && 'text-emerald-600 font-bold')}>Recruiters</td>
+                                            <td className="text-emerald-600 font-bold uppercase">{user.userType}</td>
                                             <td className='text-center'>X LTD</td>
                                             <th>
                                                 {
-                                                    user?.sellerStatus === "verify" ?
+                                                    user?.Status === "nonVerify" ?
                                                         <>
-                                                            <PrimaryButton classes={'btn-sm'}>Paid</PrimaryButton>
+                                                            <span className='text-blue-900'>Verified</span>
                                                         </>
                                                         :
                                                         <>
-                                                            <PrimaryButton classes={'btn-sm'}>Unpaid</PrimaryButton>
+                                                            <PrimaryButton classes={'btn-sm'}>Verify</PrimaryButton>
                                                         </>
                                                 }
 
                                             </th>
                                             <th>
                                                 <PrimaryButton classes={'btn-sm'}>Remove</PrimaryButton>
-
                                             </th>
                                         </tr>
                                     )

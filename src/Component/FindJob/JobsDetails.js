@@ -112,7 +112,7 @@ const JobsDetails = () => {
                     <button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><CiCircleMore className='mr-2 text-xl' />More</button>
                     {/* Report the job */}
                     <label
-                      htmlFor={data?._id}
+                      htmlFor={'reportmodal'}
                       className="btn btn-outline hover:bg-blue-600 rounded-2xl  text-error"
                     >
                       <FaExclamationCircle className="mr-2 text-xl" />

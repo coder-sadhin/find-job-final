@@ -30,6 +30,7 @@ import MyJobs from "../DashBoard/CandidatePage/MyJobs";
 import RecruiterJobs from "../DashBoard/RecruiterPage/Recruiterjobs/RecruiterJobs";
 import Profile from "../Pages/ProfilePage/Profile";
 import Applicants from "../DashBoard/RecruiterPage/Recruiterjobs/Applicants";
+import ReportedJobDetail from "../DashBoard/AdminPage/Reported/ReportedJobDetail";
 
 const router = createBrowserRouter([
     {
@@ -116,6 +117,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/reportedJobs',
                 element: <ReportedJobs />
+            },
+            {
+                path: '/dashboard/reportedJobsDetails/:id',
+                loader: ({ params }) => fetch(`${ServerApi}/report/reportedJobDetails/${params.id}`),
+                element: <ReportedJobDetail />
             },
             {
                 path: '/dashboard/reportedCandidate',
