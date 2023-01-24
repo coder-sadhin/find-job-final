@@ -1,20 +1,19 @@
 import React from "react";
 import { toast } from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { ServerApi } from "../../../AllApi/MainApi";
 
 const ReportedJobDetail = () => {
   const navigate = useNavigate();
-  const { state: job } = useLocation();
+  const job = useLoaderData();
+  console.log(job);
 
   const deleteJob = (job) => {
-    
-    fetch(`${ServerApi}/report/deleteReports`, {
+    fetch(`${ServerApi}/report/deleteReports?id=${job.jobId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
-      },
-      body: JSON.stringify(job),
+      }
     })
       .then((res) => res.json())
       .then((data) => {
@@ -31,7 +30,7 @@ const ReportedJobDetail = () => {
         <p className="bg-[#00ae87] text-5xl  text-center font-extrabold text-white py-12 rounded-md font-serif">
           Report
         </p>
-        <div className="mt-3">
+        <div className="py-3">
           <h1 className="text-2xl  font-semibold text-[#00ae87]">
             {" "}
             Job Name :::{" "}

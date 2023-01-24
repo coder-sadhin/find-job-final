@@ -4,7 +4,7 @@ import { ServerApi } from "../../../AllApi/MainApi";
 import { AuthContext } from "../../../ContextApi/AuthProvider/AuthProvider";
 
 const ReportJob = ({ data, setCloseModal }) => {
-  const {  job_details, _id } =
+  const { job_details, _id } =
     data;
 
   const { user } = useContext(AuthContext);
@@ -58,7 +58,7 @@ const ReportJob = ({ data, setCloseModal }) => {
     <div className="bg-gray-900 text-gray-200 ">
       <input
         type="checkbox"
-        id="report-modal"
+        id="reportmodal"
         className="modal-toggle"
         value={"input."}
       />
@@ -106,7 +106,7 @@ const ReportJob = ({ data, setCloseModal }) => {
               required
             />
             <input
-              htmlFor="report-modal"
+              htmlFor="reportmodal"
               type="submit"
               className="btn block btn-outline rounded-xl  text-error mt-3"
               value={"Report"}
@@ -114,7 +114,7 @@ const ReportJob = ({ data, setCloseModal }) => {
           </form>
           <div className="modal-action">
             <label
-              htmlFor="report-modal"
+              htmlFor="reportmodal"
               className="btn btn-outline rounded-2xl text-white"
             >
               Close
