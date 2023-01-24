@@ -8,7 +8,8 @@ const ReportedJobDetail = () => {
   const { state: job } = useLocation();
 
   const deleteJob = (job) => {
-    fetch(`${ServerApi}/deleteReports`, {
+    
+    fetch(`${ServerApi}/report/deleteReports`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

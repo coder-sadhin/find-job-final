@@ -62,7 +62,7 @@ const Contact = () => {
                             <h4>Email</h4>
                             <h5>Company@gmail.com</h5>
                             <a
-                                href="#"
+                                href="#dfdf"
                             >
                                 Send a message
                             </a>
@@ -78,7 +78,7 @@ const Contact = () => {
                             <h4>Messenger</h4>
                             <h5>HR</h5>
                             <a
-                                href="#"
+                                href="#ffd"
                             >
                                 Send a message
                             </a>
@@ -94,7 +94,7 @@ const Contact = () => {
                             <h4>WhatsApp</h4>
                             <h5>Company Number</h5>
                             <a
-                                href="#"
+                                href="#df"
                             >
                                 Send a message
                             </a>

@@ -50,7 +50,7 @@ const BuildCV = () => {
     const [state, dispatch] = useReducer(candidateReducer, initialState);
 
     const handleCreateResume = async () => {
-        await axios.post(`${ServerApi}/createresume`, state)
+        await axios.post(`${ServerApi}/createResume`, state)
             .then((res) => {
                 if (res?.data?.length >= 1) {
                     const errors = res.data

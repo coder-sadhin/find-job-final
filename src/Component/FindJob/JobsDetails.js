@@ -23,10 +23,17 @@ const JobsDetails = () => {
   const handleJobApply = (event) => {
     event.preventDefault();
 
+    const form = event.target;
+    const question1 = form.question1.value
+    const question2 = form.question2.value
+    const resume = form.resume.value
+
     const application = {
       candidate: user.displayName,
       candidateEmail: user.email,
-      job: data
+      job: data,
+      resume: resume,
+      answers: [question1, question2]
     }
     // save candidate application to database
     fetch(`${ServerApi}/apply-job`, {
@@ -50,7 +57,7 @@ const JobsDetails = () => {
     const candidate = {
       name: name,
       email: email,
-      candidateId: "hello"
+      candidateId: "sg8sd8gh4h46d8fg76df8gh"
     }
     fetch(`${ServerApi}/jobs/apply/${data._id}`, {
       method: "PUT",
@@ -105,7 +112,7 @@ const JobsDetails = () => {
                     <button className='btn btn-outline hover:bg-blue-600 rounded-2xl text-white'><CiCircleMore className='mr-2 text-xl' />More</button>
                     {/* Report the job */}
                     <label
-                      htmlFor={data?._id}
+                      htmlFor={'reportmodal'}
                       className="btn btn-outline hover:bg-blue-600 rounded-2xl  text-error"
                     >
                       <FaExclamationCircle className="mr-2 text-xl" />
@@ -123,24 +130,24 @@ const JobsDetails = () => {
               <div className='flex justify-between'>
 
 
-                <div className='flex '>
-                  <div className="avatar flex mt-2">
-                    <div className="w-14 rounded">
-                      <img src="https://placeimg.com/192/192/people" alt='' />
+                <Link to='/allfrofile'>
+                  <div className='flex '>
+                    <div className="avatar flex mt-2">
+                      <div className="w-14 rounded">
+                        <img src="https://placeimg.com/192/192/people" alt='' />
+                      </div>
+                    </div>
+                    <div className='ml-4'>
+                      <p>Ansu Hanna Biji </p>
+                      <p>Human Resources Executive at Internet Mango Solutions </p>
+                      <p>Job poster · LinkedIn member since 2018</p>
                     </div>
                   </div>
-                  <div className='ml-4'>
-                    <p>Ansu Hanna Biji </p>
-                    <p>Human Resources Executive at Internet Mango Solutions </p>
-                    <p>Job poster · LinkedIn member since 2018</p>
-                  </div>
-                </div>
-
-                <Link to='/allfrofile'>
-                  <div>
-                    <button className='btn btn-outline btn-sm text-white mt-2 justify-end'>Msessage</button>
-                  </div>
                 </Link>
+
+                <div>
+                  <button className='btn btn-outline btn-sm text-white mt-2 justify-end'>Msessage</button>
+                </div>
 
               </div>
             </div>
@@ -185,20 +192,20 @@ const JobsDetails = () => {
               <label className="label">
                 <span className="label-text">How many years of experience do you have on Full Stack Development?</span>
               </label>
-              <input type="text" className="border" />
+              <input type="text" name='question1' className="border" />
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Are you experience on Backend?</span>
               </label>
-              <input type="text" className="border" />
+              <input type="text" name='question2' className="border" />
             </div>
 
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Upload Resume</span>
               </label>
-              <input type="file" className="border" />
+              <input type="file" name='resume' className="border" />
             </div>
             <div className="modal-action flex justify-between">
               <label htmlFor="easy-apply" className="btn">Cancel</label>

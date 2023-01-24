@@ -21,34 +21,14 @@ const Profile = ({ useData }) => {
             <div className="flex w-full flex-col justify-center  p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
                 <div className='flex mb-3 justify-end'>
 
-                    <label htmlFor="my-modal-5" className='text-4xl ml-4 mt-2'><BiPencil /></label>
+                    <label htmlFor="modalWithCover" className='text-4xl ml-4 mt-2'><BiPencil /></label>
 
-                    <input type="checkbox" id="my-modal-5" className="modal-toggle" />
+                    <input type="checkbox" id="modalWithCover" className="modal-toggle" />
                     <div className="modal ">
                         <div className="modal-box w-11/12 max-w-5xl dark:bg-gray-900 dark:text-gray-100">
                             <h3 className="font-bold text-lg">Background Color</h3>
                             <div className="divider"></div>
-                            <div>
-                                <TransformWrapper
-                                    initialScale={1}
-                                    initialPositionX={200}
-                                    initialPositionY={100}
-                                >
-                                    {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
-                                        <React.Fragment>
-                                            <TransformComponent>
-                                                <img className=' h-[600px] rounded-xl' src={cover_image} alt="" />
-                                            </TransformComponent>
-                                            <div className="tools flex justify-around">
-                                                {/* <button onClick={() => zoomOut()}>-</button> */}
-                                                <button onClick={() => resetTransform()}><TbMinus className='text-3xl' /></button>
-                                                <button onClick={() => zoomIn()}><HiPlus className='text-3xl' /></button>
-                                            </div>
-                                        </React.Fragment>
-                                    )}
-                                </TransformWrapper>
-                            </div>
-
+                            <img className=' h-[600px] rounded-xl' src={cover_image} alt="" />
                             <div className='flex justify-end my-6'>
                                 <p className='text-3xl mr-2'><BsArrowRepeat /></p>
                                 <p className='text-3xl '><BsArrowRepeat /></p>
@@ -98,31 +78,97 @@ const Profile = ({ useData }) => {
                                     <h2 className='font-bold text-2xl mt-2'>Delete Photo</h2>
                                 </div>
                                 <div>
-                                    <button className="btn  bg-blue-400 rounded-2xl hover:text-white text-black">Change Photo </button>
+                                    <input type="file" className='btn h-[15px] -mb-5 bg-blue-400 rounded-2xl hover:text-white text-black' />
                                     <button className="btn ml-2 border-blue-400 rounded-2xl text-white btn-outline">Apply</button>
                                 </div>
                             </div>
 
                             <div className="modal-action">
-                                <label htmlFor="my-modal-5" className="btn btn-sm btn-circle absolute right-2 mt-3 top-2">✕</label>
+                                <label htmlFor="modalWithCover" className="btn btn-sm btn-circle absolute right-2 mt-3 top-2">✕</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img className=' h-[350px] rounded-xl' src={cover_image} alt="" />
+                <div className='-mt-10'>
+                    <label htmlFor="changeProfile"> <img src={profile_image} alt="" className="w-36 h-36  rounded-full dark:bg-gray-500 aspect-square" /></label>
+
+                    {/* change profile */}
+                    <input type="checkbox" id="changeProfile" className="modal-toggle" />
+                    <div className="modal ">
+                        <div className="modal-box relative bg-base-content text-white">
+                            <label htmlFor="changeProfile" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                            <div>
+                                <div className="avatar flex justify-center">
+                                    <div className="w-44 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                        <img src="https://placeimg.com/192/192/people" alt='' />
+                                    </div>
+                                </div>
+                                <div className='flex justify-between my-4'>
+                                    <button className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline'>Delete</button>
+                                    {/* <button type='file' className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline'>add photo</button> */}
+                                    <input type="file" className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline' name='add photo' />
+                                </div>
                             </div>
                         </div>
                     </div>
 
-
                 </div>
-                <img className=' h-[350px] rounded-xl' src={cover_image} alt="" />
-                <Link className='-mt-10'>
-                    <img src={profile_image} alt="" className="w-36 h-36  rounded-full dark:bg-gray-500 aspect-square" />
-                </Link>
                 <div className="space-y-4  divide-y divide-gray-700">
-                    <div className="my-2 space-y-1">
-                        <h2 className="text-3xl font-semibold">{name}</h2>
-                        <p className="text-xl">{job_category}</p>
-                        <p>Talks about {talk_about}</p>
-                        <p>{address} <span className='text-blue-400'> Contact info</span></p>
-                        <p className='text-blue-400'>{linkedin_profile}</p>
-                        <p className='text-blue-400'>followers {followers} <span>connections {connections}</span> </p>
+                    <div>
+                        <div className="my-2 space-y-1">
+                            <div className='flex justify-between'>
+                                <h2 className="text-3xl font-semibold">{name}</h2>
+                                <label htmlFor="modalWithProInfo" className='text-3xl'><BiPencil /></label>
+
+                                {/* profile info */}
+                                <input type="checkbox" id="modalWithProInfo" className="modal-toggle" />
+                                <div className="modal ">
+                                    <div className="modal-box w-11/12 max-w-5xl bg-base-content text-white">
+                                        <h3 className="font-bold text-lg">Edit intro</h3>
+                                        <div className='my-4'>
+
+                                            <div>
+                                                <label for="name" className="block mb-1 ml-1">Name</label>
+                                                <input id="name" type="text" placeholder="Your name" required="" className="w-full p-2 rounded border-base-content border-white dark:bg-gray-800" />
+                                            </div>
+                                            <div>
+                                                <label for="name" className="block mb-1 ml-1">Headline</label>
+                                                <input id="Headline" type="text" placeholder="YourHeadline " required="" className="w-full p-2 rounded border-white dark:bg-gray-800" />
+                                            </div>
+                                            <p className='text-xl my-4'>Location</p>
+                                            <div>
+                                                <label for="name" className="block mb-1 ml-1">Country</label>
+                                                <input id="Country" type="text" placeholder="Country " required="" className="w-full p-2 rounded border-white dark:bg-gray-800" />
+                                            </div>
+                                            <div>
+                                                <label for="name" className="block mb-1 ml-1">City</label>
+                                                <input id="City" type="text" placeholder="City " required="" className="w-full p-2 rounded border-white dark:bg-gray-800" />
+                                            </div>
+                                            <p className='text-xl my-4'>Website</p>
+                                            <div>
+                                                <label for="name" className="block mb-1 ml-1">Link</label>
+                                                <input id="link" type="text" placeholder="link " required="" className="w-full p-2 rounded border-white dark:bg-gray-800" />
+                                            </div>
+                                        </div>
+                                        <div className="modal-action">
+                                            <label htmlFor="modalWithProInfo" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                                        </div>
+                                        <div className='flex justify-end'>
+                                            <button className='btn rounded-2xl bg-blue-400 text-white outline'>Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <p className="text-xl">{job_category}</p>
+                            <p>Talks about {talk_about}</p>
+                            <p>{address} <span className='text-blue-400'> Contact info</span></p>
+                            <p className='text-blue-400'>{linkedin_profile}</p>
+                            <p className='text-blue-400'>followers {followers} <span>connections {connections}</span> </p>
+                        </div>
+
                     </div>
                     <div className='mt-3'>
                         <button className="btn  bg-blue-400 rounded-2xl hover:text-white text-black">open to</button>
