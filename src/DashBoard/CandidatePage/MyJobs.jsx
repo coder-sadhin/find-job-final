@@ -8,15 +8,16 @@ import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 const MyJobs = () => {
     const { user } = useContext(AuthContext)
     const [jobs, setJobs] = useState([]);
+    console.log(jobs);
 
     useEffect(() => {
-        axios.get(`${ServerApi}/report/applied-job/${user?.email}`)
+        axios.get(`${ServerApi}/applyJob?email=${user?.email}`)
             .then((data) => setJobs(data.data))
             .catch((err) => console.log(err))
-    }, [user?.email])
+    }, [user, user?.email])
 
     const handleJobDelete = (id) => {
-        axios.delete(`${ServerApi}/report/applied-job/${id}`)
+        axios.delete(`${ServerApi}/applyJob/${id}`)
             .then((res) => {
                 if (res.data.deletedCount > 0) {
                     const remaining = jobs.filter((job) => job._id !== id);

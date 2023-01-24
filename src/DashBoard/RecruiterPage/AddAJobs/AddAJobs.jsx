@@ -10,6 +10,7 @@ import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 import Spinner from '../../../Component/Spinner/Spinner';
 import PrimaryButton from '../../../Component/Button/PrimaryButton';
 import SmallSpinner from '../../../Component/Spinner/SmallSpinner';
+import { ServerApi } from '../../../AllApi/MainApi';
 
 const AddAJobs = () => {
 
@@ -24,7 +25,6 @@ const AddAJobs = () => {
 
     const [selected, setSelected] = useState([]);
 
-    console.log(selected);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     console.error(errors)
@@ -32,7 +32,7 @@ const AddAJobs = () => {
 
     useEffect(() => {
         setAddLoading(true)
-        fetch('https://find-job-server.vercel.app/currency')
+        fetch(`${ServerApi}/currency`)
             .then(res => res.json())
             .then(data => {
                 setCurrencys(data)
@@ -75,14 +75,13 @@ const AddAJobs = () => {
             job_visible: [startDate.toLocaleString(), endDate.toLocaleString()],
             job_post_time: time
         }
-        console.log(currency)
         setDoctorToDB(jobInfo)
     }
     //     // save information to the database 
 
     const setDoctorToDB = (jobInfo) => {
 
-        fetch('https://find-job-server.vercel.app/jobs', {
+        fetch(`${ServerApi}/jobs`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

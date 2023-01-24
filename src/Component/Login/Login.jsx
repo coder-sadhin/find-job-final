@@ -31,7 +31,7 @@ const Login = () => {
                 // console.log(result)
                 if (result.user) {
                     const user = result.user;
-                    if (!user.emailVerified === true) {
+                    if (user.emailVerified === true) {
                         toast.error('Please Verify You email.....!')
                         userVerification()
                             .then(() => {

@@ -14,9 +14,11 @@ const DashBoardLayout = () => {
     // const navigate = useNavigate();
 
     const role = {
-        admin: false,
-        recruiter: true,
+        admin: true,
+        recruiter: false,
         candidate: false
+        // recruiter: true,
+        // candidate: false
     }
 
     return (
@@ -33,18 +35,13 @@ const DashBoardLayout = () => {
 
                         {
                             role.candidate === true && <>
-                                <li><Link to={'/dashboard/myProfile'}>My Profile</Link></li>
-                                <li><Link to={'/dashboard/skills'}>My Skills</Link></li>
-                                <li><Link to={'/dashboard/my-jobs'}>My Jobs</Link></li>
-                                <li><Link to={'/dashboard/editProfile'}>Edit Profile</Link></li>
+                                <li><Link to={'/dashboard/my-jobs'}>Applied Jobs</Link></li>
                             </>
                         }
                         {
                             role.recruiter === true && <>
-                                <li><Link to={'/dashboard/myProfile'}>My Profile</Link></li>
                                 <li><Link to={'/dashboard/myJobs'}>My Jobs</Link></li>
                                 <li><Link to={'/dashboard/addAJobs'}>Post A Jobs</Link></li>
-                                <li><Link to={'/dashboard/editProfile'}>Edit Profile</Link></li>
                             </>
                         }
                         {
@@ -65,7 +62,6 @@ const DashBoardLayout = () => {
                                     </span></Link></li>
                                 <li><Link to={'/dashboard/reportedCandidate'}>Reported Candidates</Link></li>
                                 <li><Link to={'/dashboard/reportedRecruiters'}>Reported Recruiters</Link></li>
-
                             </>
                         }
                         <li><Link to={'/dashboard/changePass'}>Change Password</Link></li>

@@ -17,6 +17,7 @@ import {
 import ReportJob from "./ReportJob/ReportJob";
 import { AuthContext } from "../../ContextApi/AuthProvider/AuthProvider";
 import { ServerApi } from "../../AllApi/MainApi";
+import { useEffect } from "react";
 
 const JobsDetails = () => {
   const { user } = useContext(AuthContext);
@@ -32,10 +33,18 @@ const JobsDetails = () => {
 
   const handleJobApply = (event) => {
     event.preventDefault();
+
+    const form = event.target;
+    const question1 = form.question1.value;
+    const question2 = form.question2.value;
+    const resume = form.resume.value;
+
     const application = {
       candidate: user.displayName,
       candidateEmail: user.email,
       job: data,
+      resume: resume,
+      answers: [question1, question2],
     };
     // save candidate application to database
     fetch(`${ServerApi}/apply-job`, {
@@ -72,6 +81,20 @@ const JobsDetails = () => {
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
   };
+
+  // check reported @sarwar ///
+  const [isreport, setisReported] = useState("notreported");
+
+  useEffect(() => {
+    fetch(
+      `${ServerApi}/report/isreport?email=${user?.email}&jobid=${data?._id}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setisReported("reported");
+      });
+  }, [setisReported]);
 
   return (
     <div className=" p-6 bg-base-content ">
@@ -171,22 +194,28 @@ const JobsDetails = () => {
                     <CiCircleMore className="mr-2 text-xl" />
                     More
                   </button>
-
-                  {/*   Report the job   */}
-                  <label
-                    htmlFor="report-modal"
-                    className="btn btn-outline hover:bg-blue-600 rounded-2xl  text-error"
-                  >
-                    <FaExclamationCircle className="mr-2 text-xl" />
-                    Report job
-                  </label>
                 </>
               )}
+              {/* Report the job */}
+              {isreport === "reported" ? (
+                <label className="btn btn-error rounded-2xl btn-sm   text-white">
+                  <FaExclamationCircle className="mr-2 text-xl" />
+                  Reported 
+                </label>
+              ) : (
+                <label
+                  htmlFor={"reportmodal"}
+                  className="btn btn-outline hover:bg-[#22c55e] rounded-2xl  text-error"
+                >
+                  <FaExclamationCircle className="mr-2 text-xl" />
+                  Report job
+                </label>
+              )}
             </div>
-            {closeMOdal && (
-              <ReportJob data={data} setCloseModal={setCloseModal}></ReportJob>
-            )}
             {/* modal  */}
+            {closeMOdal && (
+              <ReportJob data={data} setCloseModal={setCloseModal} setisReported={setisReported}></ReportJob>
+            )}
             <div className="text-start pt-4 bg-slate-600 rounded-xl p-6 text-white">
               <h1 className="text-2xl mb-2">Meet the hiring team</h1>
               <div className="flex justify-between">
@@ -263,7 +292,7 @@ const JobsDetails = () => {
       {modal && (
         <div className="modal modal-bottom sm:modal-middle">
           <form onSubmit={handleJobApply} className="modal-box">
-            <h3 className="font-bold text-lg">{job_details?.job?.job_title}</h3>
+            <h3 className="font-bold text-lg">{job_details.job.job_title}</h3>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">
@@ -271,7 +300,7 @@ const JobsDetails = () => {
                   Development?
                 </span>
               </label>
-              <input type="text" className="border" />
+              <input type="text" name="question1" className="border" />
             </div>
             <div className="form-control">
               <label className="label">
@@ -279,14 +308,14 @@ const JobsDetails = () => {
                   Are you experience on Backend?
                 </span>
               </label>
-              <input type="text" className="border" />
+              <input type="text" name="question2" className="border" />
             </div>
 
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Upload Resume</span>
               </label>
-              <input type="file" className="border" />
+              <input type="file" name="resume" className="border" />
             </div>
             <div className="modal-action flex justify-between">
               <label htmlFor="easy-apply" className="btn">
