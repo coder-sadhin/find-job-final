@@ -1,31 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 
 
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NavBer from '../../Component/Navber';
-// import Spinner from '../../Component/Spinner/Spinner';
-// import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
-// import useUserType from '../../Hooks/DashBoardUserType/DashBoardUserType';
+import Spinner from '../../Component/Spinner/Spinner';
+import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
+import useUserType from '../../Hooks/DashBoardUserType/DashBoardUserType';
 
 const DashBoardLayout = () => {
-    // const { user, LogOut } = useContext(AuthContext);
-    // const [isAdmin, isRecruiter, isCandidate, userLoading] = useUserType(user?.email)
-    // const navigate = useNavigate();
+    const { user, LogOut } = useContext(AuthContext);
 
-    const role = {
-        admin: false,
-        recruiter: false,
-        // candidate: true
-        candidate: true
-        // recruiter: true,
-        // candidate: false
+    const navigate = useNavigate();
+    const [isAdmin, isRecruiter, isCandidate, userLoading] = useUserType(user?.email);
+    if (userLoading) {
+        return <Spinner />
     }
+    // const role = {
+    //     admin: true,
+    //     recruiter: false,
+    //     // candidate: true,
+    //     candidate: false,
+    //     // recruiter: true,
+    //     // candidate: false
+    // }
 
     return (
         <div>
             <NavBer />
-            <div className="drawer drawer-mobile bg-white max-w-[1440px]">
+            <div className="drawer drawer-mobile bg-white max-w-[1440px] mx-auto">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     <Outlet />
@@ -35,18 +38,18 @@ const DashBoardLayout = () => {
                     <ul className="menu p-4 w-80 text-bold bg-blue-200">
 
                         {
-                            role.candidate === true && <>
+                            isCandidate === true && <>
                                 <li><Link to={'/dashboard/my-jobs'}>Applied Jobs</Link></li>
                             </>
                         }
                         {
-                            role.recruiter === true && <>
+                            isRecruiter === true && <>
                                 <li><Link to={'/dashboard/myJobs'}>My Jobs</Link></li>
                                 <li><Link to={'/dashboard/addAJobs'}>Post A Jobs</Link></li>
                             </>
                         }
                         {
-                            role.admin === true && <>
+                            isAdmin === true && <>
                                 <li><Link to={'/dashboard/newsLetter'}>News Letter</Link></li>
                                 <li><Link to={'/dashboard/recruiters'}>All Recruiters</Link></li>
                                 <li><Link to={'/dashboard/candidates'}>All Candidates</Link></li>
