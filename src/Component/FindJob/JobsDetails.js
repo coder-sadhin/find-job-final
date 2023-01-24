@@ -7,6 +7,7 @@ import { BsFillCalculatorFill, BsFillSaveFill, BsLinkedin } from 'react-icons/bs
 import ReportJob from './ReportJob/ReportJob';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import { ServerApi } from '../../AllApi/MainApi';
+import toast from "react-hot-toast";
 
 const JobsDetails = () => {
   const { user } = useContext(AuthContext);
@@ -26,7 +27,7 @@ const JobsDetails = () => {
     const form = event.target;
     const question1 = form.question1.value
     const question2 = form.question2.value
-    const resume = form.resume.value
+    const resume = form.resume.files
 
     const application = {
       candidate: user.displayName,
@@ -35,8 +36,9 @@ const JobsDetails = () => {
       resume: resume,
       answers: [question1, question2]
     };
+    console.log(application);
     // save candidate application to database
-    fetch(`${ServerApi}/apply-job`, {
+    fetch(`${ServerApi}/applyJob`, {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -46,18 +48,19 @@ const JobsDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        handleUpdateApplyQuantity(user.displayName, user.email)
+        toast.success("Application Submitted")
+        handleUpdateApplyQuantity(user.displayName, user.email, user._id)
       })
       .catch((err) => console.log(err))
 
     setModal(false)
   }
 
-  const handleUpdateApplyQuantity = (name, email) => {
+  const handleUpdateApplyQuantity = (name, email, id) => {
     const candidate = {
       name: name,
       email: email,
-      candidateId: "sg8sd8gh4h46d8fg76df8gh"
+      candidateId: id
     }
     fetch(`${ServerApi}/jobs/apply/${data._id}`, {
       method: "PUT",
