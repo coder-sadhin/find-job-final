@@ -54,6 +54,7 @@ const ReportJob = ({ data, setCloseModal }) => {
     { id: 1, name: "Impossible Requirement" },
     { id: 1, name: "Look like an span" },
   ];
+
   return (
     <div className="bg-gray-900 text-gray-200 ">
       <input
@@ -80,7 +81,7 @@ const ReportJob = ({ data, setCloseModal }) => {
               name="report"
               id=""
               className="w-full outline-none text-gray-800 p-2"
-              size="3"
+            
               required
             >
               {reportItem?.map((report) => {
