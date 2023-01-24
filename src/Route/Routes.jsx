@@ -29,10 +29,12 @@ import { ServerApi } from "../AllApi/MainApi";
 import FeatureIn from "../Component/FindJob/RecruiterProfile/FeatureIn/FeatureIn";
 import Skill from "../Component/FindJob/RecruiterProfile/Skill";
 import MoreSkill from "../Component/FindJob/RecruiterProfile/MoreSkill";
-import ReportedJobDetail from "../DashBoard/AdminPage/Reported/ReportedJobDetail";
 import BuildCV from "../Component/BuildCV/BuildCV";
 import MyJobs from "../DashBoard/CandidatePage/MyJobs";
 import RecruiterJobs from "../DashBoard/RecruiterPage/Recruiterjobs/RecruiterJobs";
+import Profile from "../Pages/ProfilePage/Profile";
+import Applicants from "../DashBoard/RecruiterPage/Recruiterjobs/Applicants";
+import ReportedJobDetail from "../DashBoard/AdminPage/Reported/ReportedJobDetail";
 
 const router = createBrowserRouter([
     {
@@ -88,6 +90,10 @@ const router = createBrowserRouter([
                 path: '/details/:id',
                 loader: ({ params }) => fetch(`${ServerApi}/jobs/jobDetails/${params.id}`),
                 element: <JobsDetails />
+            },
+            {
+                path: '/profile',
+                element: <Profile />
             }
         ]
     },
@@ -123,6 +129,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/reportedJobs',
                 element: <ReportedJobs />
+            },
+            {
+                path: '/dashboard/reportedJobsDetails/:id',
+                loader: ({ params }) => fetch(`${ServerApi}/report/reportedJobDetails/${params.id}`),
+                element: <ReportedJobDetail />
             },
             {
                 path: '/dashboard/reportedCandidate',
@@ -167,6 +178,5 @@ const router = createBrowserRouter([
         ]
     }
 ])
-
 
 export default router;

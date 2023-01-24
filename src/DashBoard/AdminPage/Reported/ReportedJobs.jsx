@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../../Component/Spinner/Spinner";
 import { useTitle } from "react-use";
 import { ServerApi } from "../../../AllApi/MainApi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 const ReportedJobs = () => {
@@ -28,16 +28,10 @@ const ReportedJobs = () => {
     },
   });
 
-  console.log(reportedJobs);
-
-  const handleDetails = (job) => {
-    navigate(`/dashboard/reportedJobsDetails/${job._id}`, { state: job });
-  };
-
   if (isLoading) {
     <Spinner />;
   }
-  console.log(reportedJobs);
+
   return (
     <div className="w-11/12 mx-auto">
       {reportedJobs?.length > 0 ? (
@@ -75,7 +69,7 @@ const ReportedJobs = () => {
                         {job?.reporterName}
                       </span>
                     </p>
-                    <p className="text-lg font-semibold">
+                    <p className="text-lg my-5 font-semibold">
                       Category :{" "}
                       <span className="text-red-800">
                         {job?.report ? job?.report : "Most Advertisement"}
@@ -83,21 +77,11 @@ const ReportedJobs = () => {
                     </p>
 
                     <div>
-                      <button
-                        onClick={() => handleDetails(job)}
-                        className="py-2 mt-2 px-3 font-semibold text-xl text-slate-50 rounded-xl shadow-xl hover:bg-slate-200 hover:text-[#00ae87] hover:shadow-2xl bg-[#00ae87]"
+                      <Link to={`/dashboard/reportedJobsDetails/${job._id}`}
+                        className="py-2 mt-5 px-3 font-semibold text-xl text-slate-50 rounded-xl shadow-xl hover:bg-slate-200 hover:text-[#00ae87] hover:shadow-2xl bg-[#00ae87]"
                       >
                         Job Action
-                      </button>
-                      {/* <select className="select bg-red-400 text-white select-bordered" size={10}>
-                      <option disabled selected>
-                        Action
-                      </option>
-                      <option>Sand Warning</option>
-                      <option>Suspension</option>
-                      <option>Restricted</option>
-                      <option>Remove Jobs</option>
-                    </select> */}
+                      </Link>
                     </div>
                   </div>
                 </div>

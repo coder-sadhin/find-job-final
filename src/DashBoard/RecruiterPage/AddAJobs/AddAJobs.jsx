@@ -19,9 +19,9 @@ const AddAJobs = () => {
 
     const [dateRange, setDateRange] = useState([null, null]);
     const [startDate, endDate] = dateRange;
-
-    const [addLoading, setAddLoading] = useState(false)
-    const { user, loading } = useContext(AuthContext);
+    const [addBLoading, setAddBLoading] = useState(false);
+    const [addLoading, setAddLoading] = useState(false);
+    const { user, loading, setRefreshToken } = useContext(AuthContext);
 
     const [selected, setSelected] = useState([]);
 
@@ -47,6 +47,7 @@ const AddAJobs = () => {
 
     const handleAddProduct = (data) => {
         // setAddLoading(true)
+        setAddBLoading(true);
         const job_title = data.title;
         const salary = data.salary;
         const pay_duration = data.pay_duration;
@@ -93,10 +94,12 @@ const AddAJobs = () => {
                 console.log(data);
                 if (data.acknowledged) {
                     toast.success('Your Jobs added successfully');
-                    navigate('/dashboard')
+                    setRefreshToken("refresh koro akhon")
+                    navigate('/dashboard/myJobs')
                     setAddLoading(false)
                 }
             })
+        setAddBLoading(false)
     }
 
     if (addLoading) {
@@ -249,7 +252,7 @@ const AddAJobs = () => {
                             type='submit'
                             classes='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
                         >
-                            {loading ? <SmallSpinner /> : 'ADD JOB FOR VIEW'}
+                            {addBLoading ? <SmallSpinner /> : 'ADD JOB FOR VIEW'}
                         </PrimaryButton>
                     </div>
                 </form>

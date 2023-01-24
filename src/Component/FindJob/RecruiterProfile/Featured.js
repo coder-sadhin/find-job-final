@@ -18,10 +18,10 @@ const Featured = ({ useData }) => {
                 <div className='flex'>
                     <div className="dropdown dropdown-bottom dropdown-end ">
                         <label tabIndex={0} className="  text-4xl "><HiPlus /></label>
-                        <ul tabIndex={0} className="dropdown-content menu  shadow bg-base-100 rounded-box w-52 p-5 dark:bg-gray-900 dark:text-gray-100">
+                        <ul tabIndex={0} className="dropdown-content menu  shadow rounded-box w-52 p-5 bg-base-content">
                             <div >
                                 <div>
-                                    <div className='flex font-bold'>
+                                    <div className='flex  font-bold'>
                                         <p className='text-xl'><BsPencilSquare /></p>
                                         <p className="ml-3">Add a post</p>
                                     </div>

@@ -9,7 +9,7 @@ const useUserType = email => {
     const [userLoading, setUserLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`${ServerApi}/checkUser/type?email=${email}`)
+            fetch(`${ServerApi}/user/checkUser/type?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data === "admin") {
