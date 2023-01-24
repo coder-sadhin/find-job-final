@@ -14,7 +14,7 @@ const ReportedRecruiters = () => {
         queryKey: ['users'],
         queryFn: async () => {
             try {
-                const res = await fetch(`${ServerApi}/allSeller`);
+                const res = await fetch(`${ServerApi}/reportUser/reportedRecruiter`);
                 const data = await res.json();
 
                 return data
@@ -32,7 +32,7 @@ const ReportedRecruiters = () => {
                 <>
                     <div className='my-5'>
                         <h3 className="text-4xl font-bold text-center">Reported Recruiters</h3>
-                        <p className='text-xl font-bold text-center'>Total: 04</p>
+                        <p className='text-xl font-bold text-center'>Total: {users.length}</p>
                     </div>
                     <div>
                         {
@@ -43,7 +43,7 @@ const ReportedRecruiters = () => {
                                         <div>
                                             <h4 className='text-xl'><span className='font-bold'>Name :</span> <span className='text-green-700 font-bold'>{user.name}</span></h4>
                                             <p><span className='font-bold'>Email :</span> {user.email}</p>
-                                            <p><span className='font-bold'>Company Name :</span> {user.email}</p>
+                                            <p><span className='font-bold'>Status :</span> {user.Status}</p>
                                         </div>
 
                                         <div>
