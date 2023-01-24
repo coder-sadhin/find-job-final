@@ -4,13 +4,18 @@ import { HiPlus } from 'react-icons/hi';
 import { TbMinus } from "react-icons/tb";
 import { CgFilters } from "react-icons/cg";
 import { HiAdjustments } from "react-icons/hi";
-
-
 import React, { Component } from "react";
-
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { data } from 'autoprefixer';
+import { Link } from 'react-router-dom';
 
-const Profile = () => {
+
+const Profile = ({ useData }) => {
+
+    console.log(useData)
+
+    const { job_category, name, profile_image, cover_image, followers, connections, linkedin_profile, talk_about, address } = useData
+
     return (
         <div>
             <div className="flex w-full flex-col justify-center  p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
@@ -32,7 +37,7 @@ const Profile = () => {
                                     {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                                         <React.Fragment>
                                             <TransformComponent>
-                                                <img className=' h-[350px] rounded-xl' src="https://media.licdn.com/dms/image/D5616AQFjgp01aXzyqg/profile-displaybackgroundimage-shrink_350_1400/0/1673033329766?e=1679529600&v=beta&t=KG2YJAV1QYBS-8jBjaFkWRo3S6jn2YT7HRRnZIYPevM" alt="" />
+                                                <img className=' h-[600px] rounded-xl' src={cover_image} alt="" />
                                             </TransformComponent>
                                             <div className="tools flex justify-around">
                                                 {/* <button onClick={() => zoomOut()}>-</button> */}
@@ -106,18 +111,18 @@ const Profile = () => {
 
 
                 </div>
-                <img className=' h-[350px] rounded-xl' src="https://media.licdn.com/dms/image/D5616AQFjgp01aXzyqg/profile-displaybackgroundimage-shrink_350_1400/0/1673033329766?e=1679529600&v=beta&t=KG2YJAV1QYBS-8jBjaFkWRo3S6jn2YT7HRRnZIYPevM" alt="" />
-                <div className='-mt-10'>
-                    <img src="https://img.freepik.com/free-photo/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes_176532-10257.jpg?w=1380&t=st=1673855900~exp=1673856500~hmac=4409761ee3d146bbe92f687597b186d3db168396d25824412a999d39e2f52e62" alt="" className="w-36 h-36  rounded-full dark:bg-gray-500 aspect-square" />
-                </div>
+                <img className=' h-[350px] rounded-xl' src={cover_image} alt="" />
+                <Link className='-mt-10'>
+                    <img src={profile_image} alt="" className="w-36 h-36  rounded-full dark:bg-gray-500 aspect-square" />
+                </Link>
                 <div className="space-y-4  divide-y divide-gray-700">
                     <div className="my-2 space-y-1">
-                        <h2 className="text-3xl font-semibold">Tom Crus</h2>
-                        <p className="text-xl">Front End Developer</p>
-                        <p>Talks about #react, #nodejs, #firebase, #javascript, and #tailwindcss</p>
-                        <p>Manikganj Sadar Upazila, Dhaka, Bangladesh <span className='text-blue-400'> Contact info</span></p>
-                        <p className='text-blue-400'>https://storied-panda-805346.netlify.app/</p>
-                        <p className='text-blue-400'>243 followers <span>243 connections</span> </p>
+                        <h2 className="text-3xl font-semibold">{name}</h2>
+                        <p className="text-xl">{job_category}</p>
+                        <p>Talks about {talk_about}</p>
+                        <p>{address} <span className='text-blue-400'> Contact info</span></p>
+                        <p className='text-blue-400'>{linkedin_profile}</p>
+                        <p className='text-blue-400'>followers {followers} <span>connections {connections}</span> </p>
                     </div>
                     <div className='mt-3'>
                         <button className="btn  bg-blue-400 rounded-2xl hover:text-white text-black">open to</button>

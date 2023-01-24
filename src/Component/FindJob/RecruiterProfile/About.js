@@ -1,7 +1,11 @@
 import React from 'react';
 import { BiPencil } from 'react-icons/bi';
 
-const About = () => {
+const About = ({ useData }) => {
+
+    const { about } = useData
+
+
     return (
         <div className='bg-base-content'>
             <div className='p-8 mt-3'>

@@ -4,8 +4,8 @@ import img2 from '../asset/Screenshot.png';
 
 const Other = () => {
     return (
-        <div className='hero min-h-screen'>
-            <div className='flex justify-center'>
+        <div className='hero'>
+            <div className='flex  flex-col justify-between'>
                 <div className='mt-16'>
                     <div className='text-center'>
                         <h2 className='text-3xl font-semibold'>Welcome Plan Absolutely Free for the new Employers</h2>
@@ -28,7 +28,7 @@ const Other = () => {
                                 backgroundColor: '#16a085',
                                 transform: 'rotate(270deg)'
                             }}
-                            className='w-[405px] text-white p-6 rotate-text'>
+                            className=' w-[405px] text-white p-6 rotate-text'>
                             <h1 className='text-5xl text-center font-bold'>VOUCHER</h1>
                             <h1 className='text-5xl text-center font-bold'>100 JOBS</h1>
                             <h1 className='text-5xl text-center font-bold'>FOR FREE</h1>

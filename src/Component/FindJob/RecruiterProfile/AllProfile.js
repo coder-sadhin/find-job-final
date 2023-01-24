@@ -1,7 +1,5 @@
-import axios from 'axios';
-import React, { useContext, useEffect } from 'react';
-import { ServerApi } from '../../../AllApi/MainApi';
-import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import About from './About';
 import Experience from './Experience';
 import Featured from './Featured';
@@ -11,21 +9,22 @@ import Skill from './Skill';
 
 const AllProfile = () => {
 
-    const { user } = useContext(AuthContext)
-
+    const [useData, setUseData] = useState([])
 
     useEffect(() => {
-        axios.get(`${ServerApi}/users?email=${user?.email}`)
-            .then(data => console.log(data.data))
+        fetch('Profile.json')
+            .then(res => res.json())
+            .then(data => {
+                setUseData(data[0])
+            })
+    }, [])
 
-            .catch(err => console.error(err))
-    }, [user?.email])
 
     return (
         <div className='dark:bg-gray-900 dark:text-gray-100 bg-base-content text-white'>
-            <Profile></Profile>
-            <Featured></Featured>
-            <About></About>
+            <Profile useData={useData}></Profile>
+            <Featured useData={useData}></Featured>
+            <About useData={useData}></About>
             <Experience></Experience>
             <Skill></Skill>
             <Language></Language>

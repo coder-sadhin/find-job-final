@@ -65,6 +65,14 @@ const router = createBrowserRouter([
                 element: <Register />
             },
             {
+                path: '/feature',
+                element: <FeatureIn></FeatureIn>
+            },
+            {
+                path: '/skills',
+                element: <Skill></Skill>
+            },
+            {
                 path: '/payment',
                 element: <CheckOut />
             },

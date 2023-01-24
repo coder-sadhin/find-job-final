@@ -15,7 +15,7 @@ const NavBer = () => {
             style={{
                 backgroundColor: '#1E1E1E',
             }}
-            className="container mx-auto navbar bg-slate-100 text-white">
+            className=" navbar bg-slate-100 text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost">

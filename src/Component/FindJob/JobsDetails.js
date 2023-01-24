@@ -50,7 +50,7 @@ const JobsDetails = () => {
     const candidate = {
       name: name,
       email: email,
-      candidateId: "sg8sd8gh4h46d8fg76df8gh"
+      candidateId: "hello"
     }
     fetch(`${ServerApi}/jobs/apply/${data._id}`, {
       method: "PUT",
