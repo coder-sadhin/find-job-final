@@ -16,6 +16,7 @@ const DashBoardLayout = () => {
     const role = {
         admin: true,
         recruiter: false,
+        // candidate: true
         candidate: false
         // recruiter: true,
         // candidate: false
@@ -35,7 +36,7 @@ const DashBoardLayout = () => {
 
                         {
                             role.candidate === true && <>
-                                <li><Link to={'/dashboard/my-jobs'}>Applied Jobs</Link></li>
+                                <li><Link to={'/dashboard/candidates/jobs'}>Applied Jobs</Link></li>
                             </>
                         }
                         {

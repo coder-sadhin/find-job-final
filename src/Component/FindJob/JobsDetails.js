@@ -34,7 +34,7 @@ const JobsDetails = () => {
       job: data,
       resume: resume,
       answers: [question1, question2]
-    }
+    };
     // save candidate application to database
     fetch(`${ServerApi}/apply-job`, {
       method: "POST",
@@ -68,7 +68,7 @@ const JobsDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   }
 
   return (

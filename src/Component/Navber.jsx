@@ -48,8 +48,10 @@ const NavBer = () => {
                         <li><Link to={'/'}>Homepage</Link></li>
                         <li><Link to={'/payment'}>Payment</Link></li>
                         {
-                            user &&
+                            user && <>
                             <li><Link to={'/findJob'}>Find Jobs</Link></li>
+                            <li><Link to='/createresume'>Create Resume</Link></li>
+                            </>
                         }
                         <li><Link to={'/contact'}>Contact US</Link></li>
                         {
@@ -89,7 +91,7 @@ const NavBer = () => {
                                 className="menu menu-compact dropdown-content 
                                  mt-3 p-2 shadow bg-slate-900 text-white rounded-box w-52">
                                 <li>
-                                    <Link to={'/profile'} className="justify-between">
+                                    <Link to='/allprofile' className="justify-between">
                                         Profile
                                         <span className="badge">New</span>
                                     </Link>
