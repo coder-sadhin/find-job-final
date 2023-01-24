@@ -7,7 +7,7 @@ import Login from './Login/Login';
 const Banner = () => {
     const { user } = useContext(AuthContext)
     return (
-        <div className="hero container mx-auto p-16 bannerBg  text-white">
+        <div className="hero p-16 bannerBg  text-white">
             <div className="hero-content flex-col-reverse lg:flex-row-reverse">
                 {
                     user?.email ? <img src={img} className=" rounded-lg lg:w-1/2 shadow-2xl" alt='' />

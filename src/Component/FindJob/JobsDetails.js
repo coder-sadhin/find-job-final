@@ -7,7 +7,9 @@ import { BsFillCalculatorFill, BsFillSaveFill, BsLinkedin } from 'react-icons/bs
 import ReportJob from './ReportJob/ReportJob';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import { ServerApi } from '../../AllApi/MainApi';
+
 import toast from "react-hot-toast";
+
 
 const JobsDetails = () => {
   const { user } = useContext(AuthContext);
@@ -61,6 +63,7 @@ const JobsDetails = () => {
       name: name,
       email: email,
       candidateId: id
+
     }
     fetch(`${ServerApi}/jobs/apply/${data._id}`, {
       method: "PUT",
@@ -133,24 +136,24 @@ const JobsDetails = () => {
               <div className='flex justify-between'>
 
 
-                <div className='flex '>
-                  <div className="avatar flex mt-2">
-                    <div className="w-14 rounded">
-                      <img src="https://placeimg.com/192/192/people" alt='' />
+                <Link to='/allfrofile'>
+                  <div className='flex '>
+                    <div className="avatar flex mt-2">
+                      <div className="w-14 rounded">
+                        <img src="https://placeimg.com/192/192/people" alt='' />
+                      </div>
+                    </div>
+                    <div className='ml-4'>
+                      <p>Ansu Hanna Biji </p>
+                      <p>Human Resources Executive at Internet Mango Solutions </p>
+                      <p>Job poster · LinkedIn member since 2018</p>
                     </div>
                   </div>
-                  <div className='ml-4'>
-                    <p>Ansu Hanna Biji </p>
-                    <p>Human Resources Executive at Internet Mango Solutions </p>
-                    <p>Job poster · LinkedIn member since 2018</p>
-                  </div>
-                </div>
-
-                <Link to='/allfrofile'>
-                  <div>
-                    <button className='btn btn-outline btn-sm text-white mt-2 justify-end'>Msessage</button>
-                  </div>
                 </Link>
+
+                <div>
+                  <button className='btn btn-outline btn-sm text-white mt-2 justify-end'>Msessage</button>
+                </div>
 
               </div>
             </div>

@@ -6,7 +6,11 @@ import { ImNewspaper } from 'react-icons/im';
 import { MdOutlineArticle, MdOutlinePermMedia } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-const Featured = () => {
+const Featured = ({ useData }) => {
+
+    const { Featured } = useData
+
+
     return (
         <div >
             <div className='flex justify-between mr-6'>
@@ -48,15 +52,15 @@ const Featured = () => {
                 </div>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
-                <div className="card w-full bg-base-content shadow-xl">
+                <Link className="card w-full bg-base-content shadow-xl">
                     <figure className="px-10 pt-10">
-                        <img src="https://media.licdn.com/dms/image/sync/C5627AQFCXdZpVV28aw/articleshare-shrink_480/0/1673340940751?e=1674460800&v=beta&t=sDDmUrHOhfdHULAyyVkIdadFdaGmEfwSR1075FiOgPw" alt="Shoes" className="rounded-xl h-[250px]" />
+                        <img src="https://media.licdn.com/dms/image/sync/C5627AQFCXdZpVV28aw/articleshare-shrink_480/0/1673340940751?e=1675152000&v=beta&t=Mi9VW7JLeyV-FaZoeTMNXSCZcOTHa6EKjC2eL773KXg" alt="Shoes" className="rounded-xl h-[250px]" />
                     </figure>
                     <div className=" text-center">
-                        <p className='my-2'> Tom-front-end-resume.pdf</p>
+                        <p className='my-2'> Tuhin-front-end-resume.pdf</p>
                         <p className='text-xs my-2'>Google Docs</p>
                     </div>
-                </div>
+                </Link>
                 <div className="card w-full bg-base-content shadow-xl">
                     <figure className="px-10 pt-10">
                         <img src="https://img.freepik.com/premium-psd/website-mockup_68185-1126.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=ais" alt="Shoes" className="rounded-xl h-[250px]" />

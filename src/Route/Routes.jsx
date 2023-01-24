@@ -11,6 +11,7 @@ import AllJobs from "../DashBoard/AdminPage/AllJobs";
 import DashBoard from "../DashBoard/DashBoard";
 import DashBoardLayout from "../Layout/DashBoardLayout/DashBoardLayout";
 import Main from "../Layout/Main";
+import PrivateRoute from "./PrivetRoutes/PrivetRoute";
 import Recruiters from "../DashBoard/AdminPage/AllRecruiters";
 import ReportedCandidate from "../DashBoard/AdminPage/Reported/ReportedCandidate";
 import ReportedRecruiters from "../DashBoard/AdminPage/Reported/ReportedRecruiters";
@@ -25,6 +26,9 @@ import AddAJobs from "../DashBoard/RecruiterPage/AddAJobs/AddAJobs";
 import JobsDetails from "../Component/FindJob/JobsDetails";
 import AllProfile from "../Component/FindJob/RecruiterProfile/AllProfile";
 import { ServerApi } from "../AllApi/MainApi";
+import FeatureIn from "../Component/FindJob/RecruiterProfile/FeatureIn/FeatureIn";
+import Skill from "../Component/FindJob/RecruiterProfile/Skill";
+import MoreSkill from "../Component/FindJob/RecruiterProfile/MoreSkill";
 import BuildCV from "../Component/BuildCV/BuildCV";
 import MyJobs from "../DashBoard/CandidatePage/MyJobs";
 import RecruiterJobs from "../DashBoard/RecruiterPage/Recruiterjobs/RecruiterJobs";
@@ -61,6 +65,14 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
+            },
+            {
+                path: '/feature',
+                element: <FeatureIn></FeatureIn>
+            },
+            {
+                path: '/skills',
+                element: <Skill></Skill>
             },
             {
                 path: '/payment',
@@ -144,11 +156,6 @@ const router = createBrowserRouter([
                 // this route is for recruiter
                 path: '/dashboard/myJobs',
                 element: <RecruiterJobs />
-            },
-            {
-                path: '/dashboard/myJobs/details/:id',
-                loader: ({ params }) => fetch(`${ServerApi}/jobs/jobDetails/${params.id}`),
-                element: <Applicants />
             }
         ]
     },

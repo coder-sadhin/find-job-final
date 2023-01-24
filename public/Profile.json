@@ -1,0 +1,162 @@
+[
+    {
+        "id":1,
+        "cover_image":"https://media.licdn.com/dms/image/D5616AQHlpFxn8H-IKA/profile-displaybackgroundimage-shrink_350_1400/0/1669217255394?e=1680134400&v=beta&t=Xa92LeeN51DWaQau4PMu2TFuyL11w_s40Jz-5xPzX8g",
+        "profile_image":"https://img.freepik.com/free-photo/confident-attractive-caucasian-guy-beige-pullon-smiling-broadly-while-standing-against-gray_176420-44508.jpg?w=1380&t=st=1674536291~exp=1674536891~hmac=c85fec7052c20494ceffba71329484412215c9ff51b55873f71cf2687a8e1bc1",
+        "name":"Tuhin Ahmed",
+        "job_category":"Mern Stack Developer",
+        "talk_about":"#react, #nodejs, #firebase, #javascript, and #tailwindcss",
+        "address":"Boston, Massachusetts, United States",
+        "linkedin_profile":"https://www.linkedin.com/in/tuhinenahmed/",
+        "followers":"2451",
+        "connections":"500+",
+        "Featured":{
+            "resume":"https://drive.google.com/file/d/1X39q3M7L246ewVWofPZHbiD_5Ef6e_VC/view",
+            "portfolio":"https://tuhinprotfolio.netlify.app/",
+            "github":"https://github.com/tuhinahmed-cse"
+        },
+        "about":{
+            "text":"I am a CSE graduate and MERN stack developer with a keen interest in software development. Experienced using a wide range of web technologies, and associated with a track record of success in outsourcing/offshoring industries. Passionate about using technical skills to build elegant, performing applications with scalable design patterns.",
+            "top-skill":"HTML5, CSS3, Bootstrap, SASS, Tailwind CSS, Daisy UI, Ant Design, JavaScript, ES6, DOM, JSON, REST API, React.js, Redux, Context API, Axios, React Query, React Router, React Hook Form, Firebase",
+            "tool":"VS Code Editor, GitHub, Netlify, Figma, Vercel",
+            "email":"tuhinenahmed@gmail.com",
+            "whatsapp":" (+880)1318203767"
+        },
+        "Experience":{
+            "type1":{
+                "image":"https://media.licdn.com/dms/image/C4D0BAQGQy9E6u9Wo0w/company-logo_200_200/0/1646920852374?e=1682553600&v=beta&t=rnry7WBYba1pDxXob3RatHLrRUTT3fpv6mIUTHE-8ao",
+                "post":"Associate",
+                "type":"Quantanite · Full-time",
+                "period":"Oct 2020 - Present · 2 yrs 4 mos",
+                "place":"Mirpur, Dhaka, Bangladesh"
+            },
+            "type2":{
+                "image":"https://media.licdn.com/dms/image/C4E0BAQEZ2GJSiXjH_A/company-logo_200_200/0/1653812269780?e=1682553600&v=beta&t=r9xD31wbFS6ujYs1JPUD-t0fGQZyr5GrHHVp6XZwz9o",
+                "post":"Junior Software Engineer(Intern)",
+                "type":"Kodeeo · Internship",
+                "period":"Jan 2020 - Apr 2020 · 4 mos",
+                "place":"Uttara, Dhaka, Bangladesh"
+            }
+        },
+        "skills":{
+            "type1":"ReactJS",
+            "type2":"ExpressJS",
+            "type3":"JavaScript",
+            "type4":"React Hook",
+            "type5":"Document Object Model (DOM)",
+            "type6":"Rest API",
+            "type7":"Firebase",
+            "type8":"MongoDB",
+            "type9":"nodejs",
+            "type10":"tailwindcss",
+            "type11":"Bootstrap"
+        }
+    },
+    {
+        "id":2,
+        "cover_image":"https://camo.githubusercontent.com/8a1a6bf2155a092ede5a4eea666a6174db9b86776fc03fb3eb0e4a1022cd0497/68747470733a2f2f692e6962622e636f2f42737a4e4c6e6a2f486972696e672d322e706e67",
+        "profile_image":"https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=sph",
+        "name":"Touhid Hasan",
+        "job_category":"Frontend Develoepr",
+        "talk_about":"#reactjsdeveloper, #frontenddeveloper, #mernstackdeveloper,",
+        "address":"Eyup, Istanbul, Turkey",
+        "linkedin_profile":"https://www.linkedin.com/in/tauhid-hasan/",
+        "followers":"2000",
+        "connections":"700+",
+        "Featured":{
+            "resume":"https://drive.google.com/file/d/1ix8ayp0IoC7mFdCLm0ZmK4v3okuf3HhK/view",
+            "portfolio":"https://tauhid-hasan.netlify.app/",
+            "github":"https://github.com/tauhid-hasan-dev"
+        },
+        "about":{
+            "text":"I am a Front-End (ReactJs) Developer and actively looking for a Front-End (ReactJs) Developer role. I'm passionate about bringing the technical and visual aspects of digital products to life and care deeply about the user interface and user experience, beautiful pixels, and writing clean accessible code that's readable by humans.I have the experience to make websites with HTML, CSS, Tailwind CSS, Javascript, ReactJs, ExpressJS, MongoDB . I am familiar with NodeJS, Axios, REST API, and CRUD operations. My goal is to create clean, responsive, sustainable, and user-friendly code. Furthermore, I bring high value to a team and am always eager to learn and use the latest technology to deliver creative solutions to modern problems. I am known for outstanding communication, quick learning, and adaptation skills. ",
+            "top-skill":"HTML5, CSS3, Bootstrap, SASS, Tailwind CSS, Daisy UI, Ant Design, JavaScript, ES6, DOM, JSON, REST API, React.js, Redux, Context API, Axios, React Query, React Router, React Hook Form, Firebase",
+            "tool":"VS Code Editor, GitHub, Netlify, Figma, Vercel",
+            "email":"tauhidhasan11@gmail.com",
+            "whatsapp":" +90 507 626 0228"
+        },
+        "Experience":{
+            "type1":{
+                "image":"https://media.licdn.com/dms/image/C4E0BAQGlXMfFnaoIEQ/company-logo_200_200/0/1541777894657?e=1682553600&v=beta&t=NXv-oljdZRgTWAB6AZ1VjTvidjbrG-pfIbrfXnAUS2M",
+                "post":"Junior Frontend Developer",
+                "type":"Workcube Turkey · Full-time",
+                "period":"Jan 2022 - Apr 2022 · 4 mos",
+                "place":"Istanbul, Türkiye · Remote"
+            },
+            "type2":{
+                "image":"https://media.licdn.com/dms/image/C4D0BAQEUaC5SVK6Qhw/company-logo_200_200/0/1587994220045?e=1682553600&v=beta&t=J17TP4e4zqnm8p_mmmsHWd8xX5ijOozz1D-cC0cc0lU",
+                "post":"Frontend Developer",
+                "type":"Gramoni Bilişim A.Ş. · Full-time",
+                "period":"Aug 2021 - Dec 2021 · 5 mos",
+                "place":"Istanbul, Türkiye · Hybrid"
+            }
+        },
+        "skills":{
+            "type1":"ReactJS",
+            "type2":"ExpressJS",
+            "type3":"JavaScript",
+            "type4":"React Hook",
+            "type5":"Document Object Model (DOM)",
+            "type6":"Rest API",
+            "type7":"Firebase",
+            "type8":"MongoDB",
+            "type9":"nodejs",
+            "type10":"tailwindcss",
+            "type11":"Bootstrap"
+        }
+    },
+    {
+        "id":3,
+        "cover_image":"https://img.freepik.com/free-vector/software-development-programming-program-code-laptop-screen_39422-367.jpg?w=1380&t=st=1674539051~exp=1674539651~hmac=e5f09e6911e2b8a2eace4e825f34f1bd86ee924c37f82e5d63653d9f0ea8eb28",
+        "profile_image":"https://img.freepik.com/free-photo/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes_176532-10257.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=sph",
+        "name":"Miskatur Rahman",
+        "job_category":"Full Stack Developer",
+        "talk_about":" #webdeveloper, #reactdeveloper, #frontenddeveloper,#mernstackdeveloper, and #fullstackwebdeveloper",
+        "address":"Chattogram, Bangladesh",
+        "linkedin_profile":"https://www.linkedin.com/in/miskatur9/",
+        "followers":"3500",
+        "connections":"400+",
+        "Featured":{
+            "resume":"https://drive.google.com/file/d/1EsNU4MNQg1x3fKf6U-r4y1iU2eaEBPhy/view",
+            "portfolio":"https://miskaturs-portfolio.netlify.app/",
+            "github":"https://github.com/Miskatur"
+        },
+        "about":{
+            "text":"Hi, I am Miskatur Rahman, a Full MERN Stack Developer. I am Skilled with ReactJS, MongoDB, ExpressJS, NodeJS and other front-end Framework like HTML ,CSS, Javascript, TailwindCSS, Bootstrap, DaisyUI, MaterialUI. I am always open to explore more exciting challenges and languages or framework as I can. ",
+            "top-skill":"HTML ,CSS, Javascript, TailwindCSS, Bootstrap, DaisyUI, MaterialUI, JavaScript, ES6, DOM, JSON, REST API, React.js, Redux, Context API, Axios, React Query, React Router, React Hook Form, Firebase",
+            "tool":"VS Code Editor, GitHub, Netlify, Figma, Vercel",
+            "email":" Miskaturrahman34826@gmail.com",
+            "whatsapp":" +8801723834826"
+        },
+        "Experience":{
+            "type1":{
+                "image":"https://media.licdn.com/dms/image/C560BAQG36uRF2a8Yiw/company-logo_200_200/0/1672774493312?e=1682553600&v=beta&t=XE25OSRuMJJAfQIs0BISViKx2KZEXv4yOZGV4-Ni6GA",
+                "post":"Junior MERN Stack Web Developer",
+                "type":"Thinky Storm · Internship",
+                "period":"Jan 2023 - Present · 1 mo",
+                "place":"Dhaka, Bangladesh · Remote"
+            },
+            "type2":{
+                "image":"https://media.licdn.com/dms/image/C4D0BAQEYujnix9-8mw/company-logo_200_200/0/1659381555343?e=1682553600&v=beta&t=JSneKq3xMY5MVaqQcmDm1CcCc3TDN29S5hIBZxP7vRg",
+                "post":"Software Engineer",
+                "type":"Hubnex · Internship",
+                "period":"Jan 2023 - Present · 1 mo",
+                "place":"Gurugram, Haryana, India · Remote"
+            }
+        },
+        "skills":{
+            "type1":"ReactJS",
+            "type2":"ExpressJS",
+            "type3":"JavaScript",
+            "type4":"React Hook",
+            "type5":"Document Object Model (DOM)",
+            "type6":"Rest API",
+            "type7":"Firebase",
+            "type8":"MongoDB",
+            "type9":"nodejs",
+            "type10":"tailwindcss",
+            "type11":"Bootstrap"
+        }
+    }
+    
+]
