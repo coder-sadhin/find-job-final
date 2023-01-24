@@ -14,9 +14,12 @@ const DashBoardLayout = () => {
     // const navigate = useNavigate();
 
     const role = {
-        admin: false,
+        admin: true,
         recruiter: false,
-        candidate: true
+        // candidate: true
+        candidate: false
+        // recruiter: true,
+        // candidate: false
     }
 
     return (

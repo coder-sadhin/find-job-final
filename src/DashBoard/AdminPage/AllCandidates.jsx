@@ -8,11 +8,11 @@ import { ServerApi } from '../../AllApi/MainApi';
 
 const AllCandidates = () => {
     useTitle('Admin Dashboard - AllSeller')
-    const { data: users = [], refetch, isLoading } = useQuery({
-        queryKey: ['users'],
+    const { data: candidates = [], refetch, isLoading } = useQuery({
+        queryKey: ['candidates'],
         queryFn: async () => {
             try {
-                const res = await fetch(`${ServerApi}/allSeller`);
+                const res = await fetch(`${ServerApi}/admin/allCandidate`);
                 const data = await res.json();
 
                 return data
@@ -27,7 +27,7 @@ const AllCandidates = () => {
 
     return (
         <div className='w-11/12 mx-auto'>
-            {users?.length > 0 ?
+            {candidates?.length > 0 ?
                 <>
                     <div className='my-5'>
                         <h3 className="text-4xl font-bold text-center">ALL Candidates</h3>
@@ -44,13 +44,12 @@ const AllCandidates = () => {
                                     <th>Title</th>
                                     <th>Experience</th>
                                     <th>Details</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 {
-                                    users.map((user, i) =>
+                                    candidates.map((user, i) =>
                                         <tr key={i}>
                                             <th>
                                                 <label>
@@ -64,13 +63,11 @@ const AllCandidates = () => {
                                                             <img src={user.photoURL} alt="user" />
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
                                                     <div className="font-bold">{user.name}</div>
-                                                    {/* <div className="text-sm opacity-50">United States</div> */}
                                                 </div>
                                             </td>
                                             <td>{user.email}</td>
@@ -78,9 +75,6 @@ const AllCandidates = () => {
                                             <td className='text-center'>1 years</td>
                                             <td>
                                                 <PrimaryButton classes={'btn-sm'}>Details</PrimaryButton>
-                                            </td>
-                                            <td>
-                                                <PrimaryButton classes={'btn-sm'}>Remove</PrimaryButton>
                                             </td>
                                         </tr>
                                     )
