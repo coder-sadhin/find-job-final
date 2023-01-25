@@ -136,7 +136,7 @@ const JobsDetails = () => {
               <div className='flex justify-between'>
 
 
-                <Link to='/allfrofile'>
+                <Link to='/allprofile'>
                   <div className='flex '>
                     <div className="avatar flex mt-2">
                       <div className="w-14 rounded">

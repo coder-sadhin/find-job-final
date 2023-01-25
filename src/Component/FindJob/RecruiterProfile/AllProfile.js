@@ -15,7 +15,7 @@ const AllProfile = () => {
         fetch('Profile.json')
             .then(res => res.json())
             .then(data => {
-                setUseData(data[0])
+                setUseData(data[2])
             })
     }, [])
 
@@ -25,8 +25,8 @@ const AllProfile = () => {
             <Profile useData={useData}></Profile>
             <Featured useData={useData}></Featured>
             <About useData={useData}></About>
-            <Experience></Experience>
-            <Skill></Skill>
+            <Experience useData={useData}></Experience>
+            <Skill useData={useData}></Skill>
             <Language></Language>
         </div>
     );

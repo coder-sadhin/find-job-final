@@ -5,14 +5,11 @@ import { TbMinus } from "react-icons/tb";
 import { CgFilters } from "react-icons/cg";
 import { HiAdjustments } from "react-icons/hi";
 import React, { Component } from "react";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import { data } from 'autoprefixer';
-import { Link } from 'react-router-dom';
+
+
 
 
 const Profile = ({ useData }) => {
-
-    console.log(useData)
 
     const { job_category, name, profile_image, cover_image, followers, connections, linkedin_profile, talk_about, address } = useData
 
@@ -130,25 +127,25 @@ const Profile = ({ useData }) => {
 
                                             <div>
                                                 <label for="name" className="block mb-1 ml-1">Name</label>
-                                                <input id="name" type="text" placeholder="Your name" required="" className="w-full p-2 rounded border-base-content border-white dark:bg-gray-800" />
+                                                <input id="name" type="text" placeholder="Your name" required="" className="w-full p-2 rounded  focus:outline-none border border-white dark:bg-gray-800" />
                                             </div>
                                             <div>
                                                 <label for="name" className="block mb-1 ml-1">Headline</label>
-                                                <input id="Headline" type="text" placeholder="YourHeadline " required="" className="w-full p-2 rounded border-white dark:bg-gray-800" />
+                                                <input id="Headline" type="text" placeholder="YourHeadline " required="" className="w-full p-2 rounded focus:outline-none border border-white dark:bg-gray-800" />
                                             </div>
                                             <p className='text-xl my-4'>Location</p>
                                             <div>
                                                 <label for="name" className="block mb-1 ml-1">Country</label>
-                                                <input id="Country" type="text" placeholder="Country " required="" className="w-full p-2 rounded border-white dark:bg-gray-800" />
+                                                <input id="Country" type="text" placeholder="Country " required="" className="w-full p-2 rounded focus:outline-none border border-white dark:bg-gray-800" />
                                             </div>
                                             <div>
                                                 <label for="name" className="block mb-1 ml-1">City</label>
-                                                <input id="City" type="text" placeholder="City " required="" className="w-full p-2 rounded border-white dark:bg-gray-800" />
+                                                <input id="City" type="text" placeholder="City " required="" className="w-full p-2  rounded focus:outline-none border border-white dark:bg-gray-800" />
                                             </div>
                                             <p className='text-xl my-4'>Website</p>
                                             <div>
                                                 <label for="name" className="block mb-1 ml-1">Link</label>
-                                                <input id="link" type="text" placeholder="link " required="" className="w-full p-2 rounded border-white dark:bg-gray-800" />
+                                                <input id="link" type="text" placeholder="link " required="" className="w-full p-2 rounded focus:outline-none border border-white dark:bg-gray-800" />
                                             </div>
                                         </div>
                                         <div className="modal-action">
@@ -165,7 +162,8 @@ const Profile = ({ useData }) => {
                             <p className="text-xl">{job_category}</p>
                             <p>Talks about {talk_about}</p>
                             <p>{address} <span className='text-blue-400'> Contact info</span></p>
-                            <p className='text-blue-400'>{linkedin_profile}</p>
+                            <a href={linkedin_profile} target='_blank' className='text-blue-400'>{linkedin_profile}</a>
+
                             <p className='text-blue-400'>followers {followers} <span>connections {connections}</span> </p>
                         </div>
 

@@ -3,7 +3,12 @@ import { BiPencil } from 'react-icons/bi';
 import { IoIosAdd } from "react-icons/io";
 import { Link } from 'react-router-dom';
 
-const Skill = () => {
+const Skill = ({ useData }) => {
+
+    const { skills } = useData
+
+    console.log(skills)
+
     return (
         <div className='p-8 mt-3 bg-base-content text-white'>
             <div className='flex justify-between'>
