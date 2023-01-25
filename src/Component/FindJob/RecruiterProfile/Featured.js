@@ -56,7 +56,7 @@ const Featured = ({ useData }) => {
                         <img src="https://media.licdn.com/dms/image/sync/C5627AQFCXdZpVV28aw/articleshare-shrink_480/0/1673340940751?e=1675152000&v=beta&t=Mi9VW7JLeyV-FaZoeTMNXSCZcOTHa6EKjC2eL773KXg" alt="Shoes" className="rounded-xl h-[250px]" />
                     </figure>
                     <div className=" text-center">
-                        <p className='my-2'> Tuhin-front-end-resume.pdf</p>
+                        <p className='my-2'> Front-end-resume.pdf</p>
                         <p className='text-xs my-2'>Google Docs</p>
                     </div>
                 </a>

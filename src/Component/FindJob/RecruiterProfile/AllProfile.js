@@ -15,7 +15,7 @@ const AllProfile = () => {
         fetch('Profile.json')
             .then(res => res.json())
             .then(data => {
-                setUseData(data[2])
+                setUseData(data[1])
             })
     }, [])
 

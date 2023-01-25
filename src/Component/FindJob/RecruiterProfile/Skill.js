@@ -7,7 +7,6 @@ const Skill = ({ useData }) => {
 
     const { skills } = useData
 
-    console.log(skills)
 
     return (
         <div className='p-8 mt-3 bg-base-content text-white'>
