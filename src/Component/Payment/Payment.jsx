@@ -119,7 +119,8 @@ const Payment = ({ data }) => {
     }, [amount])
 
     return (
-        <div className='w-full'>
+        <div className='flex justify-center'>
+            <div className='w-full'>
             <form onSubmit={handleSubmit}>
                 <CardElement
                     options={{
@@ -199,6 +200,7 @@ const Payment = ({ data }) => {
                     <p> Your Transition Id: <span className='font-bold text-red-500'>{transitionId}</span></p>
                 </div>
             }
+        </div>
         </div>
     );
 };

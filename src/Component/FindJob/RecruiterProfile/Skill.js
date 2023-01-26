@@ -3,9 +3,13 @@ import { BiPencil } from 'react-icons/bi';
 import { IoIosAdd } from "react-icons/io";
 import { Link } from 'react-router-dom';
 
-const Skill = () => {
+const Skill = ({ useData }) => {
+
+    const { skills } = useData
+
+
     return (
-        <div className='p-8 mt-3 bg-base-content'>
+        <div className='p-8 mt-3 bg-base-content text-white'>
             <div className='flex justify-between'>
                 <h1 className='text-3xl '>Skills</h1>
                 <div className='flex'>
@@ -14,8 +18,7 @@ const Skill = () => {
                     <label htmlFor="skillModal" className='text-4xl ml-4 mt-2'><IoIosAdd className='text-5xl ' /></label>
 
                     <Link to='/skills'>
-                        <p className='text-2xl ml-4 mt-2'><BiPencil className='text-4xl mt-1' /></p>
-
+                        <p className='text-2xl ml-4 mt-2'><BiPencil className='text-4xl mt-3' /></p>
                     </Link>
 
 

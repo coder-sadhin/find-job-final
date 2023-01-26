@@ -27,7 +27,7 @@ const NavBer = () => {
             style={{
                 backgroundColor: '#1E1E1E',
             }}
-            className="container mx-auto navbar bg-slate-100 text-white">
+            className=" navbar bg-slate-100 text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost">
@@ -46,10 +46,11 @@ const NavBer = () => {
                     mt-3 p-2 shadow bg-slate-900 text-white text-xl rounded-box w-52"
                     >
                         <li><Link to={'/'}>Homepage</Link></li>
-                        <li><Link to={'/payment'}>Payment</Link></li>
                         {
-                            user &&
-                            <li><Link to={'/findJob'}>Find Jobs</Link></li>
+                            user && <>
+                                <li><Link to={'/findJob'}>Find Jobs</Link></li>
+                                <li><Link to='/buildcv'>Create Resume</Link></li>
+                            </>
                         }
                         <li><Link to={'/contact'}>Contact US</Link></li>
                         {
@@ -89,7 +90,7 @@ const NavBer = () => {
                                 className="menu menu-compact dropdown-content 
                                  mt-3 p-2 shadow bg-slate-900 text-white rounded-box w-52">
                                 <li>
-                                    <Link to={'/profile'} className="justify-between">
+                                    <Link to='/allprofile' className="justify-between">
                                         Profile
                                         <span className="badge">New</span>
                                     </Link>

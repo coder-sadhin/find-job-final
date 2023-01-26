@@ -19,6 +19,9 @@ import { AuthContext } from "../../ContextApi/AuthProvider/AuthProvider";
 import { ServerApi } from "../../AllApi/MainApi";
 import { useEffect } from "react";
 
+import toast from "react-hot-toast";
+
+
 const JobsDetails = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
@@ -35,19 +38,31 @@ const JobsDetails = () => {
     event.preventDefault();
 
     const form = event.target;
+<<<<<<< HEAD
     const question1 = form.question1.value;
     const question2 = form.question2.value;
     const resume = form.resume.value;
+=======
+    const question1 = form.question1.value
+    const question2 = form.question2.value
+    const resume = form.resume.files
+>>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
 
     const application = {
       candidate: user.displayName,
       candidateEmail: user.email,
       job: data,
       resume: resume,
+<<<<<<< HEAD
       answers: [question1, question2],
     };
+=======
+      answers: [question1, question2]
+    };
+    console.log(application);
+>>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
     // save candidate application to database
-    fetch(`${ServerApi}/apply-job`, {
+    fetch(`${ServerApi}/applyJob`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -57,19 +72,30 @@ const JobsDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+<<<<<<< HEAD
         handleUpdateApplyQuantity(user.displayName, user.email);
+=======
+        toast.success("Application Submitted")
+        handleUpdateApplyQuantity(user.displayName, user.email, user._id)
+>>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
       })
       .catch((err) => console.log(err));
 
     setModal(false);
   };
 
-  const handleUpdateApplyQuantity = (name, email) => {
+  const handleUpdateApplyQuantity = (name, email, id) => {
     const candidate = {
       name: name,
       email: email,
+<<<<<<< HEAD
       candidateId: "sg8sd8gh4h46d8fg76df8gh",
     };
+=======
+      candidateId: id
+
+    }
+>>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
     fetch(`${ServerApi}/jobs/apply/${data._id}`, {
       method: "PUT",
       headers: {
@@ -80,6 +106,7 @@ const JobsDetails = () => {
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
+<<<<<<< HEAD
   };
 
   // check reported @sarwar ///
@@ -95,6 +122,9 @@ const JobsDetails = () => {
         setisReported("reported");
       });
   }, [setisReported]);
+=======
+  }
+>>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
 
   return (
     <div className=" p-6 bg-base-content ">
@@ -121,7 +151,11 @@ const JobsDetails = () => {
 
                 <div className="avatar flex mt-2">
                   <div className="w-8 rounded">
+<<<<<<< HEAD
                     <img src="https://placeimg.com/192/192/people" alt="" />
+=======
+                    <img src="https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=sph" alt='' />
+>>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
                   </div>
                   <p className="ml-2 mt-1">
                     Shalini Malviya is hiring for this job
@@ -212,6 +246,7 @@ const JobsDetails = () => {
               )}
             </div>
             {/* modal  */}
+<<<<<<< HEAD
             {closeMOdal && (
               <ReportJob
                 data={data}
@@ -242,6 +277,32 @@ const JobsDetails = () => {
                     </button>
                   </div>
                 </Link>
+=======
+            <div className='text-start pt-4 bg-slate-600 rounded-xl p-6 text-white'>
+              <h1 className='text-2xl mb-2'>Meet the hiring team</h1>
+              <div className='flex justify-between'>
+
+
+                <Link to='/allprofile'>
+                  <div className='flex '>
+                    <div className="avatar flex mt-2">
+                      <div className="w-14 rounded">
+                        <img src="https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=sph" alt='' />
+                      </div>
+                    </div>
+                    <div className='ml-4'>
+                      <p>Ansu Hanna Biji </p>
+                      <p>Human Resources Executive at Internet Mango Solutions </p>
+                      <p>Job poster · LinkedIn member since 2018</p>
+                    </div>
+                  </div>
+                </Link>
+
+                <div>
+                  <button className='btn btn-outline btn-sm text-white mt-2 justify-end'>Msessage</button>
+                </div>
+
+>>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
               </div>
             </div>
             <div className="text-start pt-4 bg-slate-600 rounded-xl p-6 text-white">

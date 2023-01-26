@@ -32,46 +32,38 @@ const RecruiterJobs = () => {
       .catch((err) => console.log(err));
   };
 
-  return (
-    <div className="overflow-x-auto">
-      <table className="table w-full">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Applicants</th>
-            <th>Resumes</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {jobs &&
-            jobs.map((job, index) => (
-              <tr>
-                <th>{index + 1}</th>
-                <td>{job?.job_details?.job?.job_title}</td>
-                <td>{job?.candidates?.length ? job?.candidates?.length : 0}</td>
-                <td>
-                  <button className="btn btn-sm btn-outline">
-                    <Link to={`/dashboard/myJobs/details/${job._id}`}>
-                      See All
-                    </Link>
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleJobDelete(job._id)}
-                    className="btn btn-sm bg-red-700"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </div>
-  );
+    return (
+        <div className='w-11/12 mx-auto'>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Title</th>
+                            <th>Applicants</th>
+                            <th>Resumes</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            jobs && jobs.map((job, index) => <tr>
+                                <th>{index + 1}</th>
+                                <td>{job?.job_details?.job?.job_title}</td>
+                                <td>{job?.candidates?.length ? job?.candidates?.length : 0}</td>
+                                <td><button className="btn btn-sm btn-outline">
+                                    <Link to={`/dashboard/myJobs/details/${job._id}`}>
+                                        See All
+                                    </Link>
+                                </button></td>
+                                <td><button onClick={() => handleJobDelete(job._id)} className="btn btn-sm bg-red-700">Delete</button></td>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
 };
 
 export default RecruiterJobs;
