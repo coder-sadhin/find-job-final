@@ -56,7 +56,7 @@ const NavBer = () => {
                         {
                             user && <>
                                 <li><Link to={'/findJob'}>Find Jobs</Link></li>
-                                <li><Link to='/createresume'>Create Resume</Link></li>
+                                <li><Link to='/buildcv'>Create Resume</Link></li>
                             </>
                         }
                         <li><Link to={'/contact'}>Contact US</Link></li>

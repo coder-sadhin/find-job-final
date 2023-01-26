@@ -17,7 +17,7 @@
         },
         "about":{
             "text":"I am a CSE graduate and MERN stack developer with a keen interest in software development. Experienced using a wide range of web technologies, and associated with a track record of success in outsourcing/offshoring industries. Passionate about using technical skills to build elegant, performing applications with scalable design patterns.",
-            "top-skill":"HTML5, CSS3, Bootstrap, SASS, Tailwind CSS, Daisy UI, Ant Design, JavaScript, ES6, DOM, JSON, REST API, React.js, Redux, Context API, Axios, React Query, React Router, React Hook Form, Firebase",
+            "top_skill":"HTML5, CSS3, Bootstrap, SASS, Tailwind CSS, Daisy UI, Ant Design, JavaScript, ES6, DOM, JSON, REST API, React.js, Redux, Context API, Axios, React Query, React Router, React Hook Form, Firebase",
             "tool":"VS Code Editor, GitHub, Netlify, Figma, Vercel",
             "email":"tuhinenahmed@gmail.com",
             "whatsapp":" (+880)1318203767"
@@ -70,7 +70,7 @@
         },
         "about":{
             "text":"I am a Front-End (ReactJs) Developer and actively looking for a Front-End (ReactJs) Developer role. I'm passionate about bringing the technical and visual aspects of digital products to life and care deeply about the user interface and user experience, beautiful pixels, and writing clean accessible code that's readable by humans.I have the experience to make websites with HTML, CSS, Tailwind CSS, Javascript, ReactJs, ExpressJS, MongoDB . I am familiar with NodeJS, Axios, REST API, and CRUD operations. My goal is to create clean, responsive, sustainable, and user-friendly code. Furthermore, I bring high value to a team and am always eager to learn and use the latest technology to deliver creative solutions to modern problems. I am known for outstanding communication, quick learning, and adaptation skills. ",
-            "top-skill":"HTML5, CSS3, Bootstrap, SASS, Tailwind CSS, Daisy UI, Ant Design, JavaScript, ES6, DOM, JSON, REST API, React.js, Redux, Context API, Axios, React Query, React Router, React Hook Form, Firebase",
+            "top_skill":"HTML5, CSS3, Bootstrap, SASS, Tailwind CSS, Daisy UI, Ant Design, JavaScript, ES6, DOM, JSON, REST API, React.js, Redux, Context API, Axios, React Query, React Router, React Hook Form, Firebase",
             "tool":"VS Code Editor, GitHub, Netlify, Figma, Vercel",
             "email":"tauhidhasan11@gmail.com",
             "whatsapp":" +90 507 626 0228"
@@ -123,7 +123,7 @@
         },
         "about":{
             "text":"Hi, I am Miskatur Rahman, a Full MERN Stack Developer. I am Skilled with ReactJS, MongoDB, ExpressJS, NodeJS and other front-end Framework like HTML ,CSS, Javascript, TailwindCSS, Bootstrap, DaisyUI, MaterialUI. I am always open to explore more exciting challenges and languages or framework as I can. ",
-            "top-skill":"HTML ,CSS, Javascript, TailwindCSS, Bootstrap, DaisyUI, MaterialUI, JavaScript, ES6, DOM, JSON, REST API, React.js, Redux, Context API, Axios, React Query, React Router, React Hook Form, Firebase",
+            "top_skill":"HTML ,CSS, Javascript, TailwindCSS, Bootstrap, DaisyUI, MaterialUI, JavaScript, ES6, DOM, JSON, REST API, React.js, Redux, Context API, Axios, React Query, React Router, React Hook Form, Firebase",
             "tool":"VS Code Editor, GitHub, Netlify, Figma, Vercel",
             "email":" Miskaturrahman34826@gmail.com",
             "whatsapp":" +8801723834826"
@@ -157,6 +157,5 @@
             "type10":"tailwindcss",
             "type11":"Bootstrap"
         }
-    }
-    
+    }    
 ]
