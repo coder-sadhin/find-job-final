@@ -4,20 +4,20 @@ import { HiPlus } from 'react-icons/hi';
 import { TbMinus } from "react-icons/tb";
 import { CgFilters } from "react-icons/cg";
 import { HiAdjustments } from "react-icons/hi";
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { TagsInput } from 'react-tag-input-component';
 import { useContext } from 'react';
 import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 import { ServerApi } from '../../../AllApi/MainApi';
 import { toast } from 'react-hot-toast';
-import { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 
 
 const Profile = ({ useData }) => {
     const [selected, setSelected] = useState([]);
-    const [users, setUsers] = useState({})
     const { job_category, name, profile_image, cover_image, followers, connections, linkedin_profile, talk_about, address } = useData
+    const imgKey = process.env.REACT_APP_IMG_key
 
     const { user } = useContext(AuthContext)
 
@@ -26,7 +26,6 @@ const Profile = ({ useData }) => {
         const form = e.target
         const name = form.name.value
         const Headline = form.Headline.value;
-        // const skills = form.skills.value
         const Country = form.Country.value
         const City = form.City.value;
         const link = form.link.value
@@ -38,7 +37,8 @@ const Profile = ({ useData }) => {
             Country,
             City,
             link,
-            email: user?.email
+            email: user?.email,
+            image
         }
 
         fetch(`${ServerApi}/addProfile`, {
@@ -51,21 +51,61 @@ const Profile = ({ useData }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-
                     form.reset()
                     toast.success('Confirmed')
+                    refetch()
                 }
             })
 
     }
 
-    useEffect(() => {
-        fetch(`${ServerApi}/profileData/${user?.email}`)
+    const { data: users = [], refetch } = useQuery({
+        queryKey: ['profileData', user?.email],
+        queryFn: async () => {
+            const res = await fetch(`${ServerApi}/profileData/${user?.email}`)
+            const data = await res.json()
+            return data
+        }
+    })
+    const [image, setImage] = useState(users?.image)
+
+
+
+
+    const handleProfileImage = () => {
+        refetch()
+    }
+
+    const handleSetProfile = (data) => {
+        const image = data[0]
+        const formData = new FormData();
+        formData.append('image', image)
+
+        const url = `https://api.imgbb.com/1/upload?&key=${imgKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
             .then(res => res.json())
-            .then(data => {
-                setUsers(data)
+            .then(imgData => {
+                if (imgData) {
+                    fetch(`${ServerApi}/addProfile`, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(imgData)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged) {
+                                toast.success('Profile Changed')
+                            }
+                        })
+                }
+                setImage(imgData.data.url)
             })
-    }, [user?.email])
+    }
 
     return (
         <div>
@@ -142,34 +182,37 @@ const Profile = ({ useData }) => {
                 </div>
                 <img className=' h-[350px] rounded-xl' src={cover_image} alt="" />
                 <div className='-mt-10'>
-                    <label htmlFor="changeProfile"> <img src={profile_image} alt="" className="w-36 h-36  rounded-full dark:bg-gray-500 aspect-square" /></label>
+                    <label htmlFor="changeProfile"> <img src={users?.image} alt="" className="w-36 h-36  rounded-full dark:bg-gray-500 aspect-square" /></label>
 
-                    {/* change profile */}
+                    {/* change profile photo */}
                     <input type="checkbox" id="changeProfile" className="modal-toggle" />
                     <div className="modal ">
                         <div className="modal-box relative bg-base-content text-white">
+                            <p className='font-semibold'>Profile Photo</p>
                             <label htmlFor="changeProfile" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                             <div>
                                 <div className="avatar flex justify-center">
                                     <div className="w-44 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                        <img src="https://placeimg.com/192/192/people" alt='' />
+                                        <img src={users?.image} alt='' />
                                     </div>
                                 </div>
+
                                 <div className='flex justify-between my-4'>
                                     <button className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline'>Delete</button>
                                     {/* <button type='file' className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline'>add photo</button> */}
-                                    <input type="file" className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline' name='add photo' />
+                                    <input onChange={(e) => handleSetProfile(e.target.files)} type="file" name='image' className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline' />
+                                    <button onClick={handleProfileImage} type='submit' className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline'>save</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
 
                 </div>
                 <div className="space-y-4  divide-y divide-gray-700">
                     <div>
                         <div className="my-2 space-y-1">
                             <div className='flex justify-between'>
-                                <h2 className="text-3xl font-semibold">{users.name}</h2>
+                                <h2 className="text-3xl font-semibold">{users?.name}</h2>
                                 <label htmlFor="modalWithProInfo" className='text-3xl text-end'><BiPencil /></label>
                                 {/* profile info */}
                             </div>
@@ -190,7 +233,7 @@ const Profile = ({ useData }) => {
                                                 <input name="Headline" type="text" placeholder="YourHeadline " required="" className="w-full p-2 rounded focus:outline-none border border-white dark:bg-gray-800" />
                                             </div>
                                             <p className='text-xl my-4'>skill</p>
-                                            <div className="text-black w-full md:w-6/12 lg:w-6/12">
+                                            <div className="text-black w-full ">
                                                 <label for="name" className="block text-white mb-1 ml-1">Require skill</label>
 
                                                 <TagsInput
@@ -222,7 +265,7 @@ const Profile = ({ useData }) => {
                                             <label htmlFor="modalWithProInfo" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                                         </div>
                                         <div className='flex justify-end'>
-                                            <input type='submit' value='save' className='btn rounded-2xl bg-blue-400 text-white outline' />
+                                            <input type='submit' value='save' className='btn w-[115px] rounded-2xl bg-blue-400 text-white outline' />
                                         </div>
                                     </div>
                                 </div>
@@ -231,10 +274,11 @@ const Profile = ({ useData }) => {
 
                             <p className="text-xl">{users?.Headline}</p>
                             <p>Talks about {users?.skills?.map(skill => <span className='mx-1'>{skill}</span>)}</p>
-                            <p>{users?.City} <span className='text-blue-400'> Contact info</span></p>
+
+                            <p>{users?.City}, <span > {users?.Country}</span>,<span className='text-blue-400'> Contact info</span></p>
                             <a href={users?.link} target='_blank' className='text-blue-400'>{linkedin_profile}</a>
 
-                            <p className='text-blue-400'>followers {followers} <span>connections {connections}</span> </p>
+                            <p className='text-blue-400'>followers {followers}, <span>connections {connections}</span> </p>
                         </div>
 
                     </div>

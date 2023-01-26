@@ -8,10 +8,8 @@ import { ServerApi } from '../AllApi/MainApi';
 
 
 const NavBer = () => {
-
     const { user, LogOut, refreshToken } = useContext(AuthContext)
     const [userToken, setUserToken] = useState(0);
-
     useEffect(() => {
         fetch(`${ServerApi}/token?email=${user?.email}`)
             .then(res => res.json())

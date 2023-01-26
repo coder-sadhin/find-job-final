@@ -7,13 +7,13 @@ const ReportedJobDetail = () => {
   const navigate = useNavigate();
   const job = useLoaderData();
   console.log(job);
-
   const deleteJob = (job) => {
     fetch(`${ServerApi}/report/deleteReports?id=${job.jobId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
-      }
+      },
+      body:JSON.stringify(job)
     })
       .then((res) => res.json())
       .then((data) => {
@@ -32,29 +32,23 @@ const ReportedJobDetail = () => {
         </p>
         <div className="py-3">
           <h1 className="text-2xl  font-semibold text-[#00ae87]">
-            {" "}
-            Job Name :::{" "}
+            Job Name :::
           </h1>
-          <span className="text-lg mb-3 text-slate-700 ">{job?.jobName}</span>
+          <span className="text-lg mb-3 text-slate-700 font-semibold font-serif">{job?.jobName}</span>
           <h1 className="text-xl mt-5  font-semibold text-[#00ae87]">
-            {" "}
-            Recruiter :::{" "}
-            <span className="text-lg font-normal text-slate-700">
-              {" "}
-              @ {job?.recruiter}
+            Recruiter :::
+            <span className=" text-slate-700 ml-2 font-semibold font-serif"> @{job?.recruiter}
             </span>
           </h1>
 
           <h1 className="text-xl mt-5  font-semibold mb-5 text-[#00ae87]">
-            {" "}
-            Report :::{" "}
-            <span className="text-lg font-normal text-slate-700">
-              {" "}
+            Report :::
+            <span className="text-lg  text-slate-700 font-semibold font-serif">
               {job?.report ? job?.report : "Most Advertisement"}
             </span>
           </h1>
           <label htmlFor="" className="text-xl font-semibold text-[#00ae87]">
-            Take an Action
+            Take an Action  ⤵
           </label>
 
           <p className="flex justify-around my-3">
@@ -69,7 +63,7 @@ const ReportedJobDetail = () => {
               onClick={() => deleteJob(job)}
               className="py-2 mt-2 px-3 font-semibold text-xl text-slate-50 rounded-xl shadow-xl hover:bg-slate-200 hover:text-[#00ae87] hover:shadow-2xl bg-error"
             >
-              Delete
+              ⛔ Delete
             </button>
           </p>
         </div>
