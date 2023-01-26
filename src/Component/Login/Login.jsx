@@ -7,6 +7,7 @@ import SmallSpinner from '../Spinner/SmallSpinner';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 import { checkUserType } from '../../AllApi/CheckUserType/CheckUserType';
 import { setAuthToken } from '../../AllApi/GetTokenApi/GetTokenApi';
+import addUser from '../../AllApi/CreateUserApi/CreateUserApi';
 
 const Login = () => {
     const [userEmail, setUserEmail] = useState('')
@@ -59,8 +60,13 @@ const Login = () => {
     const handleGoogleSignin = () => {
         signInWithGoogle()
             .then(result => {
-                console.log(result.user)
-                toast.success('Login Successful.....!')
+                const user  = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    userType: "candidate"
+                }
+                addUser(user)
+                toast.success('Logged in successfully!')
                 setLoading(false)
                 navigate(from, { replace: true })
             })

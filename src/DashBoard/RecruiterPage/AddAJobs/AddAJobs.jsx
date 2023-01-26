@@ -81,7 +81,6 @@ const AddAJobs = () => {
     //     // save information to the database 
 
     const setDoctorToDB = (jobInfo) => {
-
         fetch(`${ServerApi}/jobs`, {
             method: 'POST',
             headers: {

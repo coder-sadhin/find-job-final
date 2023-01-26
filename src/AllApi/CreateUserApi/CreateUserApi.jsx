@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast';
 import { ServerApi } from '../MainApi';
 
 const addUser = (user) => {
@@ -10,7 +11,9 @@ const addUser = (user) => {
     })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            if(data.acknowledged){
+                toast.success('Logged in successfully!')
+            }
         })
 }
 

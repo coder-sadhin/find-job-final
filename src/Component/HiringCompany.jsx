@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 const HiringCompany = () => {
     const [companis, setCompanis] = useState([])
-
-
-    console.log(companis);
     useEffect(() => {
         fetch('companis.json')
             .then(res => res.json())
