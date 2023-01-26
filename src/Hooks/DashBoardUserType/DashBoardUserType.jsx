@@ -12,6 +12,7 @@ const useUserType = email => {
             fetch(`${ServerApi}/user/checkUser/type?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
+                    console.log("form hook",data);
                     if (data === "admin") {
                         setIsAdmin(true)
                         setUserLoading(false)
