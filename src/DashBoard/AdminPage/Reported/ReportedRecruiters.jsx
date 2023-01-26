@@ -16,7 +16,6 @@ const ReportedRecruiters = () => {
             try {
                 const res = await fetch(`${ServerApi}/reportUser/reportedRecruiter`);
                 const data = await res.json();
-
                 return data
             }
             catch (err) { }

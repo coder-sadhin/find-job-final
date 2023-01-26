@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
-import 'tw-elements';
-import { ServerApi } from '../../../AllApi/MainApi';
+import React, { useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
+import "tw-elements";
+import { ServerApi } from "../../../AllApi/MainApi";
 
 const RecruiterJobs = () => {
-    const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState([]);
 
-    useEffect(() => {
-        fetch(`${ServerApi}/jobs?jobstype=all`)
-            .then((res) => res.json())
-            .then((data) => setJobs(data))
-            .catch((err) => console.log(err))
-    }, [])
+  useEffect(() => {
+    fetch(`${ServerApi}/jobs?jobstype=all`)
+      .then((res) => res.json())
+      .then((data) => setJobs(data))
+      .catch((err) => console.log(err));
+  }, []);
 
-    const handleJobDelete = (id) => {
-        fetch(`${ServerApi}/jobs/${id}`, {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json"
-            }
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.deletedCount > 0) {
-                    const remaining = jobs.filter((job) => job._id !== id);
-                    setJobs(remaining)
-                    toast.success("Your job deleted")
-                }
-            })
-            .catch((err) => console.log(err))
-    }
+  const handleJobDelete = (id) => {
+    fetch(`${ServerApi}/jobs/${id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          const remaining = jobs.filter((job) => job._id !== id)
+          setJobs(remaining)
+          toast.success("Your job deleted")
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
     return (
         <div className='w-11/12 mx-auto'>
