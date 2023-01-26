@@ -37,7 +37,8 @@ const Profile = ({ useData }) => {
             Country,
             City,
             link,
-            email: user?.email
+            email: user?.email,
+            image
         }
 
         fetch(`${ServerApi}/addProfile`, {
@@ -66,10 +67,17 @@ const Profile = ({ useData }) => {
             return data
         }
     })
+    const [image, setImage] = useState(users?.image)
 
-    const handleChangeProfilePhoto = data => {
-        data.preventDefault()
-        const image = data.target.image.files[0]
+
+
+
+    const handleProfileImage = () => {
+        refetch()
+    }
+
+    const handleSetProfile = (data) => {
+        const image = data[0]
         const formData = new FormData();
         formData.append('image', image)
 
@@ -90,9 +98,12 @@ const Profile = ({ useData }) => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data)
+                            if (data.acknowledged) {
+                                toast.success('Profile Changed')
+                            }
                         })
                 }
+                setImage(imgData.data.url)
             })
     }
 
@@ -171,29 +182,26 @@ const Profile = ({ useData }) => {
                 </div>
                 <img className=' h-[350px] rounded-xl' src={cover_image} alt="" />
                 <div className='-mt-10'>
-                    <label htmlFor="changeProfile"> <img src={profile_image} alt="" className="w-36 h-36  rounded-full dark:bg-gray-500 aspect-square" /></label>
+                    <label htmlFor="changeProfile"> <img src={users?.image} alt="" className="w-36 h-36  rounded-full dark:bg-gray-500 aspect-square" /></label>
 
                     {/* change profile photo */}
-
-                    <form onSubmit={handleChangeProfilePhoto} >
-                        <input type="checkbox" id="changeProfile" className="modal-toggle" />
-                        <div className="modal ">
-                            <div className="modal-box relative bg-base-content text-white">
-                                <p className='font-semibold'>Profile Photo</p>
-                                <label htmlFor="changeProfile" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                <div>
-                                    <div className="avatar flex justify-center">
-                                        <div className="w-44 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                            <img src={users?.image} alt='' />
-                                        </div>
+                    <input type="checkbox" id="changeProfile" className="modal-toggle" />
+                    <div className="modal ">
+                        <div className="modal-box relative bg-base-content text-white">
+                            <p className='font-semibold'>Profile Photo</p>
+                            <label htmlFor="changeProfile" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                            <div>
+                                <div className="avatar flex justify-center">
+                                    <div className="w-44 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                        <img src={users?.image} alt='' />
                                     </div>
+                                </div>
 
-                                    <div className='flex justify-between my-4'>
-                                        <button className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline'>Delete</button>
-                                        {/* <button type='file' className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline'>add photo</button> */}
-                                        <input type="file" name='image' className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline' />
-                                        <button type='submit' className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline'>save</button>
-                                    </div>
+                                <div className='flex justify-between my-4'>
+                                    <button className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline'>Delete</button>
+                                    {/* <button type='file' className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline'>add photo</button> */}
+                                    <input onChange={(e) => handleSetProfile(e.target.files)} type="file" name='image' className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline' />
+                                    <button onClick={handleProfileImage} type='submit' className='btn ml-2 border-blue-400 rounded-2xl text-white btn-outline'>save</button>
                                 </div>
                             </div>
                         </div>
@@ -204,7 +212,7 @@ const Profile = ({ useData }) => {
                     <div>
                         <div className="my-2 space-y-1">
                             <div className='flex justify-between'>
-                                <h2 className="text-3xl font-semibold">{users.name}</h2>
+                                <h2 className="text-3xl font-semibold">{users?.name}</h2>
                                 <label htmlFor="modalWithProInfo" className='text-3xl text-end'><BiPencil /></label>
                                 {/* profile info */}
                             </div>
@@ -266,10 +274,11 @@ const Profile = ({ useData }) => {
 
                             <p className="text-xl">{users?.Headline}</p>
                             <p>Talks about {users?.skills?.map(skill => <span className='mx-1'>{skill}</span>)}</p>
-                            <p>{users?.City} <span className='text-blue-400'> Contact info</span></p>
+
+                            <p>{users?.City}, <span > {users?.Country}</span>,<span className='text-blue-400'> Contact info</span></p>
                             <a href={users?.link} target='_blank' className='text-blue-400'>{linkedin_profile}</a>
 
-                            <p className='text-blue-400'>followers {followers} <span>connections {connections}</span> </p>
+                            <p className='text-blue-400'>followers {followers}, <span>connections {connections}</span> </p>
                         </div>
 
                     </div>
