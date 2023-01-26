@@ -19,18 +19,20 @@ const ReportRecruiterModal = ({ setisReported,setCloseModal}) => {
     const repoerterEmail = user?.email;
     //   const jobName = job_details?.job?.job_title;
     //   const jobId = _id;
-    const recruiter = "Ansu Hanna Biji";
+    const candidate = "Ansu Hanna Biji";
+    const candidateEmail = "get from data"
     const reports = {
       // jobName,
       // jobId,
-      recruiter,
+      candidate,
+      candidateEmail,
       reporterName,
       repoerterEmail,
       report,
       textReport,
     };
     console.log(reports);
-    fetch(`${ServerApi}/report/addReport`, {
+    fetch(`${ServerApi}/report/addReportCandidate`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

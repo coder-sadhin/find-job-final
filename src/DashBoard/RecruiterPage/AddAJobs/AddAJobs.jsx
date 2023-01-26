@@ -56,7 +56,6 @@ const AddAJobs = () => {
         const experience = data.experience;
         const description = data.description;
         const time = new Date().toLocaleString();
-
         let jobInfo = {
             job_details: {
                 job: {
@@ -73,7 +72,7 @@ const AddAJobs = () => {
                 pay_duration: pay_duration
             },
             job_description: description,
-            job_visible: [startDate.toLocaleString(), endDate.toLocaleString()],
+            job_visible: [startDate?.toLocaleString(), endDate?.toLocaleString()],
             job_post_time: time
         }
         setDoctorToDB(jobInfo)
