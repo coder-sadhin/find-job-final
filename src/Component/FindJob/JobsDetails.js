@@ -93,7 +93,7 @@ const JobsDetails = () => {
 
                 <div className="avatar flex mt-2">
                   <div className="w-8 rounded">
-                    <img src="https://placeimg.com/192/192/people" alt='' />
+                    <img src="https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=sph" alt='' />
                   </div>
                   <p className='ml-2 mt-1'>Shalini Malviya is hiring for this job</p>
                 </div>
@@ -136,11 +136,11 @@ const JobsDetails = () => {
               <div className='flex justify-between'>
 
 
-                <Link to='/allfrofile'>
+                <Link to='/allprofile'>
                   <div className='flex '>
                     <div className="avatar flex mt-2">
                       <div className="w-14 rounded">
-                        <img src="https://placeimg.com/192/192/people" alt='' />
+                        <img src="https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=sph" alt='' />
                       </div>
                     </div>
                     <div className='ml-4'>

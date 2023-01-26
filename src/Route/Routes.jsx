@@ -72,7 +72,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/skills',
-                element: <Skill></Skill>
+                element: <MoreSkill/>
             },
             {
                 path: '/payment',
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
                 element: <Verification />
             },
             {
-                path: '/allfrofile',
+                path: '/allprofile',
                 element: <AllProfile></AllProfile>
             },
             {
@@ -94,7 +94,8 @@ const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <Profile />
-            }
+            },
+
         ]
     },
     {
