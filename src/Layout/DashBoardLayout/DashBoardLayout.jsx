@@ -1,8 +1,5 @@
 import React, { useContext } from 'react';
 import { Outlet, Link } from 'react-router-dom';
-
-
-import { useNavigate } from 'react-router-dom';
 import NavBer from '../../Component/Navber';
 import Spinner from '../../Component/Spinner/Spinner';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
@@ -10,20 +7,10 @@ import useUserType from '../../Hooks/DashBoardUserType/DashBoardUserType';
 
 const DashBoardLayout = () => {
     const { user, LogOut } = useContext(AuthContext);
-
-    const navigate = useNavigate();
     const [isAdmin, isRecruiter, isCandidate, userLoading] = useUserType(user?.email);
     if (userLoading) {
         return <Spinner />
     }
-    // const role = {
-    //     admin: true,
-    //     recruiter: false,
-    //     // candidate: true,
-    //     candidate: false,
-    //     // recruiter: true,
-    //     // candidate: false
-    // }
 
     return (
         <div>
@@ -69,7 +56,7 @@ const DashBoardLayout = () => {
                             </>
                         }
                         <li><Link to={'/dashboard/changePass'}>Change Password</Link></li>
-                        <li><button>Sign Out</button></li>
+                        <li><button onClick={LogOut()}>Sign Out</button></li>
                     </ul>
                 </div>
             </div>

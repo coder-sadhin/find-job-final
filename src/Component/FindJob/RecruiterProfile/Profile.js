@@ -186,7 +186,7 @@ const Profile = ({ useData }) => {
 
                     {/* change profile photo */}
                     <input type="checkbox" id="changeProfile" className="modal-toggle" />
-                    <div className="modal ">
+                    <form className="modal ">
                         <div className="modal-box relative bg-base-content text-white">
                             <p className='font-semibold'>Profile Photo</p>
                             <label htmlFor="changeProfile" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
