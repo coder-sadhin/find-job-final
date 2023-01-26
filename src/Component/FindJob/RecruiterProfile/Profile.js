@@ -195,7 +195,7 @@ const Profile = ({ useData }) => {
                             <div>
                                 <div className="avatar flex justify-center">
                                     <div className="w-44 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                        <img src={image} alt='' />
+                                        <img src={users?.image} alt='' />
                                     </div>
                                 </div>
 
@@ -214,7 +214,7 @@ const Profile = ({ useData }) => {
                     <div>
                         <div className="my-2 space-y-1">
                             <div className='flex justify-between'>
-                                <h2 className="text-3xl font-semibold">{users.name}</h2>
+                                <h2 className="text-3xl font-semibold">{users?.name}</h2>
                                 <label htmlFor="modalWithProInfo" className='text-3xl text-end'><BiPencil /></label>
                                 {/* profile info */}
                             </div>
@@ -276,10 +276,11 @@ const Profile = ({ useData }) => {
 
                             <p className="text-xl">{users?.Headline}</p>
                             <p>Talks about {users?.skills?.map(skill => <span className='mx-1'>{skill}</span>)}</p>
-                            <p>{users?.City} <span className='text-blue-400'> Contact info</span></p>
+
+                            <p>{users?.City}, <span > {users?.Country}</span>,<span className='text-blue-400'> Contact info</span></p>
                             <a href={users?.link} target='_blank' className='text-blue-400'>{linkedin_profile}</a>
 
-                            <p className='text-blue-400'>followers {followers} <span>connections {connections}</span> </p>
+                            <p className='text-blue-400'>followers {followers}, <span>connections {connections}</span> </p>
                         </div>
 
                     </div>
