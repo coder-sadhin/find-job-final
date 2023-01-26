@@ -4,10 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { ServerApi } from "../../../AllApi/MainApi";
 import { AuthContext } from "../../../ContextApi/AuthProvider/AuthProvider";
 
-const ReportJob = ({ data, setCloseModal,setisReported }) => {
-  const navigate = useNavigate()
-  const { job_details, _id } =
-    data;
+const ReportJob = ({ data, setCloseModal, setisReported }) => {
+  const navigate = useNavigate();
+  const { job_details, _id } = data;
 
   const { user } = useContext(AuthContext);
 
@@ -44,7 +43,7 @@ const ReportJob = ({ data, setCloseModal,setisReported }) => {
         console.log(data);
         if (data.type === "reported") {
           toast(`${data?.type} the ${jobName}`);
-          setisReported(data?.type)
+          setisReported(data?.type);
         } else {
           toast.error(`${data?.type} ${jobName}`);
         }
@@ -77,20 +76,18 @@ const ReportJob = ({ data, setCloseModal,setisReported }) => {
           {/* form for report */}
           <form onSubmit={submitReport} action="report Job" className="mt-5">
             <h3 className="sm:text-xl lg:text-4xl my-2 font-semibold">
-              {" "}
               About the Reports
             </h3>
             <select
               name="report"
               id=""
               className="w-full outline-none text-gray-800 p-2"
-            
               required
             >
               {reportItem?.map((report) => {
                 return (
                   <option className=" text-xl " value={report?.name}>
-                    <span className="text-sm ml-3 mb-[4px]">o</span>{" "}
+                    <span className="text-sm ml-3 mb-[4px]">o</span>
                     {report.name}
                   </option>
                 );

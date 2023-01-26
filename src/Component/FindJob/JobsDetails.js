@@ -168,8 +168,7 @@ const JobsDetails = () => {
             <div className="flex gap-2 pt-2">
               {isApplied ? (
                 <h2 className="text-white text-2xl flex items-center gap-5">
-                  {" "}
-                  <FaCheckCircle className="text-green-400 rounded-full text-2xl" />{" "}
+                  <FaCheckCircle className="text-green-400 rounded-full text-2xl" />
                   <span>
                     Already applied and your application submitted to recruiter
                   </span>
@@ -200,7 +199,7 @@ const JobsDetails = () => {
               {isreport === "reported" ? (
                 <label className="btn btn-error rounded-2xl btn-sm   text-white">
                   <FaExclamationCircle className="mr-2 text-xl" />
-                  Reported 
+                  Reported
                 </label>
               ) : (
                 <label
@@ -214,7 +213,11 @@ const JobsDetails = () => {
             </div>
             {/* modal  */}
             {closeMOdal && (
-              <ReportJob data={data} setCloseModal={setCloseModal} setisReported={setisReported}></ReportJob>
+              <ReportJob
+                data={data}
+                setCloseModal={setCloseModal}
+                setisReported={setisReported}
+              ></ReportJob>
             )}
             <div className="text-start pt-4 bg-slate-600 rounded-xl p-6 text-white">
               <h1 className="text-2xl mb-2">Meet the hiring team</h1>
@@ -227,9 +230,7 @@ const JobsDetails = () => {
                   </div>
                   <div className="ml-4">
                     <p>Ansu Hanna Biji </p>
-                    <p>
-                      Human Resources Executive at Internet Mango Solutions{" "}
-                    </p>
+                    <p>Human Resources Executive at Internet Mango Solutions</p>
                     <p>Job poster · LinkedIn member since 2018</p>
                   </div>
                 </div>

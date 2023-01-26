@@ -24,7 +24,7 @@ const ReportedJobs = () => {
         const data = await res.json();
 
         return data;
-      } catch (err) { }
+      } catch (err) {}
     },
   });
 
@@ -52,14 +52,13 @@ const ReportedJobs = () => {
                       <span className="text-green-700">{job?.jobName}</span>
                     </h4>
                     <h4 className="text-xl">
-                      Recruiter Name:{" "}
+                      Recruiter Name:
                       <span className="text-green-700 font-bold">
                         {job?.recruiter}
                       </span>
                     </h4>
                     <p className="text-lg font-semibold">
-                      Job Id :{" "}
-                      <span className="text-red-800">{job?.jobId}</span>
+                      Job Id :<span className="text-red-800">{job?.jobId}</span>
                     </p>
                   </div>
                   <div>
@@ -70,14 +69,15 @@ const ReportedJobs = () => {
                       </span>
                     </p>
                     <p className="text-lg my-5 font-semibold">
-                      Category :{" "}
+                      Category :
                       <span className="text-red-800">
                         {job?.report ? job?.report : "Most Advertisement"}
                       </span>
                     </p>
 
                     <div>
-                      <Link to={`/dashboard/reportedJobsDetails/${job._id}`}
+                      <Link
+                        to={`/dashboard/reportedJobsDetails/${job._id}`}
                         className="py-2 mt-5 px-3 font-semibold text-xl text-slate-50 rounded-xl shadow-xl hover:bg-slate-200 hover:text-[#00ae87] hover:shadow-2xl bg-[#00ae87]"
                       >
                         Job Action
