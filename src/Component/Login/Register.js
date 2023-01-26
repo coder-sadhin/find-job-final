@@ -169,7 +169,7 @@ const Register = () => {
                                                 formStep > 0 &&
                                                 <PrimaryButton handler={backPreviousStep}><HiArrowNarrowLeft /> Back</PrimaryButton>
                                             }
-                                            <PrimaryButton handler={completeFormStep} disabled={!isValid} type='button'  >Next Step <HiArrowNarrowRight /></PrimaryButton>
+                                            <PrimaryButton handler={completeFormStep} disabled={!isValid} type='button'>Next Step <HiArrowNarrowRight /></PrimaryButton>
                                         </div>
                                         {
                                             formStep === 0 &&

@@ -20,7 +20,7 @@ const Subscribe = () => {
         <div className='text-white'>
             <h2 className="text-white text-center font-bold text-xl">Get premium service</h2>
             <label htmlFor="subscribetion">
-                <input onChange={(e) => setGetEmail(e.target.value)} type="email" placeholder='Enter your email' className='p-2 rounded' />
+                <input onChange={(e) => setGetEmail(e.target.value)} type="email" placeholder='Enter your email' className='p-2 text-black rounded' />
                 <button onClick={handleSubscribe} className='bg-blue-700 p-2 ml-1 rounded text white'>Subscribe</button>
             </label>
         </div>
