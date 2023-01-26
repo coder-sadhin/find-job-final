@@ -57,6 +57,7 @@ const Register = () => {
                         email: data.email,
                         pass: data.password,
                         userTypes: data.userTypes,
+                        token: "100"
                     }
 
                     creatUser(userData)
