@@ -26,13 +26,13 @@ import JobsDetails from "../Component/FindJob/JobsDetails";
 import AllProfile from "../Component/FindJob/RecruiterProfile/AllProfile";
 import { ServerApi } from "../AllApi/MainApi";
 import FeatureIn from "../Component/FindJob/RecruiterProfile/FeatureIn/FeatureIn";
-import Skill from "../Component/FindJob/RecruiterProfile/Skill";
 import BuildCV from "../Component/BuildCV/BuildCV";
 import MyJobs from "../DashBoard/CandidatePage/MyJobs";
 import RecruiterJobs from "../DashBoard/RecruiterPage/Recruiterjobs/RecruiterJobs";
 import Profile from "../Pages/ProfilePage/Profile";
 import ReportedJobDetail from "../DashBoard/AdminPage/Reported/ReportedJobDetail";
 import Applicants from './../DashBoard/RecruiterPage/Recruiterjobs/Applicants';
+import MoreSkill from './../Pages/ProfilePage/ProfileCompo/MoreSkill';
 
 const router = createBrowserRouter([
     {

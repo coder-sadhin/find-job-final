@@ -131,9 +131,7 @@ const Login = () => {
                                             />
                                         </div>
                                     </div>
-
-                                    <div>
-                                        <PrimaryButton
+                                    <div> <PrimaryButton
                                             type='submit'
                                             classes='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover: '
                                         >

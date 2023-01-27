@@ -21,7 +21,7 @@ const AddAJobs = () => {
     const [startDate, endDate] = dateRange;
     const [addBLoading, setAddBLoading] = useState(false);
     const [addLoading, setAddLoading] = useState(false);
-    const { user, loading, setRefreshToken } = useContext(AuthContext);
+    const { user, setRefreshToken } = useContext(AuthContext);
 
     const [selected, setSelected] = useState([]);
 
@@ -73,7 +73,7 @@ const AddAJobs = () => {
                 pay_duration: pay_duration
             },
             job_description: description,
-            job_visible: [startDate.toLocaleString(), endDate.toLocaleString()],
+            job_visible: [startDate, endDate],
             job_post_time: time
         }
         setDoctorToDB(jobInfo)

@@ -20,47 +20,55 @@ import { ServerApi } from "../../AllApi/MainApi";
 import { useEffect } from "react";
 
 import toast from "react-hot-toast";
+import axios from "axios";
 
 
 const JobsDetails = () => {
   const { user } = useContext(AuthContext);
+  const [currentUser, setCurrentUser] = useState("")
+  const isreport = ""
   const data = useLoaderData();
-  const [closeMOdal, setCloseModal] = useState(true);
   const [modal, setModal] = useState(true);
+  const [isApplied, setIsApplied] = useState(false);
   const { job_description, job_details, job_post_time } = data;
 
+
+  // load current user
+  useEffect(() => {
+    axios.get(`http://localhost:5001/user/${user?.email}`)
+      .then((data) => setCurrentUser(data.data))
+    .catch((err) => console.log(err))
+  }, [user?.email])
+
   // checking whether user applied or not
-  const isApplied = data?.candidates?.map(
-    (candidate) => candidate?.email === user?.email
-  );
+  if (data?.candidates.length > 0){
+    data?.candidates?.map((candidate) => {
+      if (candidate?.email === currentUser?.email) {
+        return setIsApplied(true)
+      }
+      return setIsApplied(false)
+    });
+  } 
+
+
 
   const handleJobApply = (event) => {
     event.preventDefault();
-
     const form = event.target;
-<<<<<<< HEAD
-    const question1 = form.question1.value;
-    const question2 = form.question2.value;
-    const resume = form.resume.value;
-=======
     const question1 = form.question1.value
     const question2 = form.question2.value
     const resume = form.resume.files
->>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
+    const resumelink = form.resumelink.value
 
     const application = {
       candidate: user.displayName,
       candidateEmail: user.email,
       job: data,
       resume: resume,
-<<<<<<< HEAD
-      answers: [question1, question2],
-    };
-=======
+      resumelink: resumelink,
       answers: [question1, question2]
     };
-    console.log(application);
->>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
+
     // save candidate application to database
     fetch(`${ServerApi}/applyJob`, {
       method: "POST",
@@ -72,30 +80,23 @@ const JobsDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-<<<<<<< HEAD
-        handleUpdateApplyQuantity(user.displayName, user.email);
-=======
-        toast.success("Application Submitted")
-        handleUpdateApplyQuantity(user.displayName, user.email, user._id)
->>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
+        toast.success("Application Submitted");
+        const candidate = {
+          name: currentUser.name,
+          email: currentUser.email,
+          candidateId: currentUser?._id,
+          resumelink: resumelink,
+          photoURL: currentUser.photoURL,
+          answers: [question1, question2]
+        }
+        handleUpdateApplyQuantity(candidate)
       })
       .catch((err) => console.log(err));
 
     setModal(false);
   };
 
-  const handleUpdateApplyQuantity = (name, email, id) => {
-    const candidate = {
-      name: name,
-      email: email,
-<<<<<<< HEAD
-      candidateId: "sg8sd8gh4h46d8fg76df8gh",
-    };
-=======
-      candidateId: id
-
-    }
->>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
+  const handleUpdateApplyQuantity = (candidate) => {
     fetch(`${ServerApi}/jobs/apply/${data._id}`, {
       method: "PUT",
       headers: {
@@ -106,25 +107,7 @@ const JobsDetails = () => {
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
-<<<<<<< HEAD
-  };
-
-  // check reported @sarwar ///
-  const [isreport, setisReported] = useState("notreported");
-
-  useEffect(() => {
-    fetch(
-      `${ServerApi}/report/isreport?email=${user?.email}&jobid=${data?._id}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setisReported("reported");
-      });
-  }, [setisReported]);
-=======
   }
->>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
 
   return (
     <div className=" p-6 bg-base-content ">
@@ -151,11 +134,7 @@ const JobsDetails = () => {
 
                 <div className="avatar flex mt-2">
                   <div className="w-8 rounded">
-<<<<<<< HEAD
-                    <img src="https://placeimg.com/192/192/people" alt="" />
-=======
                     <img src="https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=sph" alt='' />
->>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
                   </div>
                   <p className="ml-2 mt-1">
                     Shalini Malviya is hiring for this job
@@ -200,7 +179,7 @@ const JobsDetails = () => {
               </div>
             </div>
             <div className="flex gap-2 pt-2">
-              {isApplied ? (
+              {isApplied && isApplied[0] === true ? (
                 <h2 className="text-white text-2xl flex items-center gap-5">
                   <FaCheckCircle className="text-green-400 rounded-full text-2xl" />
                   <span>
@@ -246,38 +225,6 @@ const JobsDetails = () => {
               )}
             </div>
             {/* modal  */}
-<<<<<<< HEAD
-            {closeMOdal && (
-              <ReportJob
-                data={data}
-                setCloseModal={setCloseModal}
-                setisReported={setisReported}
-              ></ReportJob>
-            )}
-            <div className="text-start pt-4 bg-slate-600 rounded-xl p-6 text-white">
-              <h1 className="text-2xl mb-2">Meet the hiring team</h1>
-              <div className="flex justify-between">
-                <div className="flex ">
-                  <div className="avatar flex mt-2">
-                    <div className="w-14 rounded">
-                      <img src="https://placeimg.com/192/192/people" alt="" />
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <p>Ansu Hanna Biji </p>
-                    <p>Human Resources Executive at Internet Mango Solutions</p>
-                    <p>Job poster · LinkedIn member since 2018</p>
-                  </div>
-                </div>
-
-                <Link to="/allfrofile">
-                  <div>
-                    <button className="btn btn-outline btn-sm text-white mt-2 justify-end">
-                      Msessage
-                    </button>
-                  </div>
-                </Link>
-=======
             <div className='text-start pt-4 bg-slate-600 rounded-xl p-6 text-white'>
               <h1 className='text-2xl mb-2'>Meet the hiring team</h1>
               <div className='flex justify-between'>
@@ -302,7 +249,6 @@ const JobsDetails = () => {
                   <button className='btn btn-outline btn-sm text-white mt-2 justify-end'>Msessage</button>
                 </div>
 
->>>>>>> 3c7d26379a45a19a91f526acb8cea0632aeea3da
               </div>
             </div>
             <div className="text-start pt-4 bg-slate-600 rounded-xl p-6 text-white">
@@ -378,6 +324,11 @@ const JobsDetails = () => {
                 <span className="label-text">Upload Resume</span>
               </label>
               <input type="file" name="resume" className="border" />
+              <p className="mt-1">Or</p>
+              <label className="label">
+                <span className="label-text">Upload google drive link.</span>
+              </label>
+              <input type="text" name="resumelink" className="border" />
             </div>
             <div className="modal-action flex justify-between">
               <label htmlFor="easy-apply" className="btn">
