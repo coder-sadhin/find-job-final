@@ -96,5 +96,4 @@ const MyJobs = () => {
         </div>
     );
 };
-
 export default MyJobs;

@@ -2,20 +2,17 @@ import axios from 'axios';
 import React, { useContext , useState} from 'react';
 import { useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import { ServerApi } from '../../AllApi/MainApi';
-
 import NavBer from '../../Component/Navber';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 
 const DashBoardLayout = () => {
-    const { user } = useContext(AuthContext);
-    const [currentUser, setCurrentUser] = useState({})
+    const { LogOut } = useContext(AuthContext);
 
-    useEffect(() => {
-        axios.get(`${ServerApi}/user/${user?.email}`)
-        .then((data) => setCurrentUser(data.data))
-        .catch((err) => console.log(err))
-    }, [user?.email])
+    const currentUser = {
+        candidate: false,
+        recruiter: true,
+        admin: false,
+    }
 
     return (
         <div>
@@ -30,18 +27,18 @@ const DashBoardLayout = () => {
                     <ul className="menu p-4 w-80 text-bold bg-blue-200">
 
                         {
-                            currentUser?.userType === "candidate" && <>
+                            currentUser.candidate === true && <>
                                 <li><Link to={'/dashboard/my-jobs'}>Applied Jobs</Link></li>
                             </>
                         }
                         {
-                            currentUser.userType === "recruiter" && <>
+                            currentUser.recruiter === true && <>
                                 <li><Link to={'/dashboard/myJobs'}>My Jobs</Link></li>
                                 <li><Link to={'/dashboard/addAJobs'}>Post A Jobs</Link></li>
                             </>
                         }
                         {
-                            currentUser.userType === "admin" && <>
+                            currentUser.admin === true && <>
                                 <li><Link to={'/dashboard/newsLetter'}>News Letter</Link></li>
                                 <li><Link to={'/dashboard/recruiters'}>All Recruiters</Link></li>
                                 <li><Link to={'/dashboard/candidates'}>All Candidates</Link></li>
@@ -61,7 +58,7 @@ const DashBoardLayout = () => {
                             </>
                         }
                         <li><Link to={'/dashboard/changePass'}>Change Password</Link></li>
-                        <li><button>Sign Out</button></li>
+                        <li><button onClick={LogOut()}>Sign Out</button></li>
                     </ul>
                 </div>
             </div>

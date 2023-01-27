@@ -8,9 +8,9 @@ import { ServerApi } from '../AllApi/MainApi';
 import { toast } from 'react-hot-toast';
 
 const NavBer = () => {
-    const { user, LogOut, refreshToken } = useContext(AuthContext);
-    const navigate = useNavigate()
+    const { user, LogOut, refreshToken } = useContext(AuthContext)
     const [userToken, setUserToken] = useState(0);
+    const navigate = useNavigate()
     useEffect(() => {
         fetch(`${ServerApi}/token?email=${user?.email}`)
             .then(res => res.json())
@@ -97,7 +97,7 @@ const NavBer = () => {
                                 className="menu menu-compact dropdown-content 
                                  mt-3 p-2 shadow bg-slate-900 text-white rounded-box w-52">
                                 <li>
-                                    <Link to='/allprofile' className="justify-between">
+                                    <Link to='/allProfile' className="justify-between">
                                         Profile
                                         <span className="badge">New</span>
                                     </Link>

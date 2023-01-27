@@ -26,9 +26,12 @@ import axios from "axios";
 const JobsDetails = () => {
   const { user } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState("")
-  const isreport = ""
   const data = useLoaderData();
+
+  // check reported @sarwar ///
+  const [isreport, setisReported] = useState("notreported");
   const [modal, setModal] = useState(true);
+  const [closeMOdal, setCloseModal] = useState(true);
   const [isApplied, setIsApplied] = useState(false);
   const { job_description, job_details, job_post_time } = data;
 
@@ -58,17 +61,15 @@ const JobsDetails = () => {
     const question1 = form.question1.value
     const question2 = form.question2.value
     const resume = form.resume.files
-    const resumelink = form.resumelink.value
 
     const application = {
       candidate: user.displayName,
       candidateEmail: user.email,
       job: data,
       resume: resume,
-      resumelink: resumelink,
       answers: [question1, question2]
     };
-
+    console.log(application);
     // save candidate application to database
     fetch(`${ServerApi}/applyJob`, {
       method: "POST",
@@ -80,23 +81,21 @@ const JobsDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.success("Application Submitted");
-        const candidate = {
-          name: currentUser.name,
-          email: currentUser.email,
-          candidateId: currentUser?._id,
-          resumelink: resumelink,
-          photoURL: currentUser.photoURL,
-          answers: [question1, question2]
-        }
-        handleUpdateApplyQuantity(candidate)
+        toast.success("Application Submitted")
+        handleUpdateApplyQuantity(user.displayName, user.email, user._id)
       })
       .catch((err) => console.log(err));
 
     setModal(false);
   };
 
-  const handleUpdateApplyQuantity = (candidate) => {
+  const handleUpdateApplyQuantity = (name, email, id) => {
+    const candidate = {
+      name: name,
+      email: email,
+      candidateId: id
+
+    }
     fetch(`${ServerApi}/jobs/apply/${data._id}`, {
       method: "PUT",
       headers: {
@@ -107,7 +106,17 @@ const JobsDetails = () => {
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
-  }
+  };
+
+  useEffect(() => {
+    fetch(
+      `${ServerApi}/report/isreport?email=${user?.email}&jobid=${data?._id}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setisReported("reported");
+      });
+  }, []);
 
   return (
     <div className=" p-6 bg-base-content ">
@@ -225,30 +234,36 @@ const JobsDetails = () => {
               )}
             </div>
             {/* modal  */}
-            <div className='text-start pt-4 bg-slate-600 rounded-xl p-6 text-white'>
-              <h1 className='text-2xl mb-2'>Meet the hiring team</h1>
-              <div className='flex justify-between'>
-
-
-                <Link to='/allprofile'>
-                  <div className='flex '>
-                    <div className="avatar flex mt-2">
-                      <div className="w-14 rounded">
-                        <img src="https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg?size=626&ext=jpg&uid=R83218281&ga=GA1.1.1908891225.1665030381&semt=sph" alt='' />
-                      </div>
-                    </div>
-                    <div className='ml-4'>
-                      <p>Ansu Hanna Biji </p>
-                      <p>Human Resources Executive at Internet Mango Solutions </p>
-                      <p>Job poster · LinkedIn member since 2018</p>
+            {closeMOdal && (
+              <ReportJob
+                data={data}
+                setCloseModal={setCloseModal}
+                setisReported={setisReported}
+              ></ReportJob>
+            )}
+            <div className="text-start pt-4 bg-slate-600 rounded-xl p-6 text-white">
+              <h1 className="text-2xl mb-2">Meet the hiring team</h1>
+              <div className="flex justify-between">
+                <div className="flex ">
+                  <div className="avatar flex mt-2">
+                    <div className="w-14 rounded">
+                      <img src="https://placeimg.com/192/192/people" alt="" />
                     </div>
                   </div>
-                </Link>
-
-                <div>
-                  <button className='btn btn-outline btn-sm text-white mt-2 justify-end'>Msessage</button>
+                  <div className="ml-4">
+                    <p>Ansu Hanna Biji </p>
+                    <p>Human Resources Executive at Internet Mango Solutions</p>
+                    <p>Job poster · LinkedIn member since 2018</p>
+                  </div>
                 </div>
 
+                <Link to="/allfrofile">
+                  <div>
+                    <button className="btn btn-outline btn-sm text-white mt-2 justify-end">
+                      Msessage
+                    </button>
+                  </div>
+                </Link>
               </div>
             </div>
             <div className="text-start pt-4 bg-slate-600 rounded-xl p-6 text-white">
