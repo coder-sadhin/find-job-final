@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import {
   FaCheck,
@@ -17,39 +17,54 @@ import {
 import ReportJob from "./ReportJob/ReportJob";
 import { AuthContext } from "../../ContextApi/AuthProvider/AuthProvider";
 import { ServerApi } from "../../AllApi/MainApi";
-import { useEffect } from "react";
 
 import toast from "react-hot-toast";
+import axios from "axios";
 
 
 const JobsDetails = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
-  const [closeMOdal, setCloseModal] = useState(true);
+
+  // check reported @sarwar ///
+  const [isreport, setisReported] = useState("notreported");
   const [modal, setModal] = useState(true);
+  const [closeMOdal, setCloseModal] = useState(true);
+  const [isApplied, setIsApplied] = useState(false);
   const { job_description, job_details, job_post_time } = data;
 
+
   // checking whether user applied or not
-  const isApplied = data?.candidates?.map(
-    (candidate) => candidate?.email === user?.email
-  );
+  // if (data?.candidates.length > 0){
+  //   data?.candidates?.map((candidate) => {
+  //     if (candidate?.email === currentUser?.email) {
+  //       return setIsApplied(true)
+  //     }
+  //     return setIsApplied(false)
+  //   });
+  // } 
+
+
 
   const handleJobApply = (event) => {
     event.preventDefault();
-
     const form = event.target;
     const question1 = form.question1.value
     const question2 = form.question2.value
     const resume = form.resume.files
+    const resumeLink = form.resumelink.value
 
     const application = {
       candidate: user.displayName,
+      candidateId: user._id,
       candidateEmail: user.email,
+      photoURL: user.photoURL,
       job: data,
+      jobId: data._id,
+      resumeLink: resumeLink,
       resume: resume,
       answers: [question1, question2]
     };
-    console.log(application);
     // save candidate application to database
     fetch(`${ServerApi}/applyJob`, {
       method: "POST",
@@ -62,34 +77,30 @@ const JobsDetails = () => {
       .then((data) => {
         console.log(data);
         toast.success("Application Submitted")
-        handleUpdateApplyQuantity(user.displayName, user.email, user._id)
       })
       .catch((err) => console.log(err));
 
     setModal(false);
   };
 
-  const handleUpdateApplyQuantity = (name, email, id) => {
-    const candidate = {
-      name: name,
-      email: email,
-      candidateId: id
+  // const handleUpdateApplyQuantity = (name, email, id) => {
+    // const candidate = {
+    //   name: name,
+    //   email: email,
+    //   candidateId: id
 
-    }
-    fetch(`${ServerApi}/jobs/apply/${data._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(candidate),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-  };
-
-  // check reported @sarwar ///
-  const [isreport, setisReported] = useState("notreported");
+    // }
+    // fetch(`${ServerApi}/jobs/apply/${data._id}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(candidate),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data))
+    //   .catch((err) => console.log(err));
+  // };
 
   useEffect(() => {
     fetch(
@@ -97,10 +108,9 @@ const JobsDetails = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setisReported("reported");
       });
-  }, [setisReported]);
+  }, []);
 
   return (
     <div className=" p-6 bg-base-content ">
@@ -172,7 +182,7 @@ const JobsDetails = () => {
               </div>
             </div>
             <div className="flex gap-2 pt-2">
-              {isApplied ? (
+              {isApplied && isApplied[0] === true ? (
                 <h2 className="text-white text-2xl flex items-center gap-5">
                   <FaCheckCircle className="text-green-400 rounded-full text-2xl" />
                   <span>
@@ -323,6 +333,11 @@ const JobsDetails = () => {
                 <span className="label-text">Upload Resume</span>
               </label>
               <input type="file" name="resume" className="border" />
+              <p className="mt-1">Or</p>
+              <label className="label">
+                <span className="label-text">Upload google drive link.</span>
+              </label>
+              <input type="text" name="resumelink" className="border" />
             </div>
             <div className="modal-action flex justify-between">
               <label htmlFor="easy-apply" className="btn">

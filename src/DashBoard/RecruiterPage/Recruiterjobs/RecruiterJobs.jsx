@@ -41,7 +41,7 @@ const RecruiterJobs = () => {
                             <th></th>
                             <th>Title</th>
                             <th>Applicants</th>
-                            <th>Resumes</th>
+                            <th>Candidates</th>
                             <th>Action</th>
                         </tr>
                     </thead>

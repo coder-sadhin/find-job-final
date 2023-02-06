@@ -21,7 +21,7 @@ const AddAJobs = () => {
     const [startDate, endDate] = dateRange;
     const [addBLoading, setAddBLoading] = useState(false);
     const [addLoading, setAddLoading] = useState(false);
-    const { user, loading, setRefreshToken } = useContext(AuthContext);
+    const { user, setRefreshToken } = useContext(AuthContext);
 
     const [selected, setSelected] = useState([]);
 
@@ -80,7 +80,6 @@ const AddAJobs = () => {
     //     // save information to the database 
 
     const setDoctorToDB = (jobInfo) => {
-
         fetch(`${ServerApi}/jobs`, {
             method: 'POST',
             headers: {

@@ -1,7 +1,4 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { ServerApi } from "../../../AllApi/MainApi";
-import { AuthContext } from "../../../ContextApi/AuthProvider/AuthProvider";
+import React, {  useEffect, useState } from "react";
 import About from "./About";
 import Experience from "./Experience";
 import Featured from "./Featured";
@@ -10,7 +7,6 @@ import Profile from "./Profile";
 import Skill from "./Skill";
 
 const AllProfile = () => {
-  const { user } = useContext(AuthContext);
 
   // useEffect(() => {
   //   axios

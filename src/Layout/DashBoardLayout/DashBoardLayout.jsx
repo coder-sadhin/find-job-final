@@ -1,15 +1,17 @@
-import React, { useContext } from 'react';
+import axios from 'axios';
+import React, { useContext , useState} from 'react';
+import { useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import NavBer from '../../Component/Navber';
-import Spinner from '../../Component/Spinner/Spinner';
 import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
-import useUserType from '../../Hooks/DashBoardUserType/DashBoardUserType';
 
 const DashBoardLayout = () => {
-    const { user, LogOut } = useContext(AuthContext);
-    const [isAdmin, isRecruiter, isCandidate, userLoading] = useUserType(user?.email);
-    if (userLoading) {
-        return <Spinner />
+    const { LogOut } = useContext(AuthContext);
+
+    const currentUser = {
+        candidate: false,
+        recruiter: true,
+        admin: false,
     }
 
     return (
@@ -25,18 +27,18 @@ const DashBoardLayout = () => {
                     <ul className="menu p-4 w-80 text-bold bg-blue-200">
 
                         {
-                            isCandidate === true && <>
+                            currentUser.candidate === true && <>
                                 <li><Link to={'/dashboard/my-jobs'}>Applied Jobs</Link></li>
                             </>
                         }
                         {
-                            isRecruiter === true && <>
+                            currentUser.recruiter === true && <>
                                 <li><Link to={'/dashboard/myJobs'}>My Jobs</Link></li>
                                 <li><Link to={'/dashboard/addAJobs'}>Post A Jobs</Link></li>
                             </>
                         }
                         {
-                            isAdmin === true && <>
+                            currentUser.admin === true && <>
                                 <li><Link to={'/dashboard/newsLetter'}>News Letter</Link></li>
                                 <li><Link to={'/dashboard/recruiters'}>All Recruiters</Link></li>
                                 <li><Link to={'/dashboard/candidates'}>All Candidates</Link></li>

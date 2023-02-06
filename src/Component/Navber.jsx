@@ -1,24 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 import { FcBusinessman } from 'react-icons/fc';
 import logo from '../asset/logo2.png';
 import coin from '../asset/Vlaunchu_coin.png';
 import { ServerApi } from '../AllApi/MainApi';
-
+import { toast } from 'react-hot-toast';
 
 const NavBer = () => {
     const { user, LogOut, refreshToken } = useContext(AuthContext)
     const [userToken, setUserToken] = useState(0);
-    useEffect(() => {
-        fetch(`${ServerApi}/token?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                const token = Number(data)
-                setUserToken(token)
-            })
-            .catch(err => console.error(err))
-    }, [user, user?.email, refreshToken])
+    const navigate = useNavigate()
+    // useEffect(() => {
+    //     fetch(`${ServerApi}/token?email=${user?.email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             const token = Number(data)
+    //             setUserToken(token)
+    //         })
+    //         .catch(err => console.error(err))
+    // }, [user, user?.email, refreshToken])
+
+    const handleLogout = () => {
+        LogOut()
+        .then(() => {
+            navigate("/")
+        })
+        .catch((err) => toast.error("Something went wrong"))
+    }
 
     return (
         <div
@@ -103,7 +112,7 @@ const NavBer = () => {
                                 </li>
                                 <li><Link to={'/dashboard'}>DashBoard</Link></li>
                                 <li><Link to={'/message'}>Messages</Link></li>
-                                <li><button onClick={LogOut}>Sign Out</button></li>
+                                <li><button onClick={handleLogout}>Sign Out</button></li>
                             </ul>
                         </div>
                     </>
