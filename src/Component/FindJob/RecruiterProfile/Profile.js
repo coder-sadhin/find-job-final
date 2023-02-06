@@ -40,6 +40,7 @@ const Profile = ({ useData }) => {
             email: user?.email,
             image
         }
+        //comment
 
         fetch(`${ServerApi}/addProfile`, {
             method: 'PUT',
