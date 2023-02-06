@@ -11,15 +11,15 @@ const NavBer = () => {
     const { user, LogOut, refreshToken } = useContext(AuthContext)
     const [userToken, setUserToken] = useState(0);
     const navigate = useNavigate()
-    useEffect(() => {
-        fetch(`${ServerApi}/token?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                const token = Number(data)
-                setUserToken(token)
-            })
-            .catch(err => console.error(err))
-    }, [user, user?.email, refreshToken])
+    // useEffect(() => {
+    //     fetch(`${ServerApi}/token?email=${user?.email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             const token = Number(data)
+    //             setUserToken(token)
+    //         })
+    //         .catch(err => console.error(err))
+    // }, [user, user?.email, refreshToken])
 
     const handleLogout = () => {
         LogOut()

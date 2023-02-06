@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import {
   FaCheck,
@@ -17,7 +17,6 @@ import {
 import ReportJob from "./ReportJob/ReportJob";
 import { AuthContext } from "../../ContextApi/AuthProvider/AuthProvider";
 import { ServerApi } from "../../AllApi/MainApi";
-import { useEffect } from "react";
 
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -25,7 +24,6 @@ import axios from "axios";
 
 const JobsDetails = () => {
   const { user } = useContext(AuthContext);
-  const [currentUser, setCurrentUser] = useState("")
   const data = useLoaderData();
 
   // check reported @sarwar ///
@@ -36,22 +34,15 @@ const JobsDetails = () => {
   const { job_description, job_details, job_post_time } = data;
 
 
-  // load current user
-  useEffect(() => {
-    axios.get(`http://localhost:5001/user/${user?.email}`)
-      .then((data) => setCurrentUser(data.data))
-    .catch((err) => console.log(err))
-  }, [user?.email])
-
   // checking whether user applied or not
-  if (data?.candidates.length > 0){
-    data?.candidates?.map((candidate) => {
-      if (candidate?.email === currentUser?.email) {
-        return setIsApplied(true)
-      }
-      return setIsApplied(false)
-    });
-  } 
+  // if (data?.candidates.length > 0){
+  //   data?.candidates?.map((candidate) => {
+  //     if (candidate?.email === currentUser?.email) {
+  //       return setIsApplied(true)
+  //     }
+  //     return setIsApplied(false)
+  //   });
+  // } 
 
 
 
@@ -61,15 +52,19 @@ const JobsDetails = () => {
     const question1 = form.question1.value
     const question2 = form.question2.value
     const resume = form.resume.files
+    const resumeLink = form.resumelink.value
 
     const application = {
       candidate: user.displayName,
+      candidateId: user._id,
       candidateEmail: user.email,
+      photoURL: user.photoURL,
       job: data,
+      jobId: data._id,
+      resumeLink: resumeLink,
       resume: resume,
       answers: [question1, question2]
     };
-    console.log(application);
     // save candidate application to database
     fetch(`${ServerApi}/applyJob`, {
       method: "POST",
@@ -82,31 +77,30 @@ const JobsDetails = () => {
       .then((data) => {
         console.log(data);
         toast.success("Application Submitted")
-        handleUpdateApplyQuantity(user.displayName, user.email, user._id)
       })
       .catch((err) => console.log(err));
 
     setModal(false);
   };
 
-  const handleUpdateApplyQuantity = (name, email, id) => {
-    const candidate = {
-      name: name,
-      email: email,
-      candidateId: id
+  // const handleUpdateApplyQuantity = (name, email, id) => {
+    // const candidate = {
+    //   name: name,
+    //   email: email,
+    //   candidateId: id
 
-    }
-    fetch(`${ServerApi}/jobs/apply/${data._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(candidate),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-  };
+    // }
+    // fetch(`${ServerApi}/jobs/apply/${data._id}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(candidate),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data))
+    //   .catch((err) => console.log(err));
+  // };
 
   useEffect(() => {
     fetch(
