@@ -276,7 +276,7 @@ const Profile = ({ useData }) => {
                             <p>Talks about {users?.skills?.map(skill => <span className='mx-1'>{skill}</span>)}</p>
 
                             <p>{users?.City}, <span > {users?.Country}</span>,<span className='text-blue-400'> Contact info</span></p>
-                            <a href={users?.link} target='_blank' className='text-blue-400' ref="">{linkedin_profile}</a>
+                            <a href={users?.link} target='_blank' className='text-blue-400'>{users?.link}</a>
 
                             <p className='text-blue-400'>followers {followers}, <span>connections {connections}</span> </p>
                         </div>
