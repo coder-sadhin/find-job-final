@@ -7,6 +7,8 @@ import AuthProvider from "./ContextApi/AuthProvider/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "tw-elements";
 
+
+
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
